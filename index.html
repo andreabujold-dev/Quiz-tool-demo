@@ -731,8 +731,8 @@ body {
       <div class="card">
         <div class="question-section">
           <div class="explore-tabs">
-            <button class="explore-tab active" onclick="selectExplore('exploring')">Just exploring</button>
-            <button class="explore-tab" onclick="selectExplore('solution')">Looking for a solution</button>
+            <button class="explore-tab active" onclick="selectExplore(event, 'exploring')">Just exploring</button>
+            <button class="explore-tab" onclick="selectExplore(event, 'solution')">Looking for a solution</button>
           </div>
         </div>
         <div class="nav-section">
@@ -913,7 +913,8 @@ const quizzes = {
       { q: "Do you sell online?", opts: ["Yes, it's important", "A little", "No, in-store only"] },
       { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
       { q: "What's your biggest priority?", opts: ["Cost", "Features", "Support", "Scalability"] }
-    ]
+    ],
+    recommended: ["goRetail", "totalCommerce", "goTerminal"]
   },
   restaurant: {
     title: "Find your restaurant solution.",
@@ -923,7 +924,8 @@ const quizzes = {
       { q: "How do customers order from you?", opts: ["Table-side", "Counter", "Online", "All of the above"] },
       { q: "Do you need online ordering or delivery integration?", opts: ["Yes, it's essential", "Nice to have", "No, strictly in-person"] },
       { q: "How many locations do you operate?", opts: ["Just one", "2–5 locations", "6 or more", "Planning to expand"] }
-    ]
+    ],
+    recommended: ["goRestaurant", "touchBistro", "monerisOnline"]
   },
   health: {
     title: "Find your health & beauty solution.",
@@ -933,7 +935,8 @@ const quizzes = {
       { q: "Do you offer online booking?", opts: ["Yes, it's important", "I'd like to add it", "No, appointment only"] },
       { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
       { q: "What's your priority?", opts: ["Efficiency", "Customer retention", "Scalability", "Affordability"] }
-    ]
+    ],
+    recommended: ["goTerminal", "goPlus", "goPinPad"]
   },
   enterprise: {
     title: "Find your enterprise solution.",
@@ -943,7 +946,8 @@ const quizzes = {
       { q: "How many locations do you operate?", opts: ["10-50", "50-100", "100+"] },
       { q: "Key priority?", opts: ["Security", "Integration", "Support", "Scalability"] },
       { q: "Budget range?", opts: ["$50K-$100K", "$100K-$500K", "$500K+"] }
-    ]
+    ],
+    recommended: ["totalCommerce", "goPlus", "monerisOnline"]
   },
   professional: {
     title: "Find your professional services solution.",
@@ -953,7 +957,8 @@ const quizzes = {
       { q: "How do you typically invoice clients?", opts: ["Projects", "Hourly", "Retainers", "Mixed"] },
       { q: "Client locations?", opts: ["Local only", "Regional", "National", "International"] },
       { q: "Priority feature?", opts: ["Invoice management", "Time tracking", "Client portal", "Integration"] }
-    ]
+    ],
+    recommended: ["paydInvoicing", "monerisOnline", "goTerminal"]
   },
   public: {
     title: "Find your public sector solution.",
@@ -963,7 +968,8 @@ const quizzes = {
       { q: "Payment volumes?", opts: ["Low (under 100/month)", "Medium (100-1000/month)", "High (1000+/month)"] },
       { q: "Compliance requirements?", opts: ["Basic", "Standard", "Enhanced"] },
       { q: "Implementation timeline?", opts: ["ASAP", "3-6 months", "6-12 months"] }
-    ]
+    ],
+    recommended: ["goPlus", "goPinPad", "totalCommerce"]
   },
   nonprofit: {
     title: "Find your nonprofit solution.",
@@ -973,7 +979,8 @@ const quizzes = {
       { q: "Primary revenue source?", opts: ["Donations", "Grants", "Program fees", "Mixed"] },
       { q: "Annual fundraising volume?", opts: ["Under $100K", "$100K-$1M", "$1M-$5M", "$5M+"] },
       { q: "Key need?", opts: ["Donation processing", "Event ticketing", "Membership management", "All of the above"] }
-    ]
+    ],
+    recommended: ["paydInvoicing", "goTerminal", "monerisOnline"]
   }
 };
 
@@ -982,7 +989,7 @@ let currentStep = 0;
 let answers = [];
 let exploreChoice = null;
 
-function selectExplore(choice) {
+function selectExplore(event, choice) {
   exploreChoice = choice;
   document.querySelectorAll('.explore-tab').forEach(btn => btn.classList.remove('active'));
   event.target.classList.add('active');
@@ -1004,48 +1011,49 @@ function startQuiz(quizType) {
   currentQuiz = quizType;
   currentStep = 0;
   answers = [];
+  
   document.getElementById('industriesSection').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'block';
   document.getElementById('resultsContainer').style.display = 'none';
-  renderQuestion();
+  
+  loadQuestion();
 }
 
-function renderQuestion() {
+function loadQuestion() {
   const quiz = quizzes[currentQuiz];
   const step = quiz.steps[currentStep];
-  const progress = Math.round(((currentStep + 1) / quiz.steps.length) * 100);
-
-  document.getElementById('quizLabel').textContent = currentQuiz.charAt(0).toUpperCase() + currentQuiz.slice(1);
-  document.getElementById('quizTitle').textContent = quiz.title;
-  document.getElementById('quizSubtitle').textContent = quiz.subtitle;
+  
+  document.getElementById('quizTitle').textContent = step.q;
   document.getElementById('progressCount').textContent = `${currentStep + 1} / ${quiz.steps.length}`;
-  document.getElementById('progressFill').style.width = progress + '%';
-
-  let html = `<h3 style="font-size: 18px; margin-bottom: 1.5rem; color: var(--text-dark);">${step.q}</h3>`;
-  html += '<div class="options">';
+  document.getElementById('progressFill').style.width = `${((currentStep + 1) / quiz.steps.length) * 100}%`;
+  
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+  
   step.opts.forEach((opt, idx) => {
-    html += `<button class="option ${answers[currentStep] === opt ? 'selected' : ''}" onclick="selectOption(${currentStep}, '${opt.replace(/'/g, "\\'")}')">${opt}</button>`;
+    const optDiv = document.createElement('div');
+    optDiv.className = 'option';
+    optDiv.textContent = opt;
+    optDiv.onclick = () => selectOption(idx, optDiv);
+    optionsContainer.appendChild(optDiv);
   });
-  html += '</div>';
-
-  document.getElementById('optionsContainer').innerHTML = html;
-  document.getElementById('backBtn').style.visibility = currentStep === 0 ? 'hidden' : 'visible';
-  document.getElementById('nextBtn').className = answers[currentStep] ? 'btn-next active' : 'btn-next';
-  document.getElementById('nextBtn').textContent = currentStep === quiz.steps.length - 1 ? 'See recommendation →' : 'Next →';
+  
+  document.getElementById('nextBtn').classList.remove('active');
+  document.getElementById('backBtn').style.visibility = currentStep > 0 ? 'visible' : 'hidden';
 }
 
-function selectOption(step, option) {
-  answers[step] = option;
-  renderQuestion();
+function selectOption(idx, element) {
+  document.querySelectorAll('#optionsContainer .option').forEach(opt => opt.classList.remove('selected'));
+  element.classList.add('selected');
+  answers[currentStep] = idx;
+  document.getElementById('nextBtn').classList.add('active');
 }
 
 function nextQuestion() {
-  if (!answers[currentStep]) return;
-  
   const quiz = quizzes[currentQuiz];
   if (currentStep < quiz.steps.length - 1) {
     currentStep++;
-    renderQuestion();
+    loadQuestion();
   } else {
     showResults();
   }
@@ -1054,66 +1062,44 @@ function nextQuestion() {
 function goBackQuiz() {
   if (currentStep > 0) {
     currentStep--;
-    renderQuestion();
+    loadQuestion();
   }
 }
 
 function showResults() {
-  document.getElementById('optionsContainer').style.display = 'none';
-  document.getElementById('progressFill').style.width = '100%';
-  document.getElementById('backBtn').style.display = 'none';
-  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('resultsContainer').style.display = 'block';
   
-  let prods = [P.goRetail, P.goTerminal, P.totalCommerce];
-  if (currentQuiz === 'restaurant') {
-    prods = [P.touchBistro, P.goPlus, P.goTerminal];
-  } else if (currentQuiz === 'health') {
-    prods = [P.goRetail, P.totalCommerce, P.paydInvoicing];
-  } else if (currentQuiz === 'enterprise') {
-    prods = [P.totalCommerce, P.goTerminal, P.monerisOnline];
-  } else if (currentQuiz === 'professional') {
-    prods = [P.paydInvoicing, P.monerisOnline, P.goTerminal];
-  } else if (currentQuiz === 'public') {
-    prods = [P.totalCommerce, P.goTerminal, P.goPinPad];
-  } else if (currentQuiz === 'nonprofit') {
-    prods = [P.monerisOnline, P.paydInvoicing, P.goTerminal];
-  }
-
-  let html = '';
-  prods.forEach((prod, idx) => {
-    html += `
-      <div class="product-card">
-        ${idx === 0 ? '<div class="product-badge">Best fit</div>' : '<div style="height: 24px;"></div>'}
-        <div class="product-image">${prod.icon}</div>
-        <div class="product-name">${prod.name}</div>
-        <div class="product-desc">${prod.desc}</div>
-        <div class="product-ctas">
-          <button class="btn-primary">Learn more</button>
-          <button class="btn-secondary">Contact sales</button>
-        </div>
+  const quiz = quizzes[currentQuiz];
+  const productResults = document.getElementById('productResults');
+  productResults.innerHTML = '';
+  
+  quiz.recommended.forEach(productKey => {
+    const product = P[productKey];
+    const productDiv = document.createElement('div');
+    productDiv.className = 'product-card';
+    productDiv.innerHTML = `
+      <div class="product-image">${product.icon}</div>
+      <div class="product-name">${product.name}</div>
+      <div class="product-desc">${product.desc}</div>
+      <div class="product-ctas">
+        <button class="btn-primary">Learn more →</button>
       </div>
     `;
+    productResults.appendChild(productDiv);
   });
-
-  document.getElementById('productResults').innerHTML = html;
-  document.getElementById('resultsContainer').style.display = 'block';
 }
 
 function goBackHome() {
   document.getElementById('homepage').style.display = 'block';
   document.getElementById('quizSection').style.display = 'block';
-  document.getElementById('industriesSection').style.display = 'none';
   document.getElementById('blogsContainer').style.display = 'none';
+  document.getElementById('industriesSection').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'none';
-  document.getElementById('optionsContainer').style.display = 'block';
   document.getElementById('resultsContainer').style.display = 'none';
   currentQuiz = null;
   currentStep = 0;
   answers = [];
-  exploreChoice = null;
-  document.querySelectorAll('.explore-tab').forEach(btn => btn.classList.remove('active'));
-  document.querySelector('.explore-tab').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 

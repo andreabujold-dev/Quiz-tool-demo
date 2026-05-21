@@ -376,6 +376,7 @@ body {
   text-align: center;
   transition: var(--transition);
   background: var(--white);
+  cursor: pointer;
 }
 
 .product-card:hover {
@@ -423,13 +424,6 @@ body {
   margin-bottom: 1.5rem;
   height: 60px;
   overflow: hidden;
-}
-
-.product-price {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 1.5rem;
 }
 
 .product-ctas {
@@ -488,21 +482,78 @@ body {
   line-height: 1.6;
 }
 
-/* Question options section */
-.question-section {
+/* Blog cards */
+.blogs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 0;
 }
 
-.question-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 1.5rem;
-  text-align: center;
+.blog-card {
+  border: 1px solid var(--gray-med);
+  border-radius: 8px;
+  padding: 1.75rem;
+  text-align: left;
+  transition: var(--transition);
+  background: var(--white);
+  cursor: pointer;
 }
 
-/* Industry tabs */
-.industry-tabs {
+.blog-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 4px 16px rgba(74, 159, 190, 0.15);
+}
+
+.blog-image {
+  width: 100%;
+  height: 140px;
+  background: var(--gray-light);
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+}
+
+.blog-category {
+  font-size: 11px;
+  color: var(--cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.5rem;
+}
+
+.blog-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.blog-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.blog-read {
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.blog-read:hover {
+  color: var(--red);
+}
+
+/* Explore tabs */
+.explore-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -510,7 +561,7 @@ body {
   justify-content: center;
 }
 
-.industry-tab {
+.explore-tab {
   padding: 10px 18px;
   border: 1.5px solid var(--border);
   background: var(--white);
@@ -522,12 +573,12 @@ body {
   transition: var(--transition);
 }
 
-.industry-tab:hover {
+.explore-tab:hover {
   border-color: var(--navy);
   background: var(--gray-light);
 }
 
-.industry-tab.active {
+.explore-tab.active {
   background: var(--navy);
   color: var(--white);
   border-color: var(--navy);
@@ -559,6 +610,7 @@ body {
   .hero h1 { font-size: 28px; }
   .card { padding: 1.75rem; }
   .products { grid-template-columns: 1fr; }
+  .blogs { grid-template-columns: 1fr; }
   .stats { gap: 1.5rem; }
   .card-title { font-size: 20px; }
 }
@@ -578,11 +630,11 @@ body {
 </div>
 
 <div class="container">
-  <div id="homepage" style="display: none;">
+  <div id="homepage">
     <div class="hero">
       <h1>Powering Canadian <span class="red">small businesses.</span></h1>
       <p>Payment solutions and commerce tools that grow with your business. Trusted by thousands across Canada.</p>
-      <button class="btn-cta" onclick="startQuiz('home')">Explore solutions</button>
+      <button class="btn-cta" onclick="scrollToQuiz()">Explore solutions</button>
     </div>
 
     <div class="stats">
@@ -602,94 +654,131 @@ body {
         <div class="stat-underline blue"></div>
       </div>
     </div>
+  </div>
 
+  <!-- Quiz Section -->
+  <div id="quizSection" style="display: none;">
     <div class="content-section">
-      <h2 class="section-title">We're glad you chose Moneris. What brought you <span class="red">here today?</span></h2>
+      <h2 class="section-title">What brought you <span class="red">here today?</span></h2>
       
       <div class="card">
         <div class="question-section">
-          <div class="industry-tabs">
-            <button class="industry-tab active" onclick="selectTab(this, 'home', 0, 'Just replacing')">Just replacing</button>
-            <button class="industry-tab" onclick="selectTab(this, 'home', 0, 'Looking for a solution')">Looking for a solution</button>
+          <div class="explore-tabs">
+            <button class="explore-tab active" onclick="selectExplore('exploring')">Just exploring</button>
+            <button class="explore-tab" onclick="selectExplore('solution')">Looking for a solution</button>
           </div>
         </div>
         <div class="nav-section">
-          <span></span>
-          <button class="btn-next active" onclick="nextQuestion('home', 0)">Next →</button>
+          <button class="btn-back" onclick="goBackHome()">← Back</button>
+          <button class="btn-next active" onclick="proceedFromWelcome()" style="visibility: visible; opacity: 1; pointer-events: all;">Next →</button>
         </div>
       </div>
     </div>
 
-    <div class="content-section">
-      <h2 class="section-title">We have end-to-end business solutions for the industry you call home.</h2>
-      <div class="products">
-        <div class="product-card">
-          <div style="height: 24px;"></div>
-          <div class="product-image">🛍️</div>
-          <div class="product-name">Retail commerce solutions</div>
-          <div class="product-desc">Everything you need to sell in-store and online with a unified system.</div>
-          <div class="product-ctas">
-            <button class="btn-primary">Learn more</button>
+    <!-- Blogs section (shown for "Just exploring") -->
+    <div id="blogsContainer" style="display: none;">
+      <div class="content-section">
+        <h2 class="section-title">Learn about payment solutions and <span class="red">best practices.</span></h2>
+        <div class="blogs">
+          <div class="blog-card">
+            <div class="blog-image">📰</div>
+            <div class="blog-category">Business</div>
+            <div class="blog-title">How to Choose the Right Payment Terminal for Your Business</div>
+            <div class="blog-desc">Discover what features matter most when selecting a payment terminal that fits your business needs and budget.</div>
+            <a href="#" class="blog-read">Read article →</a>
+          </div>
+          <div class="blog-card">
+            <div class="blog-image">💳</div>
+            <div class="blog-category">Payments</div>
+            <div class="blog-title">Understanding Payment Processing: A Guide for Small Businesses</div>
+            <div class="blog-desc">Learn the essentials of payment processing, security, and how to reduce costs while improving customer experience.</div>
+            <a href="#" class="blog-read">Read article →</a>
+          </div>
+          <div class="blog-card">
+            <div class="blog-image">📊</div>
+            <div class="blog-category">Growth</div>
+            <div class="blog-title">5 Ways to Increase Sales with the Right Commerce Tools</div>
+            <div class="blog-desc">Explore proven strategies to leverage technology and commerce tools to grow your business and reach more customers.</div>
+            <a href="#" class="blog-read">Read article →</a>
           </div>
         </div>
-        <div class="product-card">
-          <div style="height: 24px;"></div>
-          <div class="product-image">🍽️</div>
-          <div class="product-name">Restaurant solutions</div>
-          <div class="product-desc">Complete POS systems for independent restaurants and fast casual.</div>
-          <div class="product-ctas">
-            <button class="btn-primary">Learn more</button>
+      </div>
+    </div>
+
+    <!-- Quiz questions (shown for "Looking for a solution") -->
+    <div id="quizContainer" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-label" id="quizLabel">Quiz</div>
+          <h2 class="card-title" id="quizTitle">Question</h2>
+          <p class="card-subtitle" id="quizSubtitle">Answer the questions below</p>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span>Question</span>
+            <span id="progressCount">1 / 4</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
           </div>
         </div>
-        <div class="product-card">
-          <div style="height: 24px;"></div>
-          <div class="product-image">💇</div>
-          <div class="product-name">Health & beauty</div>
-          <div class="product-desc">POS and payment solutions built for salons, spas, and clinics.</div>
-          <div class="product-ctas">
-            <button class="btn-primary">Learn more</button>
-          </div>
+
+        <div id="optionsContainer"></div>
+
+        <div class="nav-section">
+          <button class="btn-back" onclick="goBackQuiz()" id="backBtn" style="visibility: hidden;">← Back</button>
+          <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Next →</button>
+        </div>
+      </div>
+
+      <div id="resultsContainer" style="display: none;">
+        <div class="result-message">
+          <h2 id="resultTitle">Here's what we'd recommend.</h2>
+          <p id="resultSubtitle">Based on your answers, these solutions are the best fit.</p>
+        </div>
+
+        <div class="products" id="productResults"></div>
+
+        <div class="nav-section">
+          <button class="btn-back" onclick="goBackHome()">← Back</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="quizContainer" style="display: none;">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-label" id="quizLabel">Quiz</div>
-        <h2 class="card-title" id="quizTitle">Question</h2>
-        <p class="card-subtitle" id="quizSubtitle">Answer the questions below</p>
-      </div>
-
-      <div class="progress-section">
-        <div class="progress-meta">
-          <span>Question</span>
-          <span id="progressCount">1 / 4</span>
+  <!-- Industry cards section (always visible after homepage) -->
+  <div id="industriesSection" style="display: none;">
+    <div class="content-section">
+      <h2 class="section-title">We have end-to-end business solutions for the industry you call home.</h2>
+      <div class="products">
+        <div class="product-card" onclick="startQuiz('retail')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🛍️</div>
+          <div class="product-name">Retail solutions</div>
+          <div class="product-desc">Everything you need to sell in-store and online with a unified system.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore retail →</button>
+          </div>
         </div>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        <div class="product-card" onclick="startQuiz('restaurant')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🍽️</div>
+          <div class="product-name">Restaurant solutions</div>
+          <div class="product-desc">Complete POS systems for independent restaurants and fast casual.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore restaurants →</button>
+          </div>
         </div>
-      </div>
-
-      <div id="optionsContainer"></div>
-
-      <div class="nav-section">
-        <button class="btn-back" onclick="goBack()" id="backBtn" style="visibility: hidden;">← Back</button>
-        <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Next →</button>
-      </div>
-    </div>
-
-    <div id="resultsContainer" style="display: none;">
-      <div class="result-message">
-        <h2 id="resultTitle">Here's what we'd recommend.</h2>
-        <p id="resultSubtitle">Based on your answers, these solutions are the best fit.</p>
-      </div>
-
-      <div class="products" id="productResults"></div>
-
-      <div class="nav-section">
-        <button class="btn-back" onclick="goHome()">← Back</button>
+        <div class="product-card" onclick="startQuiz('health')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">💇</div>
+          <div class="product-name">Health & beauty</div>
+          <div class="product-desc">POS and payment solutions built for salons, spas, and clinics.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore health & beauty →</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -701,26 +790,26 @@ body {
 
 <script>
 const P = {
-  goTerminal:    { name: "Moneris Go Terminal", desc: "Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Works countertop or curbside.", price: "$0.00", icon: "🔲" },
-  goPlus:        { name: "Moneris Go Plus", desc: "Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", price: "$0.00", icon: "🔲" },
-  goRetail:      { name: "Moneris Go Retail", desc: "Portable POS for micro and small businesses selling in-store and on the go. Add-on for $10/month.", price: "$10/mo", icon: "🛍️" },
-  totalCommerce: { name: "Moneris Total Commerce", desc: "Omnichannel POS built with Wix — unify in-store and online sales in one platform.", price: "Custom", icon: "🌐" },
-  goRestaurant:  { name: "Moneris Go Restaurant", desc: "All-in-one POS for small and independent counter-service restaurants. From $30/month.", price: "$30/mo", icon: "🍽️" },
-  touchBistro:   { name: "Moneris + TouchBistro", desc: "Full-service restaurant management with Pay-at-Table, front- and back-of-house tools, and Moneris Go.", price: "Custom", icon: "🍽️" },
-  monerisOnline: { name: "Moneris Online", desc: "Ecommerce built with Wix. Accept payments, send invoices, and sell online with fraud protection built in.", price: "Custom", icon: "🌐" },
-  paydInvoicing: { name: "PAYD Invoicing", desc: "Send invoices by email or SMS. Clients pay via a secure Moneris-hosted link — no terminal needed.", price: "$0/mo", icon: "📧" },
-  goPinPad:      { name: "Moneris Go PIN Pad", desc: "Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", price: "$0.00", icon: "🔲" },
+  goTerminal:    { name: "Moneris Go Terminal", desc: "Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Works countertop or curbside.", icon: "🔲" },
+  goPlus:        { name: "Moneris Go Plus", desc: "Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", icon: "🔲" },
+  goRetail:      { name: "Moneris Go Retail", desc: "Portable POS for micro and small businesses selling in-store and on the go.", icon: "🛍️" },
+  totalCommerce: { name: "Moneris Total Commerce", desc: "Omnichannel POS built with Wix — unify in-store and online sales in one platform.", icon: "🌐" },
+  goRestaurant:  { name: "Moneris Go Restaurant", desc: "All-in-one POS for small and independent counter-service restaurants.", icon: "🍽️" },
+  touchBistro:   { name: "Moneris + TouchBistro", desc: "Full-service restaurant management with Pay-at-Table, front- and back-of-house tools, and Moneris Go.", icon: "🍽️" },
+  monerisOnline: { name: "Moneris Online", desc: "Ecommerce built with Wix. Accept payments, send invoices, and sell online with fraud protection built in.", icon: "🌐" },
+  paydInvoicing: { name: "PAYD Invoicing", desc: "Send invoices by email or SMS. Clients pay via a secure Moneris-hosted link.", icon: "📧" },
+  goPinPad:      { name: "Moneris Go PIN Pad", desc: "Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", icon: "🔲" },
 };
 
 const quizzes = {
-  home: {
-    title: "Let's find your fit.",
-    subtitle: "Answer a few quick questions to find the right solution.",
+  retail: {
+    title: "Find your retail solution.",
+    subtitle: "Tell us about your retail business and we'll match you to the right fit.",
     steps: [
-      { q: "What type of business do you run?", opts: ["Retail", "Restaurant", "Health & beauty", "Professional services", "Trades", "Other"] },
-      { q: "How do you sell?", opts: ["In-person only", "Online only", "Both in-person and online"] },
-      { q: "What's your biggest priority right now?", opts: ["Accepting payments", "Managing my business", "Growing sales", "Reducing costs"] },
-      { q: "How soon are you looking to get set up?", opts: ["Right away", "Within a month", "Just researching"] }
+      { q: "What type of retail do you run?", opts: ["Fashion or apparel", "Electronics", "Home & garden", "Food & beverage", "Other"] },
+      { q: "Do you sell online?", opts: ["Yes, it's important", "A little", "No, in-store only"] },
+      { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
+      { q: "What's your biggest priority?", opts: ["Cost", "Features", "Support", "Scalability"] }
     ]
   },
   restaurant: {
@@ -733,14 +822,14 @@ const quizzes = {
       { q: "How many locations do you operate?", opts: ["Just one", "2–5 locations", "6 or more", "Planning to expand"] }
     ]
   },
-  retail: {
-    title: "Find your retail solution.",
-    subtitle: "Tell us about your retail business and we'll match you to the right fit.",
+  health: {
+    title: "Find your health & beauty solution.",
+    subtitle: "Tell us about your business and we'll match you to the right fit.",
     steps: [
-      { q: "What type of retail do you run?", opts: ["Fashion or apparel", "Electronics", "Home & garden", "Food & beverage", "Other"] },
-      { q: "Do you sell online?", opts: ["Yes, it's important", "A little", "No, in-store only"] },
+      { q: "What type of health & beauty business do you run?", opts: ["Hair salon", "Spa", "Medical clinic", "Esthetics", "Wellness center", "Other"] },
+      { q: "Do you offer online booking?", opts: ["Yes, it's important", "I'd like to add it", "No, appointment only"] },
       { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
-      { q: "What's your biggest priority?", opts: ["Cost", "Features", "Support", "Scalability"] }
+      { q: "What's your priority?", opts: ["Efficiency", "Customer retention", "Scalability", "Affordability"] }
     ]
   }
 };
@@ -748,12 +837,32 @@ const quizzes = {
 let currentQuiz = null;
 let currentStep = 0;
 let answers = [];
+let exploreChoice = null;
+
+function scrollToQuiz() {
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('industriesSection').style.display = 'block';
+  setTimeout(() => document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+function selectExplore(choice) {
+  exploreChoice = choice;
+  document.querySelectorAll('.explore-tab').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function proceedFromWelcome() {
+  if (exploreChoice === 'exploring') {
+    document.getElementById('blogsContainer').style.display = 'block';
+  } else if (exploreChoice === 'solution') {
+    document.getElementById('industriesSection').style.display = 'block';
+  }
+}
 
 function startQuiz(quizType) {
   currentQuiz = quizType;
   currentStep = 0;
   answers = [];
-  document.getElementById('homepage').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'block';
   document.getElementById('resultsContainer').style.display = 'none';
   renderQuestion();
@@ -800,7 +909,7 @@ function nextQuestion() {
   }
 }
 
-function goBack() {
+function goBackQuiz() {
   if (currentStep > 0) {
     currentStep--;
     renderQuestion();
@@ -816,8 +925,8 @@ function showResults() {
   let prods = [P.goRetail, P.goTerminal, P.totalCommerce];
   if (currentQuiz === 'restaurant') {
     prods = [P.touchBistro, P.goPlus, P.goTerminal];
-  } else if (currentQuiz === 'retail') {
-    prods = [P.goRetail, P.goTerminal, P.totalCommerce];
+  } else if (currentQuiz === 'health') {
+    prods = [P.goRetail, P.totalCommerce, P.paydInvoicing];
   }
 
   let html = '';
@@ -828,7 +937,6 @@ function showResults() {
         <div class="product-image">${prod.icon}</div>
         <div class="product-name">${prod.name}</div>
         <div class="product-desc">${prod.desc}</div>
-        <div class="product-price">${prod.price}</div>
         <div class="product-ctas">
           <button class="btn-primary">Learn more</button>
           <button class="btn-secondary">Contact sales</button>
@@ -841,18 +949,21 @@ function showResults() {
   document.getElementById('resultsContainer').style.display = 'block';
 }
 
-function goHome() {
-  document.getElementById('homepage').style.display = 'block';
+function goBackHome() {
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('industriesSection').style.display = 'none';
+  document.getElementById('blogsContainer').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'none';
-  document.getElementById('resultsContainer').style.display = 'none';
   document.getElementById('optionsContainer').style.display = 'block';
+  document.getElementById('resultsContainer').style.display = 'none';
   currentQuiz = null;
   currentStep = 0;
   answers = [];
+  exploreChoice = null;
+  document.querySelectorAll('.explore-tab').forEach(btn => btn.classList.remove('active'));
+  document.querySelector('.explore-tab').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// Show homepage on load
-document.getElementById('homepage').style.display = 'block';
 </script>
 
 </body>

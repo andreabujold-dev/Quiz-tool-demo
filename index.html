@@ -33,7 +33,38 @@ body {
   min-height: 100vh; 
 }
 
-/* Topbar */
+/* Top info bar */
+.topbar-info {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 0.75rem 2rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-med);
+  font-size: 12px;
+}
+
+.topbar-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.topbar-info a:hover {
+  color: var(--red);
+}
+
+.topbar-info select {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Main topbar */
 .topbar {
   display: flex;
   align-items: center;
@@ -48,47 +79,81 @@ body {
 
 .logo {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--text-dark);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.logo-icon { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #E74C3C, #1B3A52);
+  border-radius: 50%;
+}
 
-.topbar-right {
+.topbar-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem;
+  flex: 1;
+  margin-left: 3rem;
   font-size: 13px;
 }
 
-.topbar-right a {
+.topbar-nav a {
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+  position: relative;
 }
 
-.btn-signin { 
-  color: var(--text-dark); 
+.topbar-nav a::after {
+  content: '▼';
+  font-size: 8px;
+  margin-left: 4px;
+  opacity: 0.6;
+}
+
+.topbar-nav a:hover {
+  color: var(--red);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.btn-signin {
+  color: var(--text-dark);
   border: 1px solid var(--border);
   padding: 8px 16px;
   border-radius: 4px;
   background: var(--white);
   cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn-signin:hover {
+  border-color: var(--navy);
 }
 
 .btn-signup {
   background: var(--red);
   color: var(--white);
   border: none;
-  padding: 8px 20px;
+  padding: 8px 16px;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  font-size: 13px;
 }
 
 .btn-signup:hover { background: #d63d2d; }
@@ -128,20 +193,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
-.hero .btn-cta {
-  background: var(--red);
-  color: var(--white);
-  border: none;
-  padding: 12px 28px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 14px;
-}
-
-.hero .btn-cta:hover { background: #d63d2d; }
 
 /* Stats section */
 .stats {
@@ -604,7 +655,9 @@ body {
 .hidden { display: none; }
 
 @media (max-width: 768px) {
-  .topbar { padding: 1rem; }
+  .topbar { flex-wrap: wrap; padding: 1rem; }
+  .topbar-nav { display: none; }
+  .topbar-info { flex-wrap: wrap; gap: 1rem; }
   .container { padding: 0 1rem; }
   .hero { padding: 2.5rem 1.5rem; }
   .hero h1 { font-size: 28px; }
@@ -618,14 +671,29 @@ body {
 </head>
 <body>
 
+<!-- Top info bar -->
+<div class="topbar-info">
+  <a href="#">Call sales:</a>
+  <a href="#">Service Status</a>
+  <a href="#">Contact us</a>
+  <a href="#">About Moneris</a>
+  <a href="#">Careers</a>
+  <select><option>English</option></select>
+</div>
+
+<!-- Main navigation -->
 <div class="topbar">
   <div class="logo"><span class="logo-icon"></span>Moneris</div>
-  <div class="topbar-right">
+  <div class="topbar-nav">
     <a href="#">Solutions</a>
-    <a href="#">Pricing</a>
-    <a href="#">Company</a>
-    <button class="btn-signin" onclick="alert('Sign in')">Sign in</button>
-    <button class="btn-signup" onclick="alert('Get started')">Get started</button>
+    <a href="#">Business Types</a>
+    <a href="#">Industries</a>
+    <a href="#">Partners</a>
+    <a href="#">Resources</a>
+  </div>
+  <div class="topbar-right">
+    <button class="btn-signin" onclick="alert('Login')">Login</button>
+    <button class="btn-signup" onclick="alert('Get Started')">Get Started</button>
   </div>
 </div>
 
@@ -634,7 +702,6 @@ body {
     <div class="hero">
       <h1>Powering Canadian <span class="red">small businesses.</span></h1>
       <p>Payment solutions and commerce tools that grow with your business. Trusted by thousands across Canada.</p>
-      <button class="btn-cta" onclick="scrollToQuiz()">Explore solutions</button>
     </div>
 
     <div class="stats">
@@ -657,7 +724,7 @@ body {
   </div>
 
   <!-- Quiz Section -->
-  <div id="quizSection" style="display: none;">
+  <div id="quizSection">
     <div class="content-section">
       <h2 class="section-title">What brought you <span class="red">here today?</span></h2>
       
@@ -747,7 +814,7 @@ body {
     </div>
   </div>
 
-  <!-- Industry cards section (always visible after homepage) -->
+  <!-- Industry cards section -->
   <div id="industriesSection" style="display: none;">
     <div class="content-section">
       <h2 class="section-title">We have end-to-end business solutions for the industry you call home.</h2>
@@ -755,7 +822,7 @@ body {
         <div class="product-card" onclick="startQuiz('retail')">
           <div style="height: 24px;"></div>
           <div class="product-image">🛍️</div>
-          <div class="product-name">Retail solutions</div>
+          <div class="product-name">Retail</div>
           <div class="product-desc">Everything you need to sell in-store and online with a unified system.</div>
           <div class="product-ctas">
             <button class="btn-primary">Explore retail →</button>
@@ -764,7 +831,7 @@ body {
         <div class="product-card" onclick="startQuiz('restaurant')">
           <div style="height: 24px;"></div>
           <div class="product-image">🍽️</div>
-          <div class="product-name">Restaurant solutions</div>
+          <div class="product-name">Restaurant</div>
           <div class="product-desc">Complete POS systems for independent restaurants and fast casual.</div>
           <div class="product-ctas">
             <button class="btn-primary">Explore restaurants →</button>
@@ -777,6 +844,42 @@ body {
           <div class="product-desc">POS and payment solutions built for salons, spas, and clinics.</div>
           <div class="product-ctas">
             <button class="btn-primary">Explore health & beauty →</button>
+          </div>
+        </div>
+        <div class="product-card" onclick="startQuiz('enterprise')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🏢</div>
+          <div class="product-name">Enterprise</div>
+          <div class="product-desc">Scalable solutions for large organizations with complex payment needs.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore enterprise →</button>
+          </div>
+        </div>
+        <div class="product-card" onclick="startQuiz('professional')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">👔</div>
+          <div class="product-name">Professional Services</div>
+          <div class="product-desc">Payment and invoicing solutions for consultants, agencies, and firms.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore professional →</button>
+          </div>
+        </div>
+        <div class="product-card" onclick="startQuiz('public')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🏛️</div>
+          <div class="product-name">Public Sector</div>
+          <div class="product-desc">Secure payment solutions for government and public institutions.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore public sector →</button>
+          </div>
+        </div>
+        <div class="product-card" onclick="startQuiz('nonprofit')">
+          <div style="height: 24px;"></div>
+          <div class="product-image">❤️</div>
+          <div class="product-name">Not-for-profit</div>
+          <div class="product-desc">Donation and fundraising tools designed for non-profits and charities.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Explore nonprofit →</button>
           </div>
         </div>
       </div>
@@ -831,6 +934,46 @@ const quizzes = {
       { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
       { q: "What's your priority?", opts: ["Efficiency", "Customer retention", "Scalability", "Affordability"] }
     ]
+  },
+  enterprise: {
+    title: "Find your enterprise solution.",
+    subtitle: "Tell us about your organization and we'll match you to the right fit.",
+    steps: [
+      { q: "What industry are you in?", opts: ["Retail", "Hospitality", "Professional services", "Healthcare", "Other"] },
+      { q: "How many locations do you operate?", opts: ["10-50", "50-100", "100+"] },
+      { q: "Key priority?", opts: ["Security", "Integration", "Support", "Scalability"] },
+      { q: "Budget range?", opts: ["$50K-$100K", "$100K-$500K", "$500K+"] }
+    ]
+  },
+  professional: {
+    title: "Find your professional services solution.",
+    subtitle: "Tell us about your practice and we'll match you to the right fit.",
+    steps: [
+      { q: "What type of professional services do you provide?", opts: ["Consulting", "Law firm", "Accounting", "Marketing agency", "Design studio", "Other"] },
+      { q: "How do you typically invoice clients?", opts: ["Projects", "Hourly", "Retainers", "Mixed"] },
+      { q: "Client locations?", opts: ["Local only", "Regional", "National", "International"] },
+      { q: "Priority feature?", opts: ["Invoice management", "Time tracking", "Client portal", "Integration"] }
+    ]
+  },
+  public: {
+    title: "Find your public sector solution.",
+    subtitle: "Tell us about your organization and we'll match you to the right fit.",
+    steps: [
+      { q: "What type of public institution?", opts: ["Municipal", "Provincial", "Federal", "Educational", "Healthcare"] },
+      { q: "Payment volumes?", opts: ["Low (under 100/month)", "Medium (100-1000/month)", "High (1000+/month)"] },
+      { q: "Compliance requirements?", opts: ["Basic", "Standard", "Enhanced"] },
+      { q: "Implementation timeline?", opts: ["ASAP", "3-6 months", "6-12 months"] }
+    ]
+  },
+  nonprofit: {
+    title: "Find your nonprofit solution.",
+    subtitle: "Tell us about your organization and we'll match you to the right fit.",
+    steps: [
+      { q: "What type of nonprofit?", opts: ["Charity", "Religious organization", "Advocacy", "Educational", "Healthcare", "Other"] },
+      { q: "Primary revenue source?", opts: ["Donations", "Grants", "Program fees", "Mixed"] },
+      { q: "Annual fundraising volume?", opts: ["Under $100K", "$100K-$1M", "$1M-$5M", "$5M+"] },
+      { q: "Key need?", opts: ["Donation processing", "Event ticketing", "Membership management", "All of the above"] }
+    ]
   }
 };
 
@@ -838,12 +981,6 @@ let currentQuiz = null;
 let currentStep = 0;
 let answers = [];
 let exploreChoice = null;
-
-function scrollToQuiz() {
-  document.getElementById('quizSection').style.display = 'block';
-  document.getElementById('industriesSection').style.display = 'block';
-  setTimeout(() => document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' }), 100);
-}
 
 function selectExplore(choice) {
   exploreChoice = choice;
@@ -853,8 +990,12 @@ function selectExplore(choice) {
 
 function proceedFromWelcome() {
   if (exploreChoice === 'exploring') {
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('quizSection').style.display = 'none';
     document.getElementById('blogsContainer').style.display = 'block';
   } else if (exploreChoice === 'solution') {
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('quizSection').style.display = 'none';
     document.getElementById('industriesSection').style.display = 'block';
   }
 }
@@ -863,6 +1004,7 @@ function startQuiz(quizType) {
   currentQuiz = quizType;
   currentStep = 0;
   answers = [];
+  document.getElementById('industriesSection').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'block';
   document.getElementById('resultsContainer').style.display = 'none';
   renderQuestion();
@@ -927,6 +1069,14 @@ function showResults() {
     prods = [P.touchBistro, P.goPlus, P.goTerminal];
   } else if (currentQuiz === 'health') {
     prods = [P.goRetail, P.totalCommerce, P.paydInvoicing];
+  } else if (currentQuiz === 'enterprise') {
+    prods = [P.totalCommerce, P.goTerminal, P.monerisOnline];
+  } else if (currentQuiz === 'professional') {
+    prods = [P.paydInvoicing, P.monerisOnline, P.goTerminal];
+  } else if (currentQuiz === 'public') {
+    prods = [P.totalCommerce, P.goTerminal, P.goPinPad];
+  } else if (currentQuiz === 'nonprofit') {
+    prods = [P.monerisOnline, P.paydInvoicing, P.goTerminal];
   }
 
   let html = '';
@@ -950,7 +1100,8 @@ function showResults() {
 }
 
 function goBackHome() {
-  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('homepage').style.display = 'block';
+  document.getElementById('quizSection').style.display = 'block';
   document.getElementById('industriesSection').style.display = 'none';
   document.getElementById('blogsContainer').style.display = 'none';
   document.getElementById('quizContainer').style.display = 'none';

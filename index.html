@@ -77,6 +77,7 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   background: var(--white);
+  cursor: pointer;
 }
 
 .btn-signup {
@@ -94,42 +95,45 @@ body {
 
 /* Main container */
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 0 1.5rem;
 }
 
 /* Hero section */
 .hero {
   background: linear-gradient(135deg, var(--navy) 0%, #0f2a3a 100%);
   color: var(--white);
-  padding: 3rem;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
   border-radius: 8px;
-  margin-bottom: 2rem;
   text-align: center;
 }
 
 .hero h1 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .hero h1 .red { color: var(--red); }
 
 .hero p {
-  font-size: 14px;
-  opacity: 0.9;
+  font-size: 15px;
+  opacity: 0.95;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero .btn-cta {
   background: var(--red);
   color: var(--white);
   border: none;
-  padding: 10px 24px;
+  padding: 12px 28px;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
@@ -144,7 +148,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   padding: 2rem 0;
   border-bottom: 1px solid var(--gray-med);
 }
@@ -162,10 +166,17 @@ body {
   letter-spacing: 0.5px;
 }
 
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
 .stat-underline {
-  width: 40px;
+  width: 50px;
   height: 3px;
-  margin: 0.75rem auto 0;
+  margin: 0 auto;
   border-radius: 2px;
 }
 
@@ -173,12 +184,25 @@ body {
 .stat-underline.blue { background: var(--cyan); }
 .stat-underline.navy { background: var(--navy); }
 
+/* Main content section */
+.content-section {
+  margin: 2rem 0;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 /* Question card */
 .card {
   background: var(--white);
   border: 1px solid var(--gray-med);
   border-radius: 8px;
-  padding: 2rem;
+  padding: 2.5rem;
   margin-bottom: 2rem;
 }
 
@@ -196,11 +220,11 @@ body {
 }
 
 .card-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 .card-title .red { color: var(--red); }
@@ -213,19 +237,20 @@ body {
 
 /* Progress bar */
 .progress-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .progress-meta {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-size: 12px;
+  margin-bottom: 0.75rem;
+  font-size: 13px;
   color: var(--text-gray);
+  font-weight: 500;
 }
 
 .progress-bar {
-  height: 3px;
+  height: 4px;
   background: var(--gray-med);
   border-radius: 2px;
   overflow: hidden;
@@ -241,12 +266,12 @@ body {
 .options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin: 2rem 0;
 }
 
 .option {
-  padding: 12px 16px;
+  padding: 14px 18px;
   border: 1.5px solid var(--border);
   background: var(--white);
   border-radius: 4px;
@@ -296,8 +321,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--gray-med);
 }
 
@@ -317,13 +342,14 @@ body {
   background: var(--navy);
   color: var(--white);
   border: none;
-  padding: 10px 24px;
+  padding: 11px 26px;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
   opacity: 0.4;
   pointer-events: none;
+  font-size: 14px;
 }
 
 .btn-next.active {
@@ -338,7 +364,7 @@ body {
 /* Product cards */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin: 2rem 0;
 }
@@ -346,21 +372,22 @@ body {
 .product-card {
   border: 1px solid var(--gray-med);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.75rem;
   text-align: center;
   transition: var(--transition);
+  background: var(--white);
 }
 
 .product-card:hover {
   border-color: var(--cyan);
-  box-shadow: 0 4px 12px rgba(74, 159, 190, 0.1);
+  box-shadow: 0 4px 16px rgba(74, 159, 190, 0.15);
 }
 
 .product-badge {
   display: inline-block;
   background: var(--cyan);
   color: var(--white);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 4px;
   font-size: 10px;
   font-weight: 700;
@@ -371,14 +398,14 @@ body {
 
 .product-image {
   width: 100%;
-  height: 120px;
+  height: 140px;
   background: var(--gray-light);
   border-radius: 4px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 56px;
 }
 
 .product-name {
@@ -386,6 +413,7 @@ body {
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
 .product-desc {
@@ -393,10 +421,12 @@ body {
   color: var(--text-gray);
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  height: 60px;
+  overflow: hidden;
 }
 
 .product-price {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 1.5rem;
@@ -434,27 +464,73 @@ body {
   font-size: 13px;
 }
 
-.btn-secondary:hover { border-color: var(--navy); }
+.btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
 
 /* Result message */
 .result-message {
   background: var(--gray-light);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 8px;
   text-align: center;
   margin: 2rem 0;
 }
 
 .result-message h2 {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--text-dark);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
 }
 
 .result-message p {
   font-size: 14px;
   color: var(--text-gray);
   line-height: 1.6;
+}
+
+/* Question options section */
+.question-section {
+  margin: 2rem 0;
+}
+
+.question-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Industry tabs */
+.industry-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.industry-tab {
+  padding: 10px 18px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.industry-tab:hover {
+  border-color: var(--navy);
+  background: var(--gray-light);
+}
+
+.industry-tab.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
 }
 
 /* Footer */
@@ -465,6 +541,7 @@ body {
   font-size: 12px;
   color: var(--text-gray);
   border-top: 1px solid var(--gray-med);
+  margin-top: 3rem;
 }
 
 .footer a {
@@ -475,14 +552,15 @@ body {
 
 .hidden { display: none; }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .topbar { padding: 1rem; }
-  .container { padding: 1.5rem 1rem; }
-  .hero { padding: 2rem 1.5rem; }
-  .hero h1 { font-size: 24px; }
-  .card { padding: 1.5rem; }
+  .container { padding: 0 1rem; }
+  .hero { padding: 2.5rem 1.5rem; }
+  .hero h1 { font-size: 28px; }
+  .card { padding: 1.75rem; }
   .products { grid-template-columns: 1fr; }
   .stats { gap: 1.5rem; }
+  .card-title { font-size: 20px; }
 }
 </style>
 </head>
@@ -494,19 +572,127 @@ body {
     <a href="#">Solutions</a>
     <a href="#">Pricing</a>
     <a href="#">Company</a>
-    <button class="btn-signin">Sign in</button>
-    <button class="btn-signup">Get started</button>
+    <button class="btn-signin" onclick="alert('Sign in')">Sign in</button>
+    <button class="btn-signup" onclick="alert('Get started')">Get started</button>
   </div>
 </div>
 
 <div class="container">
-  <div class="hero" id="hero" style="display: none;">
-    <h1>Powering Canadian <span class="red">small businesses.</span></h1>
-    <p>Payment solutions and commerce tools that grow with your business. Trusted by thousands across Canada.</p>
-    <button class="btn-cta" onclick="startQuiz()">Explore solutions</button>
+  <div id="homepage" style="display: none;">
+    <div class="hero">
+      <h1>Powering Canadian <span class="red">small businesses.</span></h1>
+      <p>Payment solutions and commerce tools that grow with your business. Trusted by thousands across Canada.</p>
+      <button class="btn-cta" onclick="startQuiz('home')">Explore solutions</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">Canada's #1</div>
+        <div class="stat-value">merchant network</div>
+        <div class="stat-underline red"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Points of commerce used</div>
+        <div class="stat-value">225,000+</div>
+        <div class="stat-underline navy"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Transactions every year</div>
+        <div class="stat-value">5 billion+</div>
+        <div class="stat-underline blue"></div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">We're glad you chose Moneris. What brought you <span class="red">here today?</span></h2>
+      
+      <div class="card">
+        <div class="question-section">
+          <div class="industry-tabs">
+            <button class="industry-tab active" onclick="selectTab(this, 'home', 0, 'Just replacing')">Just replacing</button>
+            <button class="industry-tab" onclick="selectTab(this, 'home', 0, 'Looking for a solution')">Looking for a solution</button>
+          </div>
+        </div>
+        <div class="nav-section">
+          <span></span>
+          <button class="btn-next active" onclick="nextQuestion('home', 0)">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">We have end-to-end business solutions for the industry you call home.</h2>
+      <div class="products">
+        <div class="product-card">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🛍️</div>
+          <div class="product-name">Retail commerce solutions</div>
+          <div class="product-desc">Everything you need to sell in-store and online with a unified system.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Learn more</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div style="height: 24px;"></div>
+          <div class="product-image">🍽️</div>
+          <div class="product-name">Restaurant solutions</div>
+          <div class="product-desc">Complete POS systems for independent restaurants and fast casual.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Learn more</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div style="height: 24px;"></div>
+          <div class="product-image">💇</div>
+          <div class="product-name">Health & beauty</div>
+          <div class="product-desc">POS and payment solutions built for salons, spas, and clinics.</div>
+          <div class="product-ctas">
+            <button class="btn-primary">Learn more</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="content"></div>
+  <div id="quizContainer" style="display: none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-label" id="quizLabel">Quiz</div>
+        <h2 class="card-title" id="quizTitle">Question</h2>
+        <p class="card-subtitle" id="quizSubtitle">Answer the questions below</p>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-meta">
+          <span>Question</span>
+          <span id="progressCount">1 / 4</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div id="optionsContainer"></div>
+
+      <div class="nav-section">
+        <button class="btn-back" onclick="goBack()" id="backBtn" style="visibility: hidden;">← Back</button>
+        <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Next →</button>
+      </div>
+    </div>
+
+    <div id="resultsContainer" style="display: none;">
+      <div class="result-message">
+        <h2 id="resultTitle">Here's what we'd recommend.</h2>
+        <p id="resultSubtitle">Based on your answers, these solutions are the best fit.</p>
+      </div>
+
+      <div class="products" id="productResults"></div>
+
+      <div class="nav-section">
+        <button class="btn-back" onclick="goHome()">← Back</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="footer">
@@ -515,42 +701,29 @@ body {
 
 <script>
 const P = {
-  goTerminal:    { name: "Moneris Go Terminal", desc: "Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Works countertop or curbside.", price: "$0.00" },
-  goPlus:        { name: "Moneris Go Plus", desc: "Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", price: "$0.00" },
-  goRetail:      { name: "Moneris Go Retail", desc: "Portable POS for micro and small businesses selling in-store and on the go. Add-on for $10/month.", price: "$10/mo" },
-  totalCommerce: { name: "Moneris Total Commerce", desc: "Omnichannel POS built with Wix — unify in-store and online sales in one platform.", price: "Custom" },
-  goRestaurant:  { name: "Moneris Go Restaurant", desc: "All-in-one POS for small and independent counter-service restaurants. From $30/month.", price: "$30/mo" },
-  touchBistro:   { name: "Moneris + TouchBistro", desc: "Full-service restaurant management with Pay-at-Table, front- and back-of-house tools, and Moneris Go.", price: "Custom" },
-  monerisOnline: { name: "Moneris Online", desc: "Ecommerce built with Wix. Accept payments, send invoices, and sell online with fraud protection built in.", price: "Custom" },
-  paydInvoicing: { name: "PAYD Invoicing", desc: "Send invoices by email or SMS. Clients pay via a secure Moneris-hosted link — no terminal needed.", price: "$0/mo" },
-  goPinPad:      { name: "Moneris Go PIN Pad", desc: "Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", price: "$0.00" },
+  goTerminal:    { name: "Moneris Go Terminal", desc: "Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Works countertop or curbside.", price: "$0.00", icon: "🔲" },
+  goPlus:        { name: "Moneris Go Plus", desc: "Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", price: "$0.00", icon: "🔲" },
+  goRetail:      { name: "Moneris Go Retail", desc: "Portable POS for micro and small businesses selling in-store and on the go. Add-on for $10/month.", price: "$10/mo", icon: "🛍️" },
+  totalCommerce: { name: "Moneris Total Commerce", desc: "Omnichannel POS built with Wix — unify in-store and online sales in one platform.", price: "Custom", icon: "🌐" },
+  goRestaurant:  { name: "Moneris Go Restaurant", desc: "All-in-one POS for small and independent counter-service restaurants. From $30/month.", price: "$30/mo", icon: "🍽️" },
+  touchBistro:   { name: "Moneris + TouchBistro", desc: "Full-service restaurant management with Pay-at-Table, front- and back-of-house tools, and Moneris Go.", price: "Custom", icon: "🍽️" },
+  monerisOnline: { name: "Moneris Online", desc: "Ecommerce built with Wix. Accept payments, send invoices, and sell online with fraud protection built in.", price: "Custom", icon: "🌐" },
+  paydInvoicing: { name: "PAYD Invoicing", desc: "Send invoices by email or SMS. Clients pay via a secure Moneris-hosted link — no terminal needed.", price: "$0/mo", icon: "📧" },
+  goPinPad:      { name: "Moneris Go PIN Pad", desc: "Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", price: "$0.00", icon: "🔲" },
 };
 
-const quizzes = [
-  { 
-    id: 0, 
-    label: "Homepage", 
-    title: "Let's find your fit.", 
-    subtitle: "A few quick questions to point you in the right direction.",
+const quizzes = {
+  home: {
+    title: "Let's find your fit.",
+    subtitle: "Answer a few quick questions to find the right solution.",
     steps: [
-      { q: "What brought you here today?", opts: ["Just exploring", "Looking for a solution"] },
       { q: "What type of business do you run?", opts: ["Retail", "Restaurant", "Health & beauty", "Professional services", "Trades", "Other"] },
       { q: "How do you sell?", opts: ["In-person only", "Online only", "Both in-person and online"] },
-      { q: "What's your biggest priority right now?", opts: ["Accepting payments", "Managing my business", "Growing sales", "Reducing costs"] }
-    ],
-    endpoints: {
-      default: { 
-        type: "products", 
-        title: "Here's what we'd recommend.",
-        subtitle: "Based on your answers, these solutions are the best fit for your business.",
-        prods: [P.goRetail, P.goTerminal, P.totalCommerce], 
-        bestIdx: 0
-      }
-    }
+      { q: "What's your biggest priority right now?", opts: ["Accepting payments", "Managing my business", "Growing sales", "Reducing costs"] },
+      { q: "How soon are you looking to get set up?", opts: ["Right away", "Within a month", "Just researching"] }
+    ]
   },
-  { 
-    id: 1, 
-    label: "Restaurants", 
+  restaurant: {
     title: "Find your restaurant solution.",
     subtitle: "Tell us about your restaurant and we'll match you to the right fit.",
     steps: [
@@ -558,149 +731,128 @@ const quizzes = [
       { q: "How do customers order from you?", opts: ["Table-side", "Counter", "Online", "All of the above"] },
       { q: "Do you need online ordering or delivery integration?", opts: ["Yes, it's essential", "Nice to have", "No, strictly in-person"] },
       { q: "How many locations do you operate?", opts: ["Just one", "2–5 locations", "6 or more", "Planning to expand"] }
-    ],
-    endpoints: {
-      "Full-service / fine dining": { type: "products", title: "Here's what we'd recommend.", subtitle: "Built for full-service restaurants with table-side payments and back-of-house management.", prods: [P.touchBistro, P.goPlus, P.goTerminal], bestIdx: 0 },
-      default: { type: "products", title: "Here's what we'd recommend.", subtitle: "Based on your answers, these solutions are the best fit for your restaurant.", prods: [P.goRestaurant, P.goTerminal, P.touchBistro], bestIdx: 0 }
-    }
+    ]
   },
-  { 
-    id: 2, 
-    label: "Retail", 
+  retail: {
     title: "Find your retail solution.",
     subtitle: "Tell us about your retail business and we'll match you to the right fit.",
     steps: [
       { q: "What type of retail do you run?", opts: ["Fashion or apparel", "Electronics", "Home & garden", "Food & beverage", "Other"] },
       { q: "Do you sell online?", opts: ["Yes, it's important", "A little", "No, in-store only"] },
-      { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] }
-    ],
-    endpoints: {
-      "Yes, it's important": { type: "products", title: "Here's what we'd recommend.", subtitle: "You need strong in-store and online coverage.", prods: [P.totalCommerce, P.goRetail, P.monerisOnline], bestIdx: 0 },
-      default: { type: "products", title: "Here's what we'd recommend.", subtitle: "Based on your answers, these solutions are the best fit.", prods: [P.goRetail, P.goTerminal, P.totalCommerce], bestIdx: 0 }
-    }
+      { q: "How many locations?", opts: ["Just one", "2-5 locations", "6+ locations"] },
+      { q: "What's your biggest priority?", opts: ["Cost", "Features", "Support", "Scalability"] }
+    ]
   }
-];
+};
 
-let currentQuiz = 0;
+let currentQuiz = null;
 let currentStep = 0;
-let answers = {};
+let answers = [];
 
-function startQuiz() {
-  document.getElementById('hero').style.display = 'none';
-  currentQuiz = 0;
+function startQuiz(quizType) {
+  currentQuiz = quizType;
   currentStep = 0;
-  answers = {};
-  renderQuiz();
+  answers = [];
+  document.getElementById('homepage').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  document.getElementById('resultsContainer').style.display = 'none';
+  renderQuestion();
 }
 
-function renderQuiz() {
+function renderQuestion() {
   const quiz = quizzes[currentQuiz];
-  const isComplete = currentStep >= quiz.steps.length;
-  
-  let html = `
-    <div class="card">
-      <div class="card-header">
-        <div class="card-label">${quiz.label}</div>
-        <h2 class="card-title">${quiz.title}</h2>
-        <p class="card-subtitle">${quiz.subtitle}</p>
-      </div>
-  `;
+  const step = quiz.steps[currentStep];
+  const progress = Math.round(((currentStep + 1) / quiz.steps.length) * 100);
 
-  if (!isComplete) {
-    const step = quiz.steps[currentStep];
-    const progress = Math.round(((currentStep + 1) / quiz.steps.length) * 100);
-    
-    html += `
-      <div class="progress-section">
-        <div class="progress-meta">
-          <span>Question</span>
-          <span>${currentStep + 1} / ${quiz.steps.length}</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: ${progress}%"></div>
-        </div>
-      </div>
+  document.getElementById('quizLabel').textContent = currentQuiz.charAt(0).toUpperCase() + currentQuiz.slice(1);
+  document.getElementById('quizTitle').textContent = quiz.title;
+  document.getElementById('quizSubtitle').textContent = quiz.subtitle;
+  document.getElementById('progressCount').textContent = `${currentStep + 1} / ${quiz.steps.length}`;
+  document.getElementById('progressFill').style.width = progress + '%';
 
-      <div>
-        <h3 style="font-size: 18px; margin-bottom: 1.5rem; color: var(--text-dark);">${step.q}</h3>
-        <div class="options">
-          ${step.opts.map((opt, idx) => `
-            <button class="option ${answers[currentStep] === opt ? 'selected' : ''}" 
-              onclick="selectOption(${currentStep}, '${opt.replace(/'/g, "\\'")}')">${opt}</button>
-          `).join('')}
-        </div>
-      </div>
+  let html = `<h3 style="font-size: 18px; margin-bottom: 1.5rem; color: var(--text-dark);">${step.q}</h3>`;
+  html += '<div class="options">';
+  step.opts.forEach((opt, idx) => {
+    html += `<button class="option ${answers[currentStep] === opt ? 'selected' : ''}" onclick="selectOption(${currentStep}, '${opt.replace(/'/g, "\\'")}')">${opt}</button>`;
+  });
+  html += '</div>';
 
-      <div class="nav-section">
-        <button class="btn-back" onclick="goBack()" style="visibility: ${currentStep === 0 ? 'hidden' : 'visible'};">← Back</button>
-        <button class="btn-next ${answers[currentStep] ? 'active' : ''}" onclick="nextStep()">
-          ${currentStep === quiz.steps.length - 1 ? 'See recommendation' : 'Next'} →
-        </button>
-      </div>
-    </div>
-    `;
-  } else {
-    const endpoint = quiz.endpoints[answers[0]] || quiz.endpoints.default;
-    
-    html += `
-      <div class="result-message">
-        <h2>${endpoint.title}</h2>
-        <p>${endpoint.subtitle}</p>
-      </div>
-
-      <div class="products">
-        ${endpoint.prods.map((prod, idx) => `
-          <div class="product-card">
-            ${idx === endpoint.bestIdx ? '<div class="product-badge">Best fit</div>' : '<div style="height: 24px;"></div>'}
-            <div class="product-image">💳</div>
-            <div class="product-name">${prod.name}</div>
-            <div class="product-desc">${prod.desc}</div>
-            <div class="product-price">${prod.price}</div>
-            <div class="product-ctas">
-              <button class="btn-primary">Learn more</button>
-              <button class="btn-secondary">Contact sales</button>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="nav-section" style="margin-top: 2rem;">
-        <button class="btn-back" onclick="resetQuiz()">← Start over</button>
-      </div>
-    `;
-  }
-
-  html += `</div>`;
-  document.getElementById('content').innerHTML = html;
+  document.getElementById('optionsContainer').innerHTML = html;
+  document.getElementById('backBtn').style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+  document.getElementById('nextBtn').className = answers[currentStep] ? 'btn-next active' : 'btn-next';
+  document.getElementById('nextBtn').textContent = currentStep === quiz.steps.length - 1 ? 'See recommendation →' : 'Next →';
 }
 
 function selectOption(step, option) {
   answers[step] = option;
-  renderQuiz();
+  renderQuestion();
 }
 
-function nextStep() {
-  if (answers[currentStep]) {
+function nextQuestion() {
+  if (!answers[currentStep]) return;
+  
+  const quiz = quizzes[currentQuiz];
+  if (currentStep < quiz.steps.length - 1) {
     currentStep++;
-    renderQuiz();
+    renderQuestion();
+  } else {
+    showResults();
   }
 }
 
 function goBack() {
   if (currentStep > 0) {
     currentStep--;
-    renderQuiz();
+    renderQuestion();
   }
 }
 
-function resetQuiz() {
-  currentStep = 0;
-  answers = {};
-  renderQuiz();
+function showResults() {
+  document.getElementById('optionsContainer').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('backBtn').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+  
+  let prods = [P.goRetail, P.goTerminal, P.totalCommerce];
+  if (currentQuiz === 'restaurant') {
+    prods = [P.touchBistro, P.goPlus, P.goTerminal];
+  } else if (currentQuiz === 'retail') {
+    prods = [P.goRetail, P.goTerminal, P.totalCommerce];
+  }
+
+  let html = '';
+  prods.forEach((prod, idx) => {
+    html += `
+      <div class="product-card">
+        ${idx === 0 ? '<div class="product-badge">Best fit</div>' : '<div style="height: 24px;"></div>'}
+        <div class="product-image">${prod.icon}</div>
+        <div class="product-name">${prod.name}</div>
+        <div class="product-desc">${prod.desc}</div>
+        <div class="product-price">${prod.price}</div>
+        <div class="product-ctas">
+          <button class="btn-primary">Learn more</button>
+          <button class="btn-secondary">Contact sales</button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('productResults').innerHTML = html;
+  document.getElementById('resultsContainer').style.display = 'block';
 }
 
-// Initial render
-document.getElementById('hero').style.display = 'block';
+function goHome() {
+  document.getElementById('homepage').style.display = 'block';
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('resultsContainer').style.display = 'none';
+  document.getElementById('optionsContainer').style.display = 'block';
+  currentQuiz = null;
+  currentStep = 0;
+  answers = [];
+}
+
+// Show homepage on load
+document.getElementById('homepage').style.display = 'block';
 </script>
 
 </body>

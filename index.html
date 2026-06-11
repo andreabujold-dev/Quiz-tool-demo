@@ -57,7 +57,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .stat-line.blue { background: var(--cyan); }
 .stat-line.navy { background: var(--navy); }
 
-/* QUIZ SHELL — sits above industry cards, never hides them */
+/* QUIZ SHELL */
 .quiz-shell { margin: 2rem 0; }
 .section-title { font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 1.5rem; text-align: center; }
 .section-title .red { color: var(--red); }
@@ -95,7 +95,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 /* PATH BADGE */
 .path-badge { display: inline-block; background: var(--cyan); color: var(--white); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 1.25rem; }
 
-/* INDUSTRY GRID — always visible */
+/* INDUSTRY GRID */
 .industry-section { margin: 2rem 0; }
 .industry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
 .industry-card { border: 1px solid var(--gray-med); border-radius: 8px; padding: 1.5rem; cursor: pointer; transition: var(--transition); background: var(--white); text-align: left; width: 100%; font-family: inherit; }
@@ -176,297 +176,599 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 <body>
 
 <div class="topbar-info">
-  <a href="#">Call sales</a>
-  <a href="#">Service Status</a>
-  <a href="#">Contact us</a>
-  <a href="#">About Moneris</a>
-  <a href="#">Careers</a>
-  <select><option>English</option></select>
+  <a href="#" data-i18n="topbar.callSales">Call sales</a>
+  <a href="#" data-i18n="topbar.serviceStatus">Service Status</a>
+  <a href="#" data-i18n="topbar.contactUs">Contact us</a>
+  <a href="#" data-i18n="topbar.about">About Moneris</a>
+  <a href="#" data-i18n="topbar.careers">Careers</a>
+  <select id="langSelect" onchange="setLang(this.value)">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+  </select>
 </div>
 
 <div class="topbar">
-  <!-- Moneris logo reproduced as inline SVG matching the uploaded screenshot -->
   <svg class="logo-svg" viewBox="0 0 160 52" xmlns="http://www.w3.org/2000/svg" aria-label="Moneris">
-    <!-- Wordmark -->
     <text x="0" y="38" font-family="'Inter', Arial, sans-serif" font-size="30" font-weight="700" fill="#1a1a1a" letter-spacing="-0.5">Moneris</text>
-    <!-- Swirl icon — stylised spiral matching Moneris brand mark -->
     <g transform="translate(128, 8)">
       <path d="M16 2 C24 2, 30 8, 30 16 C30 24, 24 30, 16 30 C10 30, 5 26, 3 20" fill="none" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
       <path d="M16 8 C21 8, 25 12, 25 17 C25 22, 21 26, 16 26 C12 26, 9 23, 8 19" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
       <path d="M16 13 C18.8 13, 21 15, 21 17.5 C21 20, 18.8 22, 16 22" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
-      <!-- Small registered mark -->
       <text x="29" y="6" font-family="Arial" font-size="6" fill="#1a1a1a">®</text>
     </g>
   </svg>
 
   <div class="topbar-nav">
-    <a href="#">Solutions</a>
-    <a href="#">Business Types</a>
-    <a href="#">Industries</a>
-    <a href="#">Partners</a>
-    <a href="#">Resources</a>
+    <a href="#" data-i18n="nav.solutions">Solutions</a>
+    <a href="#" data-i18n="nav.businessTypes">Business Types</a>
+    <a href="#" data-i18n="nav.industries">Industries</a>
+    <a href="#" data-i18n="nav.partners">Partners</a>
+    <a href="#" data-i18n="nav.resources">Resources</a>
   </div>
   <div class="topbar-right">
-    <button class="btn-login">Login</button>
-    <button class="btn-getstarted">Get Started</button>
+    <button class="btn-login" data-i18n="nav.login">Login</button>
+    <button class="btn-getstarted" data-i18n="nav.getStarted">Get Started</button>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
-    <h1>Powering Canadian <span class="red">small businesses.</span></h1>
-    <p>Payment solutions and commerce tools that grow with your business. Trusted by hundreds of thousands across Canada.</p>
-    <div class="trustpilot">★★★★★ Rated excellent on Trustpilot</div>
+    <h1 data-i18n-html="hero.title">Powering Canadian <span class="red">small businesses.</span></h1>
+    <p data-i18n="hero.sub">Payment solutions and commerce tools that grow with your business. Trusted by hundreds of thousands across Canada.</p>
+    <div class="trustpilot" data-i18n="hero.trustpilot">★★★★★ Rated excellent on Trustpilot</div>
   </div>
 
-  <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-label">Canada's #1</div>
-      <div class="stat-value">merchant acquirer</div>
+      <div class="stat-label" data-i18n="stats.1.label">Canada's #1</div>
+      <div class="stat-value" data-i18n="stats.1.value">merchant acquirer</div>
       <div class="stat-line red"></div>
     </div>
     <div class="stat">
-      <div class="stat-label">Points of commerce coast to coast</div>
-      <div class="stat-value">350,000+</div>
+      <div class="stat-label" data-i18n="stats.2.label">Points of commerce coast to coast</div>
+      <div class="stat-value" data-i18n="stats.2.value">350,000+</div>
       <div class="stat-line navy"></div>
     </div>
     <div class="stat">
-      <div class="stat-label">Transactions every year</div>
-      <div class="stat-value">5 billion+</div>
+      <div class="stat-label" data-i18n="stats.3.label">Transactions every year</div>
+      <div class="stat-value" data-i18n="stats.3.value">5 billion+</div>
       <div class="stat-line blue"></div>
     </div>
   </div>
 
-  <!-- QUIZ SHELL — homepage quiz or industry quiz renders here -->
   <div id="shell"></div>
 
-  <!-- INDUSTRY CARDS — always visible, never hidden -->
   <div class="industry-section">
-    <div class="section-title">We have end-to-end solutions for the industry you <span class="red">call home.</span></div>
+    <div class="section-title" data-i18n-html="industrySection.title">We have end-to-end solutions for the industry you <span class="red">call home.</span></div>
     <div class="industry-grid">
-      <button class="industry-card" onclick="startQuiz('retail')"><div class="industry-icon">🛍️</div><div class="industry-name">Retail</div><div class="industry-desc">Sell in-store, online, and on the go with unified commerce tools.</div><div class="industry-cta">Explore retail →</div></button>
-      <button class="industry-card" onclick="startQuiz('restaurant')"><div class="industry-icon">🍽️</div><div class="industry-name">Restaurants</div><div class="industry-desc">POS systems for full-service, QSR, cafés, and food trucks.</div><div class="industry-cta">Explore restaurants →</div></button>
-      <button class="industry-card" onclick="startQuiz('health')"><div class="industry-icon">💇</div><div class="industry-name">Health & beauty</div><div class="industry-desc">Terminals and POS for salons, spas, and clinics.</div><div class="industry-cta">Explore health & beauty →</div></button>
-      <button class="industry-card" onclick="startQuiz('enterprise')"><div class="industry-icon">🏢</div><div class="industry-name">Enterprise</div><div class="industry-desc">Scalable, tailored solutions for large multi-location organizations.</div><div class="industry-cta">Explore enterprise →</div></button>
-      <button class="industry-card" onclick="startQuiz('professional')"><div class="industry-icon">👔</div><div class="industry-name">Professional Services</div><div class="industry-desc">Invoicing and payments for law firms, accountants, and auto shops.</div><div class="industry-cta">Explore pro services →</div></button>
-      <button class="industry-card" onclick="startQuiz('public')"><div class="industry-icon">🏛️</div><div class="industry-name">Public Sector</div><div class="industry-desc">Secure, compliant payment infrastructure for government organizations.</div><div class="industry-cta">Explore public sector →</div></button>
-      <button class="industry-card" onclick="startQuiz('nonprofit')"><div class="industry-icon">❤️</div><div class="industry-name">Not-for-profit</div><div class="industry-desc">Donation tools, low fees, and easy setup for charities and NFPs.</div><div class="industry-cta">Explore not-for-profit →</div></button>
+      <button class="industry-card" onclick="startQuiz('retail')"><div class="industry-icon">🛍️</div><div class="industry-name" data-i18n="industries.retail.name">Retail</div><div class="industry-desc" data-i18n="industries.retail.desc">Sell in-store, online, and on the go with unified commerce tools.</div><div class="industry-cta" data-i18n="industries.retail.cta">Explore retail →</div></button>
+      <button class="industry-card" onclick="startQuiz('restaurant')"><div class="industry-icon">🍽️</div><div class="industry-name" data-i18n="industries.restaurant.name">Restaurants</div><div class="industry-desc" data-i18n="industries.restaurant.desc">POS systems for full-service, QSR, cafés, and food trucks.</div><div class="industry-cta" data-i18n="industries.restaurant.cta">Explore restaurants →</div></button>
+      <button class="industry-card" onclick="startQuiz('health')"><div class="industry-icon">💇</div><div class="industry-name" data-i18n="industries.health.name">Health & beauty</div><div class="industry-desc" data-i18n="industries.health.desc">Terminals and POS for salons, spas, and clinics.</div><div class="industry-cta" data-i18n="industries.health.cta">Explore health & beauty →</div></button>
+      <button class="industry-card" onclick="startQuiz('enterprise')"><div class="industry-icon">🏢</div><div class="industry-name" data-i18n="industries.enterprise.name">Enterprise</div><div class="industry-desc" data-i18n="industries.enterprise.desc">Scalable, tailored solutions for large multi-location organizations.</div><div class="industry-cta" data-i18n="industries.enterprise.cta">Explore enterprise →</div></button>
+      <button class="industry-card" onclick="startQuiz('professional')"><div class="industry-icon">👔</div><div class="industry-name" data-i18n="industries.professional.name">Professional Services</div><div class="industry-desc" data-i18n="industries.professional.desc">Invoicing and payments for law firms, accountants, and auto shops.</div><div class="industry-cta" data-i18n="industries.professional.cta">Explore pro services →</div></button>
+      <button class="industry-card" onclick="startQuiz('public')"><div class="industry-icon">🏛️</div><div class="industry-name" data-i18n="industries.public.name">Public Sector</div><div class="industry-desc" data-i18n="industries.public.desc">Secure, compliant payment infrastructure for government organizations.</div><div class="industry-cta" data-i18n="industries.public.cta">Explore public sector →</div></button>
+      <button class="industry-card" onclick="startQuiz('nonprofit')"><div class="industry-icon">❤️</div><div class="industry-name" data-i18n="industries.nonprofit.name">Not-for-profit</div><div class="industry-desc" data-i18n="industries.nonprofit.desc">Donation tools, low fees, and easy setup for charities and NFPs.</div><div class="industry-cta" data-i18n="industries.nonprofit.cta">Explore not-for-profit →</div></button>
     </div>
   </div>
 
 </div>
 
 <div class="footer">
-  &copy; 2026 Moneris Solutions Corporation &mdash; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Help Centre</a>
+  <span data-i18n="footer.copy">&copy; 2026 Moneris Solutions Corporation &mdash;</span> <a href="#" data-i18n="footer.privacy">Privacy</a> &middot; <a href="#" data-i18n="footer.terms">Terms</a> &middot; <a href="#" data-i18n="footer.help">Help Centre</a>
 </div>
 
 <script>
-const P = {
-  goTerminal:    { name:"Moneris Go Terminal",   desc:"Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Countertop or curbside.", icon:"💳" },
-  goPlus:        { name:"Moneris Go Plus",        desc:"Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", icon:"📱" },
-  goRetail:      { name:"Moneris Go Retail",      desc:"Portable POS for micro and small businesses. Sell in-store and on the go. Add-on for $10/month.", icon:"🛍️" },
-  totalCommerce: { name:"Moneris Total Commerce", desc:"Omnichannel POS built with Wix — unify in-store and online sales in one platform.", icon:"🌐" },
-  goRestaurant:  { name:"Moneris Go Restaurant",  desc:"All-in-one POS for small and independent counter-service restaurants. From $30/month.", icon:"🍽️" },
-  touchBistro:   { name:"Moneris + TouchBistro",  desc:"Full-service restaurant management — Pay-at-Table, front- and back-of-house tools, Moneris Go.", icon:"🍽️" },
-  monerisOnline: { name:"Moneris Online",         desc:"Ecommerce solution built with Wix. Accept payments, send invoices, and sell online securely.", icon:"💻" },
-  paydInvoicing: { name:"PAYD Invoicing",         desc:"Create and send invoices by email or SMS. Clients pay via a secure Moneris-hosted link.", icon:"📧" },
-  goPinPad:      { name:"Moneris Go PIN Pad",     desc:"Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", icon:"🔢" },
-};
-
-const retailPaths = {
-  "Just opening a new store":{
-    badge:"New store path",
-    steps:[
-      {q:"How do you plan to sell?", opts:["In-store only","Online only","Both in-store and online"]},
-      {q:"How large is your product inventory?", opts:["Under 50 products","50–500 products","500+ products"]},
-      {q:"When are you planning to open?", opts:["Within the next month","1–3 months","3+ months away"]},
-      {q:"What matters most to you right now?", opts:["Getting set up fast","Keeping costs low","Room to grow","Selling online from day one"]}
-    ],
-    endpoints:{
-      "Both in-store and online":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're opening a store and selling online from day one — here's a setup that covers both.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
-      "500+ products":{type:"contact",badge:"Setup specialist",bc:"ep-b",title:"Let's get you set up properly.",desc:"A large inventory needs a configured POS from the start. A Moneris specialist will help you build the right setup before you open.",cta:"Submit"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, here's the fastest path to taking payments in your new store.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
+/* ============================================================
+   TRANSLATIONS
+   ============================================================ */
+const TRANSLATIONS = {
+  en: {
+    topbar: { callSales:"Call sales", serviceStatus:"Service Status", contactUs:"Contact us", about:"About Moneris", careers:"Careers" },
+    nav: { solutions:"Solutions", businessTypes:"Business Types", industries:"Industries", partners:"Partners", resources:"Resources", login:"Login", getStarted:"Get Started" },
+    hero: {
+      title: 'Powering Canadian <span class="red">small businesses.</span>',
+      sub: "Payment solutions and commerce tools that grow with your business. Trusted by hundreds of thousands across Canada.",
+      trustpilot: "★★★★★ Rated excellent on Trustpilot"
+    },
+    stats: {
+      "1": { label:"Canada's #1", value:"merchant acquirer" },
+      "2": { label:"Points of commerce coast to coast", value:"350,000+" },
+      "3": { label:"Transactions every year", value:"5 billion+" }
+    },
+    industrySection: { title: 'We have end-to-end solutions for the industry you <span class="red">call home.</span>' },
+    industries: {
+      retail:       { name:"Retail",                desc:"Sell in-store, online, and on the go with unified commerce tools.",                     cta:"Explore retail →" },
+      restaurant:   { name:"Restaurants",           desc:"POS systems for full-service, QSR, cafés, and food trucks.",                           cta:"Explore restaurants →" },
+      health:       { name:"Health & beauty",       desc:"Terminals and POS for salons, spas, and clinics.",                                      cta:"Explore health & beauty →" },
+      enterprise:   { name:"Enterprise",            desc:"Scalable, tailored solutions for large multi-location organizations.",                  cta:"Explore enterprise →" },
+      professional: { name:"Professional Services", desc:"Invoicing and payments for law firms, accountants, and auto shops.",                   cta:"Explore pro services →" },
+      public:       { name:"Public Sector",         desc:"Secure, compliant payment infrastructure for government organizations.",               cta:"Explore public sector →" },
+      nonprofit:    { name:"Not-for-profit",        desc:"Donation tools, low fees, and easy setup for charities and NFPs.",                     cta:"Explore not-for-profit →" }
+    },
+    footer: { copy:"© 2026 Moneris Solutions Corporation —", privacy:"Privacy", terms:"Terms", help:"Help Centre" },
+    quiz: {
+      questionLabel: "Question",
+      back: "← Back",
+      next: "Next →",
+      seeRecommendation: "See my recommendation",
+      needHelp: "Need help?",
+      talkPerson: "Talk to a real person →",
+      notRight: "Not quite right?",
+      startOver: "Start over",
+      changedMind: "Changed your mind?",
+      findSolution: "Find your solution →",
+      bestOption: "Best option",
+      formFirstName: "First name", formLastName: "Last name", formEmail: "Email address", formPhone: "Phone number",
+      formFirstPlaceholder: "Jane", formLastPlaceholder: "Smith", formEmailPlaceholder: "jane@business.com", formPhonePlaceholder: "416-555-0100",
+      resourceLearnDesc: "Learn how Moneris serves organizations like yours.",
+      resourceDownloadDesc: "Get our full solutions guide to share with your team."
     }
   },
-  "Switching from another provider":{
-    badge:"Switching path",
-    steps:[
-      {q:"What's the main reason you're looking to switch?", opts:["Fees are too high","Unreliable hardware or software","Poor customer support","Missing features I need","My contract is ending"]},
-      {q:"What are you currently using?", opts:["A terminal only","A full POS system","An ecommerce platform","A mix of things"]},
-      {q:"Do you currently sell online?", opts:["Yes and it's important to my business","A little but want to grow it","No, strictly in-person"]},
-      {q:"When are you looking to make the switch?", opts:["As soon as possible","Within 1–3 months","Still evaluating"]}
-    ],
-    endpoints:{
-      "As soon as possible":{type:"contact",badge:"Ready to switch",bc:"ep-a",title:"Let's get you moved over quickly.",desc:"You're ready to switch now. Fill in your details and a Moneris specialist will reach out within one business day.",cta:"Submit"},
-      "Yes and it's important to my business":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You need strong in-store and online coverage — here's what handles both after your switch.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on what you told us, here's the best fit for your switch to Moneris.",prods:["goRetail","goTerminal","goPlus"],best:0,cta:"Order now",cta2:"Learn more"}
-    }
-  },
-  "Already with Moneris, looking to expand":{
-    badge:"Expansion path",
-    steps:[
-      {q:"What kind of expansion are you planning?", opts:["Opening a second location","Adding online sales","Upgrading my current hardware","Adding more payment terminals"]},
-      {q:"What Moneris products are you currently using?", opts:["A terminal only","Moneris Go Retail or PAYD","Moneris Total Commerce","Not sure"]},
-      {q:"How many total locations will you have after expanding?", opts:["2 locations","3–5 locations","6 or more locations"]},
-      {q:"When are you planning to expand?", opts:["Within the next month","1–3 months","3+ months away"]}
-    ],
-    endpoints:{
-      "6 or more locations":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our enterprise team.",desc:"At 6+ locations you'll benefit from centralized reporting, dedicated support, and a tailored account structure.",cta:"Submit"},
-      "Adding online sales":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're ready to add online sales — here's how to connect your in-store setup to a full ecommerce channel.",prods:["totalCommerce","monerisOnline","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your expansion plans, here's what to add to your current Moneris setup.",prods:["goTerminal","goRetail","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
+  fr: {
+    topbar: { callSales:"Appeler les ventes", serviceStatus:"État du service", contactUs:"Nous contacter", about:"À propos de Moneris", careers:"Carrières" },
+    nav: { solutions:"Solutions", businessTypes:"Types d'entreprises", industries:"Industries", partners:"Partenaires", resources:"Ressources", login:"Connexion", getStarted:"Commencer" },
+    hero: {
+      title: 'Propulser les <span class="red">petites entreprises</span> canadiennes.',
+      sub: "Des solutions de paiement et des outils de commerce qui grandissent avec votre entreprise. Faites confiance à des centaines de milliers d'entreprises partout au Canada.",
+      trustpilot: "★★★★★ Excellent sur Trustpilot"
+    },
+    stats: {
+      "1": { label:"No 1 au Canada", value:"acquéreur de marchands" },
+      "2": { label:"Points de commerce d'un océan à l'autre", value:"350 000+" },
+      "3": { label:"Transactions chaque année", value:"5 milliards+" }
+    },
+    industrySection: { title: 'Nous avons des solutions de bout en bout pour l\'industrie que vous <span class="red">appelez chez vous.</span>' },
+    industries: {
+      retail:       { name:"Commerce de détail",     desc:"Vendez en magasin, en ligne et en déplacement avec des outils de commerce unifiés.",    cta:"Explorer le commerce de détail →" },
+      restaurant:   { name:"Restaurants",            desc:"Systèmes PDV pour service complet, restauration rapide, cafés et camions de cuisine.",  cta:"Explorer les restaurants →" },
+      health:       { name:"Santé et beauté",        desc:"Terminaux et PDV pour salons, spas et cliniques.",                                       cta:"Explorer santé et beauté →" },
+      enterprise:   { name:"Entreprise",             desc:"Solutions évolutives et personnalisées pour les grandes organisations multi-sites.",     cta:"Explorer entreprise →" },
+      professional: { name:"Services professionnels",desc:"Facturation et paiements pour cabinets juridiques, comptables et ateliers auto.",        cta:"Explorer les services pro →" },
+      public:       { name:"Secteur public",         desc:"Infrastructure de paiement sécurisée et conforme pour les organisations gouvernementales.", cta:"Explorer le secteur public →" },
+      nonprofit:    { name:"Organisme sans but lucratif", desc:"Outils de dons, frais réduits et configuration facile pour les organismes de bienfaisance.", cta:"Explorer les OSBL →" }
+    },
+    footer: { copy:"© 2026 Moneris Solutions Corporation —", privacy:"Confidentialité", terms:"Conditions", help:"Centre d'aide" },
+    quiz: {
+      questionLabel: "Question",
+      back: "← Retour",
+      next: "Suivant →",
+      seeRecommendation: "Voir ma recommandation",
+      needHelp: "Besoin d'aide?",
+      talkPerson: "Parler à une vraie personne →",
+      notRight: "Pas tout à fait?",
+      startOver: "Recommencer",
+      changedMind: "Changé d'avis?",
+      findSolution: "Trouver ma solution →",
+      bestOption: "Meilleure option",
+      formFirstName: "Prénom", formLastName: "Nom de famille", formEmail: "Adresse courriel", formPhone: "Numéro de téléphone",
+      formFirstPlaceholder: "Marie", formLastPlaceholder: "Tremblay", formEmailPlaceholder: "marie@entreprise.com", formPhonePlaceholder: "514-555-0100",
+      resourceLearnDesc: "Découvrez comment Moneris sert les organisations comme la vôtre.",
+      resourceDownloadDesc: "Obtenez notre guide complet des solutions à partager avec votre équipe."
     }
   }
 };
 
-const quizzes = {
-  homepage:{
-    label:"Homepage", title:"Let's find your fit.", sub:"A few quick questions to point you in the right direction.",
-    earlyExit:{step:0,val:"Just exploring"},
-    steps:[
-      {q:"What brought you here today?", opts:["Just exploring","Looking for a solution"]},
-      {q:"What type of business do you run?", opts:["Retail","Restaurant","Health & beauty","Professional services","Trades","Other"]},
-      {q:"How do you sell?", opts:["In-person only","Online only","Both in-person and online"]},
-      {q:"What's your biggest priority right now?", opts:["Accepting payments","Managing my business","Growing sales","Reducing costs"]},
-      {q:"How soon are you looking to get set up?", opts:["Right away","Within a month","Just researching"]}
-    ],
-    endpoints:{
-      default:{type:"route",badge:"Recommended for you",bc:"ep-g",title:"Based on what you told us, here's where to start.",desc:"We've matched you to the most relevant Moneris solutions page. The quiz there will get even more specific to your business.",cta:"Take me there",cta2:"Talk to a specialist"}
+/* ============================================================
+   PRODUCTS — bilingual
+   ============================================================ */
+const PRODUCTS = {
+  en: {
+    goTerminal:    { name:"Moneris Go Terminal",   desc:"Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Countertop or curbside.", icon:"💳" },
+    goPlus:        { name:"Moneris Go Plus",        desc:"Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", icon:"📱" },
+    goRetail:      { name:"Moneris Go Retail",      desc:"Portable POS for micro and small businesses. Sell in-store and on the go. Add-on for $10/month.", icon:"🛍️" },
+    totalCommerce: { name:"Moneris Total Commerce", desc:"Omnichannel POS built with Wix — unify in-store and online sales in one platform.", icon:"🌐" },
+    goRestaurant:  { name:"Moneris Go Restaurant",  desc:"All-in-one POS for small and independent counter-service restaurants. From $30/month.", icon:"🍽️" },
+    touchBistro:   { name:"Moneris + TouchBistro",  desc:"Full-service restaurant management — Pay-at-Table, front- and back-of-house tools, Moneris Go.", icon:"🍽️" },
+    monerisOnline: { name:"Moneris Online",         desc:"Ecommerce solution built with Wix. Accept payments, send invoices, and sell online securely.", icon:"💻" },
+    paydInvoicing: { name:"PAYD Invoicing",         desc:"Create and send invoices by email or SMS. Clients pay via a secure Moneris-hosted link.", icon:"📧" },
+    goPinPad:      { name:"Moneris Go PIN Pad",     desc:"Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", icon:"🔢" }
+  },
+  fr: {
+    goTerminal:    { name:"Terminal Moneris Go",    desc:"Terminal portable nouvelle génération — compatible PCI 7, batterie 12h, écran 7\". Comptoir ou service au volant.", icon:"💳" },
+    goPlus:        { name:"Moneris Go Plus",        desc:"Terminal intelligent avec écran tactile 6\", imprimante intégrée, caméras avant et arrière, batterie toute la journée.", icon:"📱" },
+    goRetail:      { name:"Moneris Go Détail",      desc:"PDV portable pour micro et petites entreprises. Vendez en magasin et en déplacement. Supplément de 10 $/mois.", icon:"🛍️" },
+    totalCommerce: { name:"Moneris Total Commerce", desc:"PDV omnicanal développé avec Wix — unifiez les ventes en magasin et en ligne sur une seule plateforme.", icon:"🌐" },
+    goRestaurant:  { name:"Moneris Go Restaurant",  desc:"PDV tout-en-un pour les petits restaurants indépendants au comptoir. À partir de 30 $/mois.", icon:"🍽️" },
+    touchBistro:   { name:"Moneris + TouchBistro",  desc:"Gestion de restaurant service complet — paiement à table, outils de salle et de cuisine, Moneris Go.", icon:"🍽️" },
+    monerisOnline: { name:"Moneris En ligne",       desc:"Solution de commerce électronique développée avec Wix. Acceptez des paiements, envoyez des factures et vendez en ligne en toute sécurité.", icon:"💻" },
+    paydInvoicing: { name:"Facturation PAYD",       desc:"Créez et envoyez des factures par courriel ou SMS. Les clients paient via un lien sécurisé hébergé par Moneris.", icon:"📧" },
+    goPinPad:      { name:"Clavier NIP Moneris Go", desc:"Clavier NIP de comptoir pour intégrations PDV multi-voies ou partenaires. Android 11, traitement rapide.", icon:"🔢" }
+  }
+};
+
+/* ============================================================
+   QUIZ DATA — bilingual
+   ============================================================ */
+const RETAIL_PATHS = {
+  en: {
+    "Just opening a new store":{
+      badge:"New store path",
+      steps:[
+        {q:"How do you plan to sell?", opts:["In-store only","Online only","Both in-store and online"]},
+        {q:"How large is your product inventory?", opts:["Under 50 products","50–500 products","500+ products"]},
+        {q:"When are you planning to open?", opts:["Within the next month","1–3 months","3+ months away"]},
+        {q:"What matters most to you right now?", opts:["Getting set up fast","Keeping costs low","Room to grow","Selling online from day one"]}
+      ],
+      endpoints:{
+        "Both in-store and online":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're opening a store and selling online from day one — here's a setup that covers both.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
+        "500+ products":{type:"contact",badge:"Setup specialist",bc:"ep-b",title:"Let's get you set up properly.",desc:"A large inventory needs a configured POS from the start. A Moneris specialist will help you build the right setup before you open.",cta:"Submit"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, here's the fastest path to taking payments in your new store.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
+    },
+    "Switching from another provider":{
+      badge:"Switching path",
+      steps:[
+        {q:"What's the main reason you're looking to switch?", opts:["Fees are too high","Unreliable hardware or software","Poor customer support","Missing features I need","My contract is ending"]},
+        {q:"What are you currently using?", opts:["A terminal only","A full POS system","An ecommerce platform","A mix of things"]},
+        {q:"Do you currently sell online?", opts:["Yes and it's important to my business","A little but want to grow it","No, strictly in-person"]},
+        {q:"When are you looking to make the switch?", opts:["As soon as possible","Within 1–3 months","Still evaluating"]}
+      ],
+      endpoints:{
+        "As soon as possible":{type:"contact",badge:"Ready to switch",bc:"ep-a",title:"Let's get you moved over quickly.",desc:"You're ready to switch now. Fill in your details and a Moneris specialist will reach out within one business day.",cta:"Submit"},
+        "Yes and it's important to my business":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You need strong in-store and online coverage — here's what handles both after your switch.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on what you told us, here's the best fit for your switch to Moneris.",prods:["goRetail","goTerminal","goPlus"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
+    },
+    "Already with Moneris, looking to expand":{
+      badge:"Expansion path",
+      steps:[
+        {q:"What kind of expansion are you planning?", opts:["Opening a second location","Adding online sales","Upgrading my current hardware","Adding more payment terminals"]},
+        {q:"What Moneris products are you currently using?", opts:["A terminal only","Moneris Go Retail or PAYD","Moneris Total Commerce","Not sure"]},
+        {q:"How many total locations will you have after expanding?", opts:["2 locations","3–5 locations","6 or more locations"]},
+        {q:"When are you planning to expand?", opts:["Within the next month","1–3 months","3+ months away"]}
+      ],
+      endpoints:{
+        "6 or more locations":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our enterprise team.",desc:"At 6+ locations you'll benefit from centralized reporting, dedicated support, and a tailored account structure.",cta:"Submit"},
+        "Adding online sales":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're ready to add online sales — here's how to connect your in-store setup to a full ecommerce channel.",prods:["totalCommerce","monerisOnline","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your expansion plans, here's what to add to your current Moneris setup.",prods:["goTerminal","goRetail","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
     }
   },
-  retail:{
-    label:"Retail", title:"Find your retail solution.", sub:"Tell us where you are in your journey and we'll tailor the questions from there.", isRetail:true,
-    gateStep:{q:"Where are you in your retail journey?", opts:["Just opening a new store","Switching from another provider","Already with Moneris, looking to expand"]}
-  },
-  restaurant:{
-    label:"Restaurants", title:"Find your restaurant solution.", sub:"Tell us about your restaurant and we'll match you to the right fit.",
-    steps:[
-      {q:"What type of restaurant do you run?", opts:["Full-service / fine dining","Quick service or fast casual","Café or bakery","Food truck or market","Bar or nightclub"]},
-      {q:"How do customers order from you?", opts:["Table-side","Counter","Online","All of the above"]},
-      {q:"Do you need online ordering or delivery integration?", opts:["Yes, it's essential","Nice to have","No, strictly in-person"]},
-      {q:"How many locations do you operate?", opts:["Just one","2–5 locations","6 or more","Planning to expand"]},
-      {q:"What's your biggest operational pain point?", opts:["Slow checkout","Order errors","Staff management","Tracking sales","Just getting started"]}
-    ],
-    endpoints:{
-      "6 or more":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"Multi-location operations need a tailored approach. Fill in your details and a specialist will reach out.",cta:"Submit"},
-      "Planning to expand":{type:"contact",badge:"Growth plan",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"We'll help you build a solution that scales with you.",cta:"Submit"},
-      "Full-service / fine dining":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Built for full-service restaurants with table-side payments and front- and back-of-house management.",prods:["touchBistro","goPlus","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your restaurant.",prods:["goRestaurant","goTerminal","touchBistro"],best:0,cta:"Order now",cta2:"Learn more"}
-    }
-  },
-  health:{
-    label:"Health & beauty", title:"Solutions built for your salon or clinic.", sub:"Tell us about your business and we'll find your best match.",
-    steps:[
-      {q:"What kind of business do you run?", opts:["Hair or nail salon","Spa or wellness centre","Medical or aesthetic clinic","Barbershop","Other"]},
-      {q:"How do clients book with you?", opts:["Appointments only","Walk-ins only","Mix of both"]},
-      {q:"Do you sell retail products alongside your services?", opts:["Yes, it's a big part of our revenue","A little","No, services only"]},
-      {q:"How do you currently take payments?", opts:["Terminal at checkout","Chairside or tableside","Just getting started"]},
-      {q:"What matters most to you in a payment solution?", opts:["Easy tipping","Booking and payment in one place","Gift cards and loyalty","Simple setup"]}
-    ],
-    endpoints:{
-      "Medical or aesthetic clinic":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a healthcare payments specialist.",desc:"Clinics have unique compliance and billing needs. A Moneris specialist will walk you through the right solution.",cta:"Submit"},
-      "Yes, it's a big part of our revenue":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You sell both services and products — here's what handles both in one platform.",prods:["totalCommerce","goPlus","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","goRetail"],best:0,cta:"Order now",cta2:"Learn more"}
-    }
-  },
-  enterprise:{
-    label:"Enterprise", title:"Enterprise-grade commerce solutions.", sub:"Tell us about your organization and we'll get the right team in touch.",
-    steps:[
-      {q:"What best describes your organization?", opts:["National retail chain","Restaurant group","Healthcare network","Public sector","Other large organization"]},
-      {q:"How many locations need payment solutions?", opts:["10–25 locations","26–100 locations","100+ locations"]},
-      {q:"What's driving this evaluation?", opts:["Replacing an existing provider","Opening new locations","Adding online payments","Consolidating systems"]},
-      {q:"What's most important to your team?", opts:["Reliability and uptime","Reporting and data","Integrations with existing software","Dedicated support"]},
-      {q:"When are you looking to make a decision?", opts:["Within 30 days","This quarter","Just exploring options"]}
-    ],
-    endpoints:{
-      "Within 30 days":{type:"contact",badge:"High priority",bc:"ep-a",title:"Let's book a call.",desc:"You're ready to move. Fill in your details and a senior Moneris enterprise specialist will reach out within one business day.",cta:"Submit"},
-      "Just exploring options":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore our enterprise overview and download our solutions guide. We'll be here when you're ready to talk.",cta:"View enterprise solutions",cta2:"Download guide"},
-      default:{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with an enterprise specialist.",desc:"Based on your organization's needs, our enterprise team is the right next step.",cta:"Submit"}
-    }
-  },
-  professional:{
-    label:"Pro services", title:"Find your professional services solution.", sub:"Tell us about your practice and we'll match you to the right fit.",
-    steps:[
-      {q:"What type of professional services business do you run?", opts:["Legal / law firm","Accounting / bookkeeping","Automotive services","Other professional services"]},
-      {q:"How do your clients typically pay you?", opts:["Invoice or retainer — they pay remotely","In person at time of service","Mix of both","We're still figuring this out"]},
-      {q:"Do you need to accept payments online or over the phone?", opts:["Yes, online payments are essential","Phone payments would be useful","No, always in person","Both online and phone"]},
-      {q:"How many staff or locations are processing payments?", opts:["Just me","Small team, one location","Multiple locations or 10+ staff"]},
-      {q:"What matters most to you in a payment solution?", opts:["Getting paid faster","Accepting cards in person easily","Professional invoicing and records","Simple, low-cost setup","Detailed reporting"]}
-    ],
-    endpoints:{
-      "Multiple locations or 10+ staff":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a specialist.",desc:"Your setup needs a tailored multi-user solution. Fill in your details and we'll be in touch.",cta:"Submit"},
-      "Invoice or retainer — they pay remotely":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You bill remotely — these Moneris tools let clients pay securely without visiting in person.",prods:["paydInvoicing","monerisOnline","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","paydInvoicing"],best:0,cta:"Order now",cta2:"Learn more"}
-    }
-  },
-  public:{
-    label:"Public sector", title:"Payment solutions for public sector organizations.", sub:"Tell us about your organization and we'll find the right fit.",
-    steps:[
-      {q:"What type of public sector organization are you?", opts:["Municipal government","University or college","Healthcare authority","Transit or parking","Library or community centre","Other government agency"]},
-      {q:"How do constituents or customers pay you today?", opts:["In person at a counter or kiosk","Online through a portal","Over the phone","Mix of all of the above","We're just getting started"]},
-      {q:"What's your biggest payment challenge right now?", opts:["Modernizing aging payment infrastructure","Accepting more payment types","Improving online payment options","Reducing manual reconciliation","Meeting compliance or accessibility requirements"]},
-      {q:"How many payment points or locations are involved?", opts:["One location","2–10 locations","10+ locations or city-wide"]},
-      {q:"When are you looking to move forward?", opts:["Actively evaluating — decision soon","Planning for next fiscal year","Early-stage research"]}
-    ],
-    endpoints:{
-      "10+ locations or city-wide":{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with our public sector enterprise team.",desc:"City-wide or multi-site deployments need a dedicated account team and tailored infrastructure.",cta:"Submit"},
-      "Actively evaluating — decision soon":{type:"contact",badge:"Ready to move",bc:"ep-a",title:"Let's get you connected quickly.",desc:"You're actively evaluating — a Moneris public sector specialist will reach out within one business day.",cta:"Submit"},
-      "Early-stage research":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore how Moneris works with public sector organizations across Canada.",cta:"View public sector solutions",cta2:"Download overview"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical starting point for modernizing your payments.",prods:["goTerminal","goPinPad","monerisOnline"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
-    }
-  },
-  nonprofit:{
-    label:"Not-for-profit", title:"Payment solutions built for your mission.", sub:"Tell us about your organization and we'll find the right fit.",
-    steps:[
-      {q:"What best describes your not-for-profit?", opts:["Registered charity or foundation","Community or social services org","Religious organization","Arts, culture, or sports org","Healthcare or hospice","Other not-for-profit"]},
-      {q:"How does your organization primarily collect money?", opts:["Donations — online or by mail","In-person donations or collections","Events and ticket sales","A thrift store or retail operation","Program fees or memberships","Mix of the above"]},
-      {q:"Do you need to accept donations or payments online?", opts:["Yes, online giving is essential for us","We'd like to add it","No, we operate entirely in person"]},
-      {q:"How large is your organization?", opts:["Under 10 staff or volunteers","10–50 staff or volunteers","50+ staff or multiple chapters"]},
-      {q:"What matters most to your organization in a payment solution?", opts:["Low fees — every dollar counts","Automatic donor tax receipting","Easy for volunteers to use","Online giving and donation pages","Reporting for our board or funders"]}
-    ],
-    endpoints:{
-      "50+ staff or multiple chapters":{type:"contact",badge:"Enterprise NFP",bc:"ep-b",title:"Let's connect you with a not-for-profit specialist.",desc:"Large or multi-chapter organizations need a tailored solution. A Moneris specialist will reach out.",cta:"Submit"},
-      "Yes, online giving is essential for us":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Online giving is central to your mission — here's how Moneris helps you accept donations online.",prods:["monerisOnline","paydInvoicing","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
-      "A thrift store or retail operation":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Running a charity shop means you need a reliable in-store retail setup at a cost that protects your mission.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"},
-      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical and affordable starting point.",prods:["goTerminal","monerisOnline","paydInvoicing"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
+  fr: {
+    "Ouvrir un nouveau magasin":{
+      badge:"Nouveau magasin",
+      steps:[
+        {q:"Comment prévoyez-vous vendre?", opts:["En magasin seulement","En ligne seulement","En magasin et en ligne"]},
+        {q:"Quelle est la taille de votre inventaire?", opts:["Moins de 50 produits","50 à 500 produits","Plus de 500 produits"]},
+        {q:"Quand prévoyez-vous ouvrir?", opts:["Dans le prochain mois","Dans 1 à 3 mois","Dans 3 mois ou plus"]},
+        {q:"Qu'est-ce qui compte le plus pour vous en ce moment?", opts:["Être opérationnel rapidement","Réduire les coûts","Avoir de la place pour grandir","Vendre en ligne dès le premier jour"]}
+      ],
+      endpoints:{
+        "En magasin et en ligne":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Vous ouvrez un magasin et vendez en ligne dès le premier jour — voici une configuration qui couvre les deux.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"},
+        "Plus de 500 produits":{type:"contact",badge:"Spécialiste de configuration",bc:"ep-b",title:"Configurons votre solution correctement.",desc:"Un grand inventaire nécessite un PDV configuré dès le départ. Un spécialiste Moneris vous aidera à bâtir la bonne configuration avant votre ouverture.",cta:"Soumettre"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après vos réponses, voici le moyen le plus rapide d'accepter des paiements dans votre nouveau magasin.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
+    },
+    "Changer de fournisseur":{
+      badge:"Changement de fournisseur",
+      steps:[
+        {q:"Quelle est la principale raison pour laquelle vous voulez changer?", opts:["Les frais sont trop élevés","Matériel ou logiciel peu fiable","Service client insuffisant","Fonctionnalités manquantes","Mon contrat se termine"]},
+        {q:"Qu'utilisez-vous actuellement?", opts:["Un terminal seulement","Un système PDV complet","Une plateforme de commerce électronique","Un mélange de plusieurs outils"]},
+        {q:"Vendez-vous actuellement en ligne?", opts:["Oui et c'est important pour mon entreprise","Un peu, mais je veux développer ça","Non, exclusivement en personne"]},
+        {q:"Quand souhaitez-vous effectuer le changement?", opts:["Dès que possible","Dans 1 à 3 mois","Je suis encore en train d'évaluer"]}
+      ],
+      endpoints:{
+        "Dès que possible":{type:"contact",badge:"Prêt à changer",bc:"ep-a",title:"Effectuons votre transfert rapidement.",desc:"Vous êtes prêt à changer maintenant. Remplissez vos coordonnées et un spécialiste Moneris vous contactera dans un jour ouvrable.",cta:"Soumettre"},
+        "Oui et c'est important pour mon entreprise":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Vous avez besoin d'une bonne couverture en magasin et en ligne — voici ce qui gère les deux après votre transition.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après ce que vous nous avez dit, voici la meilleure option pour votre passage à Moneris.",prods:["goRetail","goTerminal","goPlus"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
+    },
+    "Déjà avec Moneris, cherche à développer":{
+      badge:"Expansion",
+      steps:[
+        {q:"Quel type d'expansion planifiez-vous?", opts:["Ouvrir un deuxième emplacement","Ajouter des ventes en ligne","Mettre à jour mon matériel actuel","Ajouter des terminaux de paiement"]},
+        {q:"Quels produits Moneris utilisez-vous actuellement?", opts:["Un terminal seulement","Moneris Go Détail ou PAYD","Moneris Total Commerce","Je ne suis pas sûr(e)"]},
+        {q:"Combien d'emplacements au total après l'expansion?", opts:["2 emplacements","3 à 5 emplacements","6 emplacements ou plus"]},
+        {q:"Quand prévoyez-vous vous développer?", opts:["Dans le prochain mois","Dans 1 à 3 mois","Dans 3 mois ou plus"]}
+      ],
+      endpoints:{
+        "6 emplacements ou plus":{type:"contact",badge:"Correspond à l'entreprise",bc:"ep-b",title:"Connectons-vous à notre équipe entreprise.",desc:"Avec 6 emplacements ou plus, vous bénéficierez de rapports centralisés, d'un soutien dédié et d'une structure de compte adaptée.",cta:"Soumettre"},
+        "Ajouter des ventes en ligne":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Vous êtes prêt à ajouter des ventes en ligne — voici comment connecter votre configuration en magasin à un canal de commerce électronique complet.",prods:["totalCommerce","monerisOnline","goRetail"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après vos plans d'expansion, voici ce qu'il faut ajouter à votre configuration Moneris actuelle.",prods:["goTerminal","goRetail","totalCommerce"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
     }
   }
 };
 
-/* STATE */
+const QUIZZES = {
+  en: {
+    homepage:{
+      label:"Homepage", title:"Let's find your fit.", sub:"A few quick questions to point you in the right direction.",
+      earlyExit:{step:0,val:"Just exploring"},
+      steps:[
+        {q:"What brought you here today?", opts:["Just exploring","Looking for a solution"]},
+        {q:"What type of business do you run?", opts:["Retail","Restaurant","Health & beauty","Professional services","Trades","Other"]},
+        {q:"How do you sell?", opts:["In-person only","Online only","Both in-person and online"]},
+        {q:"What's your biggest priority right now?", opts:["Accepting payments","Managing my business","Growing sales","Reducing costs"]},
+        {q:"How soon are you looking to get set up?", opts:["Right away","Within a month","Just researching"]}
+      ],
+      endpoints:{
+        default:{type:"route",badge:"Recommended for you",bc:"ep-g",title:"Based on what you told us, here's where to start.",desc:"We've matched you to the most relevant Moneris solutions page. The quiz there will get even more specific to your business.",cta:"Take me there",cta2:"Talk to a specialist"}
+      }
+    },
+    retail:{
+      label:"Retail", title:"Find your retail solution.", sub:"Tell us where you are in your journey and we'll tailor the questions from there.", isRetail:true,
+      gateStep:{q:"Where are you in your retail journey?", opts:["Just opening a new store","Switching from another provider","Already with Moneris, looking to expand"]}
+    },
+    restaurant:{
+      label:"Restaurants", title:"Find your restaurant solution.", sub:"Tell us about your restaurant and we'll match you to the right fit.",
+      steps:[
+        {q:"What type of restaurant do you run?", opts:["Full-service / fine dining","Quick service or fast casual","Café or bakery","Food truck or market","Bar or nightclub"]},
+        {q:"How do customers order from you?", opts:["Table-side","Counter","Online","All of the above"]},
+        {q:"Do you need online ordering or delivery integration?", opts:["Yes, it's essential","Nice to have","No, strictly in-person"]},
+        {q:"How many locations do you operate?", opts:["Just one","2–5 locations","6 or more","Planning to expand"]},
+        {q:"What's your biggest operational pain point?", opts:["Slow checkout","Order errors","Staff management","Tracking sales","Just getting started"]}
+      ],
+      endpoints:{
+        "6 or more":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"Multi-location operations need a tailored approach. Fill in your details and a specialist will reach out.",cta:"Submit"},
+        "Planning to expand":{type:"contact",badge:"Growth plan",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"We'll help you build a solution that scales with you.",cta:"Submit"},
+        "Full-service / fine dining":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Built for full-service restaurants with table-side payments and front- and back-of-house management.",prods:["touchBistro","goPlus","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your restaurant.",prods:["goRestaurant","goTerminal","touchBistro"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
+    },
+    health:{
+      label:"Health & beauty", title:"Solutions built for your salon or clinic.", sub:"Tell us about your business and we'll find your best match.",
+      steps:[
+        {q:"What kind of business do you run?", opts:["Hair or nail salon","Spa or wellness centre","Medical or aesthetic clinic","Barbershop","Other"]},
+        {q:"How do clients book with you?", opts:["Appointments only","Walk-ins only","Mix of both"]},
+        {q:"Do you sell retail products alongside your services?", opts:["Yes, it's a big part of our revenue","A little","No, services only"]},
+        {q:"How do you currently take payments?", opts:["Terminal at checkout","Chairside or tableside","Just getting started"]},
+        {q:"What matters most to you in a payment solution?", opts:["Easy tipping","Booking and payment in one place","Gift cards and loyalty","Simple setup"]}
+      ],
+      endpoints:{
+        "Medical or aesthetic clinic":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a healthcare payments specialist.",desc:"Clinics have unique compliance and billing needs. A Moneris specialist will walk you through the right solution.",cta:"Submit"},
+        "Yes, it's a big part of our revenue":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You sell both services and products — here's what handles both in one platform.",prods:["totalCommerce","goPlus","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","goRetail"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
+    },
+    enterprise:{
+      label:"Enterprise", title:"Enterprise-grade commerce solutions.", sub:"Tell us about your organization and we'll get the right team in touch.",
+      steps:[
+        {q:"What best describes your organization?", opts:["National retail chain","Restaurant group","Healthcare network","Public sector","Other large organization"]},
+        {q:"How many locations need payment solutions?", opts:["10–25 locations","26–100 locations","100+ locations"]},
+        {q:"What's driving this evaluation?", opts:["Replacing an existing provider","Opening new locations","Adding online payments","Consolidating systems"]},
+        {q:"What's most important to your team?", opts:["Reliability and uptime","Reporting and data","Integrations with existing software","Dedicated support"]},
+        {q:"When are you looking to make a decision?", opts:["Within 30 days","This quarter","Just exploring options"]}
+      ],
+      endpoints:{
+        "Within 30 days":{type:"contact",badge:"High priority",bc:"ep-a",title:"Let's book a call.",desc:"You're ready to move. Fill in your details and a senior Moneris enterprise specialist will reach out within one business day.",cta:"Submit"},
+        "Just exploring options":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore our enterprise overview and download our solutions guide. We'll be here when you're ready to talk.",cta:"View enterprise solutions",cta2:"Download guide"},
+        default:{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with an enterprise specialist.",desc:"Based on your organization's needs, our enterprise team is the right next step.",cta:"Submit"}
+      }
+    },
+    professional:{
+      label:"Pro services", title:"Find your professional services solution.", sub:"Tell us about your practice and we'll match you to the right fit.",
+      steps:[
+        {q:"What type of professional services business do you run?", opts:["Legal / law firm","Accounting / bookkeeping","Automotive services","Other professional services"]},
+        {q:"How do your clients typically pay you?", opts:["Invoice or retainer — they pay remotely","In person at time of service","Mix of both","We're still figuring this out"]},
+        {q:"Do you need to accept payments online or over the phone?", opts:["Yes, online payments are essential","Phone payments would be useful","No, always in person","Both online and phone"]},
+        {q:"How many staff or locations are processing payments?", opts:["Just me","Small team, one location","Multiple locations or 10+ staff"]},
+        {q:"What matters most to you in a payment solution?", opts:["Getting paid faster","Accepting cards in person easily","Professional invoicing and records","Simple, low-cost setup","Detailed reporting"]}
+      ],
+      endpoints:{
+        "Multiple locations or 10+ staff":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a specialist.",desc:"Your setup needs a tailored multi-user solution. Fill in your details and we'll be in touch.",cta:"Submit"},
+        "Invoice or retainer — they pay remotely":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You bill remotely — these Moneris tools let clients pay securely without visiting in person.",prods:["paydInvoicing","monerisOnline","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","paydInvoicing"],best:0,cta:"Order now",cta2:"Learn more"}
+      }
+    },
+    public:{
+      label:"Public sector", title:"Payment solutions for public sector organizations.", sub:"Tell us about your organization and we'll find the right fit.",
+      steps:[
+        {q:"What type of public sector organization are you?", opts:["Municipal government","University or college","Healthcare authority","Transit or parking","Library or community centre","Other government agency"]},
+        {q:"How do constituents or customers pay you today?", opts:["In person at a counter or kiosk","Online through a portal","Over the phone","Mix of all of the above","We're just getting started"]},
+        {q:"What's your biggest payment challenge right now?", opts:["Modernizing aging payment infrastructure","Accepting more payment types","Improving online payment options","Reducing manual reconciliation","Meeting compliance or accessibility requirements"]},
+        {q:"How many payment points or locations are involved?", opts:["One location","2–10 locations","10+ locations or city-wide"]},
+        {q:"When are you looking to move forward?", opts:["Actively evaluating — decision soon","Planning for next fiscal year","Early-stage research"]}
+      ],
+      endpoints:{
+        "10+ locations or city-wide":{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with our public sector enterprise team.",desc:"City-wide or multi-site deployments need a dedicated account team and tailored infrastructure.",cta:"Submit"},
+        "Actively evaluating — decision soon":{type:"contact",badge:"Ready to move",bc:"ep-a",title:"Let's get you connected quickly.",desc:"You're actively evaluating — a Moneris public sector specialist will reach out within one business day.",cta:"Submit"},
+        "Early-stage research":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore how Moneris works with public sector organizations across Canada.",cta:"View public sector solutions",cta2:"Download overview"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical starting point for modernizing your payments.",prods:["goTerminal","goPinPad","monerisOnline"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
+      }
+    },
+    nonprofit:{
+      label:"Not-for-profit", title:"Payment solutions built for your mission.", sub:"Tell us about your organization and we'll find the right fit.",
+      steps:[
+        {q:"What best describes your not-for-profit?", opts:["Registered charity or foundation","Community or social services org","Religious organization","Arts, culture, or sports org","Healthcare or hospice","Other not-for-profit"]},
+        {q:"How does your organization primarily collect money?", opts:["Donations — online or by mail","In-person donations or collections","Events and ticket sales","A thrift store or retail operation","Program fees or memberships","Mix of the above"]},
+        {q:"Do you need to accept donations or payments online?", opts:["Yes, online giving is essential for us","We'd like to add it","No, we operate entirely in person"]},
+        {q:"How large is your organization?", opts:["Under 10 staff or volunteers","10–50 staff or volunteers","50+ staff or multiple chapters"]},
+        {q:"What matters most to your organization in a payment solution?", opts:["Low fees — every dollar counts","Automatic donor tax receipting","Easy for volunteers to use","Online giving and donation pages","Reporting for our board or funders"]}
+      ],
+      endpoints:{
+        "50+ staff or multiple chapters":{type:"contact",badge:"Enterprise NFP",bc:"ep-b",title:"Let's connect you with a not-for-profit specialist.",desc:"Large or multi-chapter organizations need a tailored solution. A Moneris specialist will reach out.",cta:"Submit"},
+        "Yes, online giving is essential for us":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Online giving is central to your mission — here's how Moneris helps you accept donations online.",prods:["monerisOnline","paydInvoicing","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+        "A thrift store or retail operation":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Running a charity shop means you need a reliable in-store retail setup at a cost that protects your mission.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"},
+        default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical and affordable starting point.",prods:["goTerminal","monerisOnline","paydInvoicing"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
+      }
+    }
+  },
+  fr: {
+    homepage:{
+      label:"Accueil", title:"Trouvons ce qui vous convient.", sub:"Quelques questions rapides pour vous orienter dans la bonne direction.",
+      earlyExit:{step:0,val:"Juste explorer"},
+      steps:[
+        {q:"Qu'est-ce qui vous amène ici aujourd'hui?", opts:["Juste explorer","Chercher une solution"]},
+        {q:"Quel type d'entreprise exploitez-vous?", opts:["Commerce de détail","Restaurant","Santé et beauté","Services professionnels","Métiers","Autre"]},
+        {q:"Comment vendez-vous?", opts:["En personne seulement","En ligne seulement","En personne et en ligne"]},
+        {q:"Quelle est votre plus grande priorité en ce moment?", opts:["Accepter des paiements","Gérer mon entreprise","Augmenter les ventes","Réduire les coûts"]},
+        {q:"Dans combien de temps souhaitez-vous être opérationnel?", opts:["Tout de suite","Dans un mois","Je fais des recherches"]}
+      ],
+      endpoints:{
+        default:{type:"route",badge:"Recommandé pour vous",bc:"ep-g",title:"D'après ce que vous nous avez dit, voici par où commencer.",desc:"Nous vous avons associé à la page de solutions Moneris la plus pertinente. Le questionnaire là-bas sera encore plus spécifique à votre entreprise.",cta:"Emmenez-moi là-bas",cta2:"Parler à un spécialiste"}
+      }
+    },
+    retail:{
+      label:"Commerce de détail", title:"Trouvez votre solution de commerce de détail.", sub:"Dites-nous où vous en êtes dans votre parcours et nous adapterons les questions.", isRetail:true,
+      gateStep:{q:"Où en êtes-vous dans votre parcours de commerce de détail?", opts:["Ouvrir un nouveau magasin","Changer de fournisseur","Déjà avec Moneris, cherche à développer"]}
+    },
+    restaurant:{
+      label:"Restaurants", title:"Trouvez votre solution de restaurant.", sub:"Dites-nous ce que votre restaurant propose et nous vous trouverons la meilleure correspondance.",
+      steps:[
+        {q:"Quel type de restaurant exploitez-vous?", opts:["Service complet / gastronomique","Service rapide ou décontracté","Café ou boulangerie","Camion de cuisine ou marché","Bar ou boîte de nuit"]},
+        {q:"Comment les clients commandent-ils chez vous?", opts:["À la table","Au comptoir","En ligne","Tout ce qui précède"]},
+        {q:"Avez-vous besoin d'une commande en ligne ou d'une intégration de livraison?", opts:["Oui, c'est essentiel","Ce serait bien","Non, exclusivement en personne"]},
+        {q:"Combien d'emplacements exploitez-vous?", opts:["Un seul","2 à 5 emplacements","6 ou plus","Planifie d'agrandir"]},
+        {q:"Quel est votre plus grand problème opérationnel?", opts:["Paiement lent","Erreurs de commande","Gestion du personnel","Suivi des ventes","Je commence seulement"]}
+      ],
+      endpoints:{
+        "6 ou plus":{type:"contact",badge:"Correspond à l'entreprise",bc:"ep-b",title:"Connectons-vous à notre équipe entreprise pour restaurants.",desc:"Les opérations multi-sites ont besoin d'une approche personnalisée. Remplissez vos coordonnées et un spécialiste vous contactera.",cta:"Soumettre"},
+        "Planifie d'agrandir":{type:"contact",badge:"Plan de croissance",bc:"ep-b",title:"Connectons-vous à notre équipe entreprise pour restaurants.",desc:"Nous vous aiderons à créer une solution qui évolue avec vous.",cta:"Soumettre"},
+        "Service complet / gastronomique":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Conçu pour les restaurants à service complet avec paiement à table et gestion de salle et de cuisine.",prods:["touchBistro","goPlus","goTerminal"],best:0,cta:"En savoir plus",cta2:"Parler à un spécialiste"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après vos réponses, ces solutions sont la meilleure option pour votre restaurant.",prods:["goRestaurant","goTerminal","touchBistro"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
+    },
+    health:{
+      label:"Santé et beauté", title:"Solutions conçues pour votre salon ou clinique.", sub:"Dites-nous ce que fait votre entreprise et nous trouverons la meilleure correspondance.",
+      steps:[
+        {q:"Quel type d'entreprise exploitez-vous?", opts:["Salon de coiffure ou d'ongles","Spa ou centre de bien-être","Clinique médicale ou esthétique","Barbier","Autre"]},
+        {q:"Comment les clients prennent-ils rendez-vous?", opts:["Sur rendez-vous seulement","Sans rendez-vous seulement","Un mélange des deux"]},
+        {q:"Vendez-vous des produits au détail en plus de vos services?", opts:["Oui, c'est une grande partie de nos revenus","Un peu","Non, services seulement"]},
+        {q:"Comment acceptez-vous les paiements actuellement?", opts:["Terminal à la caisse","Au fauteuil ou à la table","Je commence seulement"]},
+        {q:"Qu'est-ce qui compte le plus dans une solution de paiement?", opts:["Pourboires faciles","Réservation et paiement au même endroit","Cartes-cadeaux et fidélité","Configuration simple"]}
+      ],
+      endpoints:{
+        "Clinique médicale ou esthétique":{type:"contact",badge:"Correspondance spécialisée",bc:"ep-b",title:"Connectons-vous à un spécialiste en paiements médicaux.",desc:"Les cliniques ont des besoins uniques en matière de conformité et de facturation. Un spécialiste Moneris vous guidera vers la bonne solution.",cta:"Soumettre"},
+        "Oui, c'est une grande partie de nos revenus":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Vous vendez à la fois des services et des produits — voici ce qui gère les deux sur une seule plateforme.",prods:["totalCommerce","goPlus","goRetail"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après vos réponses, ces solutions sont la meilleure option pour votre entreprise.",prods:["goPlus","goTerminal","goRetail"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
+    },
+    enterprise:{
+      label:"Entreprise", title:"Solutions commerciales de niveau entreprise.", sub:"Dites-nous ce que fait votre organisation et nous mettrons la bonne équipe en contact avec vous.",
+      steps:[
+        {q:"Qu'est-ce qui décrit le mieux votre organisation?", opts:["Chaîne nationale de vente au détail","Groupe de restaurants","Réseau de soins de santé","Secteur public","Autre grande organisation"]},
+        {q:"Combien d'emplacements ont besoin de solutions de paiement?", opts:["10 à 25 emplacements","26 à 100 emplacements","100 emplacements ou plus"]},
+        {q:"Qu'est-ce qui motive cette évaluation?", opts:["Remplacement d'un fournisseur existant","Ouverture de nouveaux emplacements","Ajout de paiements en ligne","Consolidation des systèmes"]},
+        {q:"Qu'est-ce qui est le plus important pour votre équipe?", opts:["Fiabilité et disponibilité","Rapports et données","Intégrations avec les logiciels existants","Support dédié"]},
+        {q:"Quand souhaitez-vous prendre une décision?", opts:["Dans 30 jours","Ce trimestre","Je explore simplement"]}
+      ],
+      endpoints:{
+        "Dans 30 jours":{type:"contact",badge:"Haute priorité",bc:"ep-a",title:"Réservons un appel.",desc:"Vous êtes prêt à agir. Remplissez vos coordonnées et un spécialiste Moneris senior vous contactera dans un jour ouvrable.",cta:"Soumettre"},
+        "Je explore simplement":{type:"resources",badge:"En exploration",bc:"ep-a",title:"Voici un point de départ pour vos recherches.",desc:"Explorez notre aperçu entreprise et téléchargez notre guide de solutions. Nous serons là quand vous serez prêt à discuter.",cta:"Voir les solutions entreprise",cta2:"Télécharger le guide"},
+        default:{type:"contact",badge:"Correspondance entreprise",bc:"ep-b",title:"Connectons-vous à un spécialiste entreprise.",desc:"D'après les besoins de votre organisation, notre équipe entreprise est la prochaine étape.",cta:"Soumettre"}
+      }
+    },
+    professional:{
+      label:"Services pro", title:"Trouvez votre solution de services professionnels.", sub:"Dites-nous ce que fait votre cabinet et nous vous trouverons la meilleure correspondance.",
+      steps:[
+        {q:"Quel type d'entreprise de services professionnels exploitez-vous?", opts:["Droit / cabinet d'avocats","Comptabilité / tenue de livres","Services automobiles","Autres services professionnels"]},
+        {q:"Comment vos clients vous paient-ils habituellement?", opts:["Facture ou provision — ils paient à distance","En personne au moment du service","Un mélange des deux","Nous sommes encore en train de le déterminer"]},
+        {q:"Avez-vous besoin d'accepter des paiements en ligne ou par téléphone?", opts:["Oui, les paiements en ligne sont essentiels","Les paiements par téléphone seraient utiles","Non, toujours en personne","En ligne et par téléphone"]},
+        {q:"Combien d'employés ou d'emplacements traitent des paiements?", opts:["Juste moi","Petite équipe, un emplacement","Plusieurs emplacements ou 10+ employés"]},
+        {q:"Qu'est-ce qui compte le plus dans une solution de paiement?", opts:["Être payé plus rapidement","Accepter facilement les cartes en personne","Facturation et registres professionnels","Configuration simple et économique","Rapports détaillés"]}
+      ],
+      endpoints:{
+        "Plusieurs emplacements ou 10+ employés":{type:"contact",badge:"Correspondance spécialisée",bc:"ep-b",title:"Connectons-vous à un spécialiste.",desc:"Votre configuration nécessite une solution multi-utilisateurs adaptée. Remplissez vos coordonnées et nous vous contacterons.",cta:"Soumettre"},
+        "Facture ou provision — ils paient à distance":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Vous facturez à distance — ces outils Moneris permettent aux clients de payer en toute sécurité sans se déplacer.",prods:["paydInvoicing","monerisOnline","goTerminal"],best:0,cta:"En savoir plus",cta2:"Parler à un spécialiste"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après vos réponses, ces solutions sont la meilleure option pour votre entreprise.",prods:["goPlus","goTerminal","paydInvoicing"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"}
+      }
+    },
+    public:{
+      label:"Secteur public", title:"Solutions de paiement pour les organisations du secteur public.", sub:"Dites-nous ce que fait votre organisation et nous trouverons la meilleure correspondance.",
+      steps:[
+        {q:"Quel type d'organisation du secteur public êtes-vous?", opts:["Gouvernement municipal","Université ou collège","Autorité de santé","Transport ou stationnement","Bibliothèque ou centre communautaire","Autre agence gouvernementale"]},
+        {q:"Comment les citoyens ou clients vous paient-ils aujourd'hui?", opts:["En personne à un comptoir ou kiosque","En ligne via un portail","Par téléphone","Un mélange de tout ce qui précède","Nous commençons seulement"]},
+        {q:"Quel est votre plus grand défi de paiement en ce moment?", opts:["Moderniser une infrastructure de paiement vieillissante","Accepter plus de types de paiement","Améliorer les options de paiement en ligne","Réduire la réconciliation manuelle","Répondre aux exigences de conformité ou d'accessibilité"]},
+        {q:"Combien de points de paiement ou d'emplacements sont concernés?", opts:["Un emplacement","2 à 10 emplacements","10 emplacements ou plus / à l'échelle de la ville"]},
+        {q:"Quand souhaitez-vous aller de l'avant?", opts:["Évaluation active — décision imminente","Planification pour le prochain exercice","Recherche préliminaire"]}
+      ],
+      endpoints:{
+        "10 emplacements ou plus / à l'échelle de la ville":{type:"contact",badge:"Correspondance entreprise",bc:"ep-b",title:"Connectons-vous à notre équipe entreprise du secteur public.",desc:"Les déploiements à l'échelle de la ville ou multi-sites ont besoin d'une équipe de compte dédiée et d'une infrastructure adaptée.",cta:"Soumettre"},
+        "Évaluation active — décision imminente":{type:"contact",badge:"Prêt à avancer",bc:"ep-a",title:"Connectons-vous rapidement.",desc:"Vous êtes en évaluation active — un spécialiste Moneris du secteur public vous contactera dans un jour ouvrable.",cta:"Soumettre"},
+        "Recherche préliminaire":{type:"resources",badge:"En exploration",bc:"ep-a",title:"Voici un point de départ pour vos recherches.",desc:"Découvrez comment Moneris travaille avec les organisations du secteur public partout au Canada.",cta:"Voir les solutions secteur public",cta2:"Télécharger l'aperçu"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après les besoins de votre organisation, voici un point de départ pratique pour moderniser vos paiements.",prods:["goTerminal","goPinPad","monerisOnline"],best:0,cta:"En savoir plus",cta2:"Parler à un spécialiste"}
+      }
+    },
+    nonprofit:{
+      label:"OSBL", title:"Solutions de paiement conçues pour votre mission.", sub:"Dites-nous ce que fait votre organisation et nous trouverons la meilleure correspondance.",
+      steps:[
+        {q:"Qu'est-ce qui décrit le mieux votre OSBL?", opts:["Organisme de bienfaisance ou fondation enregistré","Organisme communautaire ou de services sociaux","Organisation religieuse","Organisation artistique, culturelle ou sportive","Santé ou soins palliatifs","Autre organisme sans but lucratif"]},
+        {q:"Comment votre organisation collecte-t-elle principalement des fonds?", opts:["Dons — en ligne ou par courrier","Dons ou collectes en personne","Événements et vente de billets","Une friperie ou opération de vente au détail","Frais de programme ou adhésions","Un mélange de tout ce qui précède"]},
+        {q:"Avez-vous besoin d'accepter des dons ou des paiements en ligne?", opts:["Oui, le don en ligne est essentiel pour nous","Nous aimerions l'ajouter","Non, nous opérons entièrement en personne"]},
+        {q:"Quelle est la taille de votre organisation?", opts:["Moins de 10 employés ou bénévoles","10 à 50 employés ou bénévoles","50 employés ou plus ou plusieurs sections"]},
+        {q:"Qu'est-ce qui compte le plus pour votre organisation dans une solution de paiement?", opts:["Frais peu élevés — chaque dollar compte","Reçus fiscaux automatiques pour les donateurs","Facile à utiliser pour les bénévoles","Dons en ligne et pages de collecte","Rapports pour notre conseil ou nos bailleurs de fonds"]}
+      ],
+      endpoints:{
+        "50 employés ou plus ou plusieurs sections":{type:"contact",badge:"OSBL entreprise",bc:"ep-b",title:"Connectons-vous à un spécialiste OSBL.",desc:"Les grandes organisations ou celles avec plusieurs sections ont besoin d'une solution adaptée. Un spécialiste Moneris vous contactera.",cta:"Soumettre"},
+        "Oui, le don en ligne est essentiel pour nous":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Le don en ligne est au cœur de votre mission — voici comment Moneris vous aide à accepter des dons en ligne.",prods:["monerisOnline","paydInvoicing","goTerminal"],best:0,cta:"En savoir plus",cta2:"Parler à un spécialiste"},
+        "Une friperie ou opération de vente au détail":{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"Gérer une friperie caritative signifie que vous avez besoin d'une configuration de vente au détail fiable à un coût qui protège votre mission.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Commander maintenant",cta2:"En savoir plus"},
+        default:{type:"products",badge:"Recommandé pour vous",bc:"ep-g",title:"Voici ce que nous vous recommandons.",desc:"D'après les besoins de votre organisation, voici un point de départ pratique et abordable.",prods:["goTerminal","monerisOnline","paydInvoicing"],best:0,cta:"En savoir plus",cta2:"Parler à un spécialiste"}
+      }
+    }
+  }
+};
+
+/* ============================================================
+   LANGUAGE STATE
+   ============================================================ */
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('langSelect').value = lang;
+  applyStaticTranslations();
+  st = { quiz: st.quiz || 'homepage', step:0, ans:{}, exited:false, gateAns:null };
+  render();
+}
+
+function t(key) {
+  const keys = key.split('.');
+  let obj = TRANSLATIONS[currentLang];
+  for (const k of keys) { obj = obj && obj[k]; }
+  return obj || key;
+}
+
+function applyStaticTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = t(key);
+  });
+}
+
+/* ============================================================
+   HELPERS — get current-language quiz/product/path data
+   ============================================================ */
+function getQuizzes()      { return QUIZZES[currentLang]; }
+function getProducts()     { return PRODUCTS[currentLang]; }
+function getRetailPaths()  { return RETAIL_PATHS[currentLang]; }
+function getQ()            { return getQuizzes()[st.quiz]; }
+function T(key)            { return TRANSLATIONS[currentLang].quiz[key]; }
+
+/* ============================================================
+   STATE
+   ============================================================ */
 let st = { quiz:null, step:0, ans:{}, exited:false, gateAns:null };
 
-/* SCROLL HELPER — smoothly scrolls shell into view */
 function scrollToShell() {
   setTimeout(() => document.getElementById('shell').scrollIntoView({ behavior:'smooth', block:'start' }), 50);
 }
 
-/* ENTRY — homepage quiz always renders on load */
 function initHome() {
   st = { quiz:'homepage', step:0, ans:{}, exited:false, gateAns:null };
   render();
 }
 
-/* INDUSTRY CARD CLICK */
 function startQuiz(qId) {
   st = { quiz:qId, step:0, ans:{}, exited:false, gateAns:null };
   render();
   scrollToShell();
 }
 
-/* MAIN RENDER */
+/* ============================================================
+   MAIN RENDER
+   ============================================================ */
 function render() {
   const shell = document.getElementById('shell');
-  const q = quizzes[st.quiz];
+  const q = getQ();
   if (!q) { initHome(); return; }
 
-  /* RETAIL — gate + branching */
-  if (q.isRetail) {
-    renderRetail(shell, q);
-    return;
-  }
+  if (q.isRetail) { renderRetail(shell, q); return; }
 
   const total = q.steps.length;
   const cur = st.step;
@@ -487,17 +789,17 @@ function render() {
       <div class="card-title">${q.title}</div>
       <div class="card-subtitle">${q.sub}</div>
       <div class="progress-wrap">
-        <div class="progress-meta"><span>Question</span><span>${cur+1} / ${total}</span></div>
+        <div class="progress-meta"><span>${T('questionLabel')}</span><span>${cur+1} / ${total}</span></div>
         <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
       </div>
       <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;line-height:1.4;">${s.q}</div>
       <div class="options">${s.opts.map(o=>`<button class="opt${st.ans[cur]===o?' sel':''}" onclick="pick('${esc(o)}',${cur})">${o}</button>`).join('')}</div>
       <div class="nav">
-        ${cur > 0 ? `<button class="btn-back" onclick="goBack()">← Back</button>` : (isHome ? `<span></span>` : `<button class="btn-back" onclick="initHome()">← Back</button>`)}
-        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?'See my recommendation':'Next →'}</button>
+        ${cur > 0 ? `<button class="btn-back" onclick="goBack()">${T('back')}</button>` : (isHome ? `<span></span>` : `<button class="btn-back" onclick="initHome()">${T('back')}</button>`)}
+        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?T('seeRecommendation'):T('next')}</button>
       </div>
     </div>
-    <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
+    <div class="fallback">${T('needHelp')} <a href="#">${T('talkPerson')}</a></div>`;
 }
 
 function renderRetail(shell, q) {
@@ -505,25 +807,26 @@ function renderRetail(shell, q) {
     const gs = q.gateStep;
     shell.innerHTML = `
       <div class="card">
-        <div class="card-label">Retail</div>
+        <div class="card-label">${q.label}</div>
         <div class="card-title">${q.title}</div>
         <div class="card-subtitle">${q.sub}</div>
         <div class="progress-wrap">
-          <div class="progress-meta"><span>Question</span><span>1 / 5</span></div>
+          <div class="progress-meta"><span>${T('questionLabel')}</span><span>1 / 5</span></div>
           <div class="pbar"><div class="pfill" style="width:0%"></div></div>
         </div>
         <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;">${gs.q}</div>
         <div class="options">${gs.opts.map(o=>`<button class="opt${st.gateAns===o?' sel':''}" onclick="pickGate('${esc(o)}')">${o}</button>`).join('')}</div>
         <div class="nav">
-          <button class="btn-back" onclick="initHome()">← Back</button>
-          <button class="btn-next${st.gateAns?' rdy':''}" onclick="confirmGate()">Next →</button>
+          <button class="btn-back" onclick="initHome()">${T('back')}</button>
+          <button class="btn-next${st.gateAns?' rdy':''}" onclick="confirmGate()">${T('next')}</button>
         </div>
       </div>
-      <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
+      <div class="fallback">${T('needHelp')} <a href="#">${T('talkPerson')}</a></div>`;
     return;
   }
 
-  const path = retailPaths[st.gateAns];
+  const path = getRetailPaths()[st.gateAns];
+  if (!path) { st.gateAns = null; renderRetail(shell, q); return; }
   const total = path.steps.length;
   const cur = st.step;
   const done = cur >= total;
@@ -531,34 +834,47 @@ function renderRetail(shell, q) {
   const displayTotal = total + 1;
   const pct = Math.round(((cur+1) / (total+1)) * 100);
 
-  if (done) {
-    shell.innerHTML = buildEndpoint(path.endpoints);
-    return;
-  }
+  if (done) { shell.innerHTML = buildEndpoint(path.endpoints); return; }
 
   const s = path.steps[cur];
   shell.innerHTML = `
     <div class="card">
-      <div class="card-label">Retail</div>
+      <div class="card-label">${q.label}</div>
       <div class="card-title">${q.title}</div>
       <div class="card-subtitle">${q.sub}</div>
       <div class="progress-wrap">
-        <div class="progress-meta"><span>Question</span><span>${displayStep} / ${displayTotal}</span></div>
+        <div class="progress-meta"><span>${T('questionLabel')}</span><span>${displayStep} / ${displayTotal}</span></div>
         <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
       </div>
       <div class="path-badge">${path.badge}</div>
       <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;line-height:1.4;">${s.q}</div>
       <div class="options">${s.opts.map(o=>`<button class="opt${st.ans[cur]===o?' sel':''}" onclick="pick('${esc(o)}',${cur})">${o}</button>`).join('')}</div>
       <div class="nav">
-        <button class="btn-back" onclick="goBack()">← Back</button>
-        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?'See my recommendation':'Next →'}</button>
+        <button class="btn-back" onclick="goBack()">${T('back')}</button>
+        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?T('seeRecommendation'):T('next')}</button>
       </div>
     </div>
-    <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
+    <div class="fallback">${T('needHelp')} <a href="#">${T('talkPerson')}</a></div>`;
 }
 
-/* BLOG EXIT — shown when "Just exploring" is picked */
+/* ============================================================
+   BLOG EXIT
+   ============================================================ */
 function buildBlogExit() {
+  if (currentLang === 'fr') {
+    return `<div class="card">
+      <span class="ep-badge ep-a">Sans pression</span>
+      <div class="card-title">Voici ce que lisent les autres entreprises canadiennes.</div>
+      <div class="card-subtitle">Prenez votre temps — nous serons là quand vous serez prêt.</div>
+      <div class="blog-grid">
+        <div class="blog-card"><div class="blog-img">📰</div><div class="blog-cat">Pour commencer</div><div class="blog-title">Comment choisir le bon système PDV pour votre entreprise</div><div class="blog-desc">Découvrez quelles fonctionnalités comptent le plus lors du choix d'un terminal de paiement qui correspond à vos besoins et à votre budget.</div><a class="blog-link" href="#">Lire l'article →</a></div>
+        <div class="blog-card"><div class="blog-img">💳</div><div class="blog-cat">Paiements</div><div class="blog-title">Sans contact, puce ou glissement — ce que préfèrent les clients canadiens</div><div class="blog-desc">Découvrez comment les préférences de paiement évoluent et ce que cela signifie pour votre entreprise en 2026.</div><a class="blog-link" href="#">Lire l'article →</a></div>
+        <div class="blog-card"><div class="blog-img">📊</div><div class="blog-cat">Croissance</div><div class="blog-title">5 façons dont les petites entreprises canadiennes augmentent leurs ventes en 2026</div><div class="blog-desc">Des stratégies éprouvées pour tirer parti des outils de commerce et atteindre plus de clients cette année.</div><a class="blog-link" href="#">Lire l'article →</a></div>
+      </div>
+      <div class="dvd"></div>
+      <div class="fallback">Changé d'avis? <a onclick="initHome()">${T('findSolution')}</a></div>
+    </div>`;
+  }
   return `<div class="card">
     <span class="ep-badge ep-a">No pressure</span>
     <div class="card-title">Here's what other Canadian businesses are reading.</div>
@@ -569,23 +885,26 @@ function buildBlogExit() {
       <div class="blog-card"><div class="blog-img">📊</div><div class="blog-cat">Growth</div><div class="blog-title">5 ways Canadian small businesses are growing sales in 2026</div><div class="blog-desc">Proven strategies to leverage commerce tools and reach more customers this year.</div><a class="blog-link" href="#">Read article →</a></div>
     </div>
     <div class="dvd"></div>
-    <div class="fallback">Changed your mind? <a onclick="initHome()">Find your solution →</a></div>
+    <div class="fallback">Changed your mind? <a onclick="initHome()">${T('findSolution')}</a></div>
   </div>`;
 }
 
-/* ENDPOINT BUILDER */
+/* ============================================================
+   ENDPOINT BUILDER
+   ============================================================ */
 function buildEndpoint(endpoints) {
   const vals = Object.values(st.ans);
   let ep = null;
   for (const v of vals) { if (endpoints[v]) { ep = endpoints[v]; break; } }
   if (!ep) ep = endpoints.default;
 
+  const P = getProducts();
   let body = '';
   if (ep.type === 'products') {
     body = `<div class="product-grid">${ep.prods.map((k,i) => {
       const p = P[k];
       return `<div class="product-card${i===ep.best?' best':''}">
-        ${i===ep.best?`<div class="product-badge">Best option</div>`:`<div style="height:28px;"></div>`}
+        ${i===ep.best?`<div class="product-badge">${T('bestOption')}</div>`:`<div style="height:28px;"></div>`}
         <div class="product-icon">${p.icon}</div>
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc}</div>
@@ -600,17 +919,17 @@ function buildEndpoint(endpoints) {
     </div>`;
   } else if (ep.type === 'resources') {
     body = `<div class="resource-grid">
-      <div class="resource-card"><div class="resource-icon">📋</div><div class="resource-name">${ep.cta}</div><div class="resource-desc">Learn how Moneris serves organizations like yours.</div></div>
-      <div class="resource-card"><div class="resource-icon">📥</div><div class="resource-name">${ep.cta2}</div><div class="resource-desc">Get our full solutions guide to share with your team.</div></div>
+      <div class="resource-card"><div class="resource-icon">📋</div><div class="resource-name">${ep.cta}</div><div class="resource-desc">${T('resourceLearnDesc')}</div></div>
+      <div class="resource-card"><div class="resource-icon">📥</div><div class="resource-name">${ep.cta2}</div><div class="resource-desc">${T('resourceDownloadDesc')}</div></div>
     </div>`;
   } else {
     body = `<div class="contact-form">
       <div class="form-row">
-        <div class="form-group"><div class="form-label">First name</div><input class="form-input" type="text" placeholder="Jane"></div>
-        <div class="form-group"><div class="form-label">Last name</div><input class="form-input" type="text" placeholder="Smith"></div>
+        <div class="form-group"><div class="form-label">${T('formFirstName')}</div><input class="form-input" type="text" placeholder="${T('formFirstPlaceholder')}"></div>
+        <div class="form-group"><div class="form-label">${T('formLastName')}</div><input class="form-input" type="text" placeholder="${T('formLastPlaceholder')}"></div>
       </div>
-      <div class="form-group"><div class="form-label">Email address</div><input class="form-input" type="email" placeholder="jane@business.com"></div>
-      <div class="form-group"><div class="form-label">Phone number</div><input class="form-input" type="tel" placeholder="416-555-0100"></div>
+      <div class="form-group"><div class="form-label">${T('formEmail')}</div><input class="form-input" type="email" placeholder="${T('formEmailPlaceholder')}"></div>
+      <div class="form-group"><div class="form-label">${T('formPhone')}</div><input class="form-input" type="tel" placeholder="${T('formPhonePlaceholder')}"></div>
       <button class="btn-submit">${ep.cta}</button>
     </div>`;
   }
@@ -621,16 +940,18 @@ function buildEndpoint(endpoints) {
     <div class="card-subtitle">${ep.desc}</div>
     ${body}
     <div class="dvd"></div>
-    <div class="fallback">Not quite right? <a onclick="initHome()">Start over</a> or <a href="#">talk to a real person →</a></div>
+    <div class="fallback">${T('notRight')} <a onclick="initHome()">${T('startOver')}</a> ${currentLang==='fr'?'ou':'or'} <a href="#">${T('talkPerson')}</a></div>
   </div>`;
 }
 
-/* CONTROLS */
+/* ============================================================
+   CONTROLS
+   ============================================================ */
 function esc(s) { return s.replace(/'/g, "\\'"); }
 
 function pick(val, stepIdx) {
   st.ans[stepIdx] = val;
-  const q = quizzes[st.quiz];
+  const q = getQ();
   if (q && q.earlyExit && stepIdx === q.earlyExit.step && val === q.earlyExit.val) {
     st.exited = true;
     document.getElementById('shell').innerHTML = buildBlogExit();
@@ -648,7 +969,7 @@ function goNext() {
 function goBack() {
   if (st.quiz === 'retail' && st.step === 0) {
     st.gateAns = null; st.ans = {};
-    renderRetail(document.getElementById('shell'), quizzes.retail);
+    renderRetail(document.getElementById('shell'), getQ());
     return;
   }
   if (st.step > 0) { st.step--; render(); }
@@ -657,13 +978,13 @@ function goBack() {
 
 function pickGate(val) {
   st.gateAns = val;
-  renderRetail(document.getElementById('shell'), quizzes.retail);
+  renderRetail(document.getElementById('shell'), getQ());
 }
 
 function confirmGate() {
   if (!st.gateAns) return;
   st.step = 0; st.ans = {};
-  renderRetail(document.getElementById('shell'), quizzes.retail);
+  renderRetail(document.getElementById('shell'), getQ());
 }
 
 function initHome() {

@@ -23,7 +23,10 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .topbar-info a:hover { color: var(--red); }
 .topbar-info select { background: none; border: none; color: var(--text-dark); font-weight: 500; cursor: pointer; font-size: 12px; }
 .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: var(--white); border-bottom: 1px solid var(--gray-med); position: sticky; top: 0; z-index: 100; }
+
+/* MONERIS LOGO SVG */
 .logo-svg { height: 36px; width: auto; display: block; }
+
 .topbar-nav { display: flex; align-items: center; gap: 2.5rem; flex: 1; margin-left: 3rem; font-size: 13px; }
 .topbar-nav a { color: var(--text-dark); text-decoration: none; font-weight: 500; cursor: pointer; }
 .topbar-nav a::after { content: '▼'; font-size: 8px; margin-left: 4px; opacity: 0.6; }
@@ -54,10 +57,16 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .stat-line.blue { background: var(--cyan); }
 .stat-line.navy { background: var(--navy); }
 
-/* QUIZ CARD */
+/* QUIZ SHELL — sits above industry cards, never hides them */
+.quiz-shell { margin: 2rem 0; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 1.5rem; text-align: center; }
+.section-title .red { color: var(--red); }
+
+/* CARDS */
 .card { background: var(--white); border: 1px solid var(--gray-med); border-radius: 8px; padding: 2.5rem; margin-bottom: 1.5rem; }
 .card-label { font-size: 12px; color: var(--cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; }
 .card-title { font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; line-height: 1.3; }
+.card-title .red { color: var(--red); }
 .card-subtitle { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; }
 
 /* PROGRESS */
@@ -83,34 +92,74 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .btn-next.rdy { opacity: 1; pointer-events: all; }
 .btn-next.rdy:hover { background: var(--navy-light); }
 
-/* ENDPOINT BADGE */
-.ep-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 1rem; }
-.ep-g { background: #E8F5F0; color: #0A5C42; }
-.ep-b { background: #E6F1FB; color: #0C447C; }
-.ep-a { background: #FEF3E2; color: #7B4A00; }
+/* PATH BADGE */
+.path-badge { display: inline-block; background: var(--cyan); color: var(--white); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 1.25rem; }
+
+/* INDUSTRY GRID — always visible */
+.industry-section { margin: 2rem 0; }
+.industry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+.industry-card { border: 1px solid var(--gray-med); border-radius: 8px; padding: 1.5rem; cursor: pointer; transition: var(--transition); background: var(--white); text-align: left; width: 100%; font-family: inherit; }
+.industry-card:hover { border-color: var(--cyan); box-shadow: 0 4px 16px rgba(74,159,190,0.15); }
+.industry-icon { font-size: 32px; margin-bottom: 0.75rem; }
+.industry-name { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 0.4rem; }
+.industry-desc { font-size: 13px; color: var(--text-gray); line-height: 1.5; }
+.industry-cta { display: inline-block; margin-top: 1rem; font-size: 13px; font-weight: 600; color: var(--navy); }
 
 /* PRODUCT CARDS */
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
 .product-card { border: 1px solid var(--gray-med); border-radius: 8px; padding: 1.75rem; text-align: center; transition: var(--transition); background: var(--white); }
 .product-card.best { border-color: var(--cyan); box-shadow: 0 4px 16px rgba(74,159,190,0.15); }
 .product-badge { display: inline-block; background: var(--cyan); color: var(--white); padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 0.4px; }
 .product-icon { font-size: 48px; margin-bottom: 1rem; }
 .product-name { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; }
 .product-desc { font-size: 13px; color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; min-height: 56px; }
-.btn-primary { background: var(--navy); color: var(--white); border: none; padding: 10px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%; font-family: inherit; transition: var(--transition); text-decoration: none; display: block; text-align: center; }
+.btn-primary { background: var(--navy); color: var(--white); border: none; padding: 10px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%; font-family: inherit; transition: var(--transition); }
 .btn-primary:hover { background: var(--navy-light); }
-.btn-outline { background: var(--white); color: var(--text-dark); border: 1.5px solid var(--border); padding: 10px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%; margin-top: 8px; font-family: inherit; transition: var(--transition); text-decoration: none; display: block; text-align: center; }
+.btn-outline { background: var(--white); color: var(--text-dark); border: 1.5px solid var(--border); padding: 10px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%; margin-top: 8px; font-family: inherit; transition: var(--transition); }
 .btn-outline:hover { border-color: var(--navy); color: var(--navy); }
 
-/* DIVIDER & FALLBACK */
-.dvd { height: 1px; background: var(--gray-med); margin: 1.75rem 0; }
-.fallback { font-size: 13px; color: var(--text-gray); text-align: center; padding-top: 1rem; }
-.fallback a { color: var(--navy); font-weight: 600; cursor: pointer; text-decoration: none; }
-.fallback a:hover { color: var(--red); }
+/* ENDPOINT BADGE */
+.ep-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 1rem; }
+.ep-g { background: #E8F5F0; color: #0A5C42; }
+.ep-b { background: #E6F1FB; color: #0C447C; }
+.ep-a { background: #FEF3E2; color: #7B4A00; }
+
+/* CONTACT FORM */
+.contact-form { display: flex; flex-direction: column; gap: 12px; margin: 1.5rem 0; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 4px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.3px; }
+.form-input { padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 4px; font-size: 14px; color: var(--text-dark); font-family: inherit; outline: none; transition: var(--transition); }
+.form-input:focus { border-color: var(--navy); }
+.btn-submit { background: var(--red); color: var(--white); border: none; padding: 12px 24px; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 14px; font-family: inherit; transition: var(--transition); }
+.btn-submit:hover { background: #d63d2d; }
+
+/* BLOG CARDS */
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+.blog-card { border: 1px solid var(--gray-med); border-radius: 8px; padding: 1.75rem; transition: var(--transition); background: var(--white); cursor: pointer; }
+.blog-card:hover { border-color: var(--cyan); box-shadow: 0 4px 16px rgba(74,159,190,0.12); }
+.blog-img { width: 100%; height: 120px; background: var(--gray-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 1rem; }
+.blog-cat { font-size: 11px; color: var(--cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 0.4rem; }
+.blog-title { font-size: 14px; font-weight: 700; color: var(--text-dark); line-height: 1.4; margin-bottom: 0.5rem; }
+.blog-desc { font-size: 13px; color: var(--text-gray); line-height: 1.5; margin-bottom: 1rem; }
+.blog-link { color: var(--navy); font-weight: 600; font-size: 13px; text-decoration: none; }
+.blog-link:hover { color: var(--red); }
+
+/* RESOURCE CARDS */
+.resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.resource-card { border: 1px solid var(--gray-med); border-radius: 8px; padding: 1.5rem; cursor: pointer; transition: var(--transition); background: var(--white); }
+.resource-card:hover { border-color: var(--cyan); background: var(--gray-light); }
+.resource-icon { font-size: 28px; margin-bottom: 0.75rem; }
+.resource-name { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 0.4rem; }
+.resource-desc { font-size: 12px; color: var(--text-gray); line-height: 1.5; }
 
 /* FOOTER */
 .footer { background: var(--gray-light); padding: 2rem; text-align: center; font-size: 12px; color: var(--text-gray); border-top: 1px solid var(--gray-med); margin-top: 3rem; }
 .footer a { color: var(--text-dark); text-decoration: none; font-weight: 600; }
+.fallback { font-size: 13px; color: var(--text-gray); text-align: center; padding-top: 1rem; }
+.fallback a { color: var(--navy); font-weight: 600; cursor: pointer; text-decoration: none; }
+.fallback a:hover { color: var(--red); }
+.dvd { height: 1px; background: var(--gray-med); margin: 1.75rem 0; }
 
 @media (max-width: 768px) {
   .topbar-nav { display: none; }
@@ -118,44 +167,48 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
   .hero h1 { font-size: 26px; }
   .stats { grid-template-columns: 1fr; gap: 1rem; }
   .card { padding: 1.5rem; }
-  .product-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .industry-grid, .product-grid, .blog-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
 <div class="topbar-info">
-  <a href="#" data-t="callSales"></a>
-  <a href="#" data-t="serviceStatus"></a>
-  <a href="#" data-t="contactUs"></a>
-  <a href="#" data-t="aboutMoneris"></a>
-  <a href="#" data-t="careers"></a>
-  <select id="langToggle" onchange="setLang(this.value)">
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-  </select>
+  <a href="#">Call sales</a>
+  <a href="#">Service Status</a>
+  <a href="#">Contact us</a>
+  <a href="#">About Moneris</a>
+  <a href="#">Careers</a>
+  <select><option>English</option></select>
 </div>
 
 <div class="topbar">
+  <!-- Moneris logo reproduced as inline SVG matching the uploaded screenshot -->
   <svg class="logo-svg" viewBox="0 0 160 52" xmlns="http://www.w3.org/2000/svg" aria-label="Moneris">
+    <!-- Wordmark -->
     <text x="0" y="38" font-family="'Inter', Arial, sans-serif" font-size="30" font-weight="700" fill="#1a1a1a" letter-spacing="-0.5">Moneris</text>
+    <!-- Swirl icon — stylised spiral matching Moneris brand mark -->
     <g transform="translate(128, 8)">
       <path d="M16 2 C24 2, 30 8, 30 16 C30 24, 24 30, 16 30 C10 30, 5 26, 3 20" fill="none" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
       <path d="M16 8 C21 8, 25 12, 25 17 C25 22, 21 26, 16 26 C12 26, 9 23, 8 19" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
       <path d="M16 13 C18.8 13, 21 15, 21 17.5 C21 20, 18.8 22, 16 22" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Small registered mark -->
       <text x="29" y="6" font-family="Arial" font-size="6" fill="#1a1a1a">®</text>
     </g>
   </svg>
+
   <div class="topbar-nav">
-    <a href="#" data-t="navSolutions"></a>
-    <a href="#" data-t="navBusinessTypes"></a>
-    <a href="#" data-t="navIndustries"></a>
-    <a href="#" data-t="navPartners"></a>
-    <a href="#" data-t="navResources"></a>
+    <a href="#">Solutions</a>
+    <a href="#">Business Types</a>
+    <a href="#">Industries</a>
+    <a href="#">Partners</a>
+    <a href="#">Resources</a>
   </div>
   <div class="topbar-right">
-    <button class="btn-login" data-t="login"></button>
-    <button class="btn-getstarted" data-t="getStarted"></button>
+    <button class="btn-login">Login</button>
+    <button class="btn-getstarted">Get Started</button>
   </div>
 </div>
 
@@ -163,431 +216,426 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 
   <!-- HERO -->
   <div class="hero">
-    <h1 data-t="heroHeadline"></h1>
-    <p data-t="heroSub"></p>
-    <div class="trustpilot" data-t="trustpilot"></div>
+    <h1>Powering Canadian <span class="red">small businesses.</span></h1>
+    <p>Payment solutions and commerce tools that grow with your business. Trusted by hundreds of thousands across Canada.</p>
+    <div class="trustpilot">★★★★★ Rated excellent on Trustpilot</div>
   </div>
 
   <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-label" data-t="stat1label"></div>
-      <div class="stat-value" data-t="stat1value"></div>
+      <div class="stat-label">Canada's #1</div>
+      <div class="stat-value">merchant acquirer</div>
       <div class="stat-line red"></div>
     </div>
     <div class="stat">
-      <div class="stat-label" data-t="stat2label"></div>
+      <div class="stat-label">Points of commerce coast to coast</div>
       <div class="stat-value">350,000+</div>
       <div class="stat-line navy"></div>
     </div>
     <div class="stat">
-      <div class="stat-label" data-t="stat3label"></div>
-      <div class="stat-value" data-t="stat3value"></div>
+      <div class="stat-label">Transactions every year</div>
+      <div class="stat-value">5 billion+</div>
       <div class="stat-line blue"></div>
     </div>
   </div>
 
-  <!-- QUIZ -->
-  <div id="shell" style="margin: 2rem 0;"></div>
+  <!-- QUIZ SHELL — homepage quiz or industry quiz renders here -->
+  <div id="shell"></div>
+
+  <!-- INDUSTRY CARDS — always visible, never hidden -->
+  <div class="industry-section">
+    <div class="section-title">We have end-to-end solutions for the industry you <span class="red">call home.</span></div>
+    <div class="industry-grid">
+      <button class="industry-card" onclick="startQuiz('retail')"><div class="industry-icon">🛍️</div><div class="industry-name">Retail</div><div class="industry-desc">Sell in-store, online, and on the go with unified commerce tools.</div><div class="industry-cta">Explore retail →</div></button>
+      <button class="industry-card" onclick="startQuiz('restaurant')"><div class="industry-icon">🍽️</div><div class="industry-name">Restaurants</div><div class="industry-desc">POS systems for full-service, QSR, cafés, and food trucks.</div><div class="industry-cta">Explore restaurants →</div></button>
+      <button class="industry-card" onclick="startQuiz('health')"><div class="industry-icon">💇</div><div class="industry-name">Health & beauty</div><div class="industry-desc">Terminals and POS for salons, spas, and clinics.</div><div class="industry-cta">Explore health & beauty →</div></button>
+      <button class="industry-card" onclick="startQuiz('enterprise')"><div class="industry-icon">🏢</div><div class="industry-name">Enterprise</div><div class="industry-desc">Scalable, tailored solutions for large multi-location organizations.</div><div class="industry-cta">Explore enterprise →</div></button>
+      <button class="industry-card" onclick="startQuiz('professional')"><div class="industry-icon">👔</div><div class="industry-name">Professional Services</div><div class="industry-desc">Invoicing and payments for law firms, accountants, and auto shops.</div><div class="industry-cta">Explore pro services →</div></button>
+      <button class="industry-card" onclick="startQuiz('public')"><div class="industry-icon">🏛️</div><div class="industry-name">Public Sector</div><div class="industry-desc">Secure, compliant payment infrastructure for government organizations.</div><div class="industry-cta">Explore public sector →</div></button>
+      <button class="industry-card" onclick="startQuiz('nonprofit')"><div class="industry-icon">❤️</div><div class="industry-name">Not-for-profit</div><div class="industry-desc">Donation tools, low fees, and easy setup for charities and NFPs.</div><div class="industry-cta">Explore not-for-profit →</div></button>
+    </div>
+  </div>
 
 </div>
 
 <div class="footer">
-  <span data-t="footerCopy"></span> &mdash;
-  <a href="#" data-t="footerPrivacy"></a> &middot;
-  <a href="#" data-t="footerTerms"></a> &middot;
-  <a href="#" data-t="footerHelp"></a>
+  &copy; 2026 Moneris Solutions Corporation &mdash; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Help Centre</a>
 </div>
 
 <script>
-// ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
-const T = {
-  en: {
-    // topbar info
-    callSales: "Call sales",
-    serviceStatus: "Service Status",
-    contactUs: "Contact us",
-    aboutMoneris: "About Moneris",
-    careers: "Careers",
-    // topbar nav
-    navSolutions: "Solutions",
-    navBusinessTypes: "Business Types",
-    navIndustries: "Industries",
-    navPartners: "Partners",
-    navResources: "Resources",
-    // topbar buttons
-    login: "Login",
-    getStarted: "Get Started",
-    // hero
-    heroHeadline: `Powering Canadian <span class="red">small businesses.</span>`,
-    heroSub: "Payment solutions and commerce tools that grow with your business. Trusted by hundreds of thousands across Canada.",
-    trustpilot: "★★★★★ Rated excellent on Trustpilot",
-    // stats
-    stat1label: "Canada's #1",
-    stat1value: "merchant acquirer",
-    stat2label: "Points of commerce coast to coast",
-    stat3label: "Transactions every year",
-    stat3value: "5 billion+",
-    // quiz shell
-    quizLabel: "Find your solution",
-    quizTitle: "Let's find the right fit for your business.",
-    quizSub: "Answer three quick questions and we'll match you to the best Moneris solution.",
-    questionWord: "Question",
-    backBtn: "← Back",
-    nextBtn: "Next →",
-    seeRec: "See my recommendation",
-    needHelp: "Need help?",
-    talkPerson: "Talk to a real person →",
-    notRight: "Not quite right?",
-    startOver: "Start over",
-    orTalk: "or",
-    // endpoint
-    bestOption: "Best option",
-    learnMore: "Learn more",
-    // footer
-    footerCopy: "© 2026 Moneris Solutions Corporation",
-    footerPrivacy: "Privacy",
-    footerTerms: "Terms",
-    footerHelp: "Help Centre",
-    // quiz questions & options
-    steps: [
-      {
-        q: "Where are you in your business journey?",
-        opts: ["I'm starting a new business", "I'm an established business looking to switch providers"]
-      },
-      {
-        q: "Which industry best describes your business?",
-        opts: ["Retail", "Restaurant", "Professional services", "Public sector", "Health and beauty", "Trades", "Not-for-profit"]
-      },
-      {
-        q: "How would you like to accept payments?",
-        opts: ["In-store (POS / Terminal)", "Online / E-commerce", "A combination of the above"]
-      }
+const P = {
+  goTerminal:    { name:"Moneris Go Terminal",   desc:"Next-gen portable terminal — PCI 7-ready, 12hr battery, 7\" display. Countertop or curbside.", icon:"💳" },
+  goPlus:        { name:"Moneris Go Plus",        desc:"Smart terminal with 6\" touchscreen, built-in printer, front & rear cameras, and all-day battery.", icon:"📱" },
+  goRetail:      { name:"Moneris Go Retail",      desc:"Portable POS for micro and small businesses. Sell in-store and on the go. Add-on for $10/month.", icon:"🛍️" },
+  totalCommerce: { name:"Moneris Total Commerce", desc:"Omnichannel POS built with Wix — unify in-store and online sales in one platform.", icon:"🌐" },
+  goRestaurant:  { name:"Moneris Go Restaurant",  desc:"All-in-one POS for small and independent counter-service restaurants. From $30/month.", icon:"🍽️" },
+  touchBistro:   { name:"Moneris + TouchBistro",  desc:"Full-service restaurant management — Pay-at-Table, front- and back-of-house tools, Moneris Go.", icon:"🍽️" },
+  monerisOnline: { name:"Moneris Online",         desc:"Ecommerce solution built with Wix. Accept payments, send invoices, and sell online securely.", icon:"💻" },
+  paydInvoicing: { name:"PAYD Invoicing",         desc:"Create and send invoices by email or SMS. Clients pay via a secure Moneris-hosted link.", icon:"📧" },
+  goPinPad:      { name:"Moneris Go PIN Pad",     desc:"Countertop PIN pad for multi-lane or partner POS integrations. Android 11, fast processing.", icon:"🔢" },
+};
+
+const retailPaths = {
+  "Just opening a new store":{
+    badge:"New store path",
+    steps:[
+      {q:"How do you plan to sell?", opts:["In-store only","Online only","Both in-store and online"]},
+      {q:"How large is your product inventory?", opts:["Under 50 products","50–500 products","500+ products"]},
+      {q:"When are you planning to open?", opts:["Within the next month","1–3 months","3+ months away"]},
+      {q:"What matters most to you right now?", opts:["Getting set up fast","Keeping costs low","Room to grow","Selling online from day one"]}
     ],
-    // endpoints
-    endpoints: {
-      badge: "Recommended for you",
-      title: "Here's what we'd recommend.",
-      descs: {
-        "retail|inperson":        "Based on your answers, here are the best in-store solutions for your retail business.",
-        "retail|online":          "Here are the best online payment solutions to start selling and collecting payments on the web.",
-        "retail|both":            "You need in-store and online covered — here's a setup that handles both seamlessly.",
-        "restaurant|inperson":    "The right tools to take payments and run your restaurant floor — from terminals to full POS.",
-        "restaurant|online":      "Accept online orders and payments for delivery, pickup, or catering through these solutions.",
-        "restaurant|both":        "Run your dining room and your online ordering from one connected setup.",
-        "professional|inperson":  "Accept payments at your office, practice, or job site — fast and professional.",
-        "professional|online":    "Send invoices and collect payments remotely — no in-person visit required.",
-        "professional|both":      "Whether you bill remotely or collect on-site, these solutions have you covered.",
-        "public|inperson":        "Modernize in-person payment collection at counters, kiosks, or service windows.",
-        "public|online":          "Enable constituents to pay fees, permits, and services securely online.",
-        "public|both":            "Support both counter-based and online payment channels across your organization.",
-        "health|inperson":        "Chairside, tableside, or at checkout — the right payment tools for your salon or clinic.",
-        "health|online":          "Let clients book and pay online, or pay for products through your website.",
-        "health|both":            "Accept payments in your space and online — whether for services, products, or gift cards.",
-        "trades|inperson":        "Collect payment on the job site, at the door, or at your shop with mobile-friendly tools.",
-        "trades|online":          "Invoice clients and get paid online — no chasing cheques, no delays.",
-        "trades|both":            "Take payments on the job and collect deposits or balances online with ease.",
-        "nonprofit|inperson":     "Accept in-person donations and payments at events, your location, or on the go.",
-        "nonprofit|online":       "Make it easy for donors and supporters to give online — securely and simply.",
-        "nonprofit|both":         "Whether you're at an event or running an online campaign, these tools support your mission.",
-      }
-    },
-    // product descriptions
-    products: {
-      goTerminal:     { name: "Moneris Go Terminal",    desc: "Next-gen portable terminal — PCI 7-ready, all-day battery, 7\" display. Countertop or curbside." },
-      goRetailPOS:    { name: "Moneris Go Retail POS",  desc: "Full point-of-sale system for small and growing retail businesses. Manage inventory, staff, and payments." },
-      totalCommerce:  { name: "Moneris Total Commerce", desc: "Omnichannel POS built with Wix — unify in-store and online sales in one platform." },
-      tapToPay:       { name: "Tap-to-Pay on iPhone",   desc: "Turn your iPhone into a payment terminal — no extra hardware needed. Accept tap payments anywhere." },
-      monerisGateway: { name: "Moneris Gateway",        desc: "Secure payment gateway for online transactions. Integrates with your existing website or platform." },
-      monerisOnline:  { name: "Moneris Online",         desc: "Ecommerce solution built with Wix. Accept payments, send invoices, and sell online securely." },
-      monerisAPI:     { name: "Moneris API",             desc: "Developer-friendly API to embed payments directly into your custom web or mobile application." },
-      goRestaurant:   { name: "Moneris Go Restaurant",  desc: "All-in-one POS for small and independent counter-service restaurants, cafés, and food trucks." },
-      monerisKiosk:   { name: "Moneris Kiosk",          desc: "Self-ordering kiosk solution for quick-service restaurants — reduce wait times and boost order accuracy." },
-      monerisCheckout:{ name: "Moneris Checkout",       desc: "Hosted checkout page that accepts donations and payments — simple to embed, no coding required." },
-      tipTap:         { name: "Tip-Tap",                desc: "Tap-to-donate device for not-for-profits and charities. Contactless donations made simple." },
+    endpoints:{
+      "Both in-store and online":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're opening a store and selling online from day one — here's a setup that covers both.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
+      "500+ products":{type:"contact",badge:"Setup specialist",bc:"ep-b",title:"Let's get you set up properly.",desc:"A large inventory needs a configured POS from the start. A Moneris specialist will help you build the right setup before you open.",cta:"Submit"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, here's the fastest path to taking payments in your new store.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
     }
   },
-
-  fr: {
-    // topbar info
-    callSales: "Appeler les ventes",
-    serviceStatus: "État du service",
-    contactUs: "Contactez-nous",
-    aboutMoneris: "À propos de Moneris",
-    careers: "Carrières",
-    // topbar nav
-    navSolutions: "Solutions",
-    navBusinessTypes: "Types d'entreprises",
-    navIndustries: "Industries",
-    navPartners: "Partenaires",
-    navResources: "Ressources",
-    // topbar buttons
-    login: "Connexion",
-    getStarted: "Commencer",
-    // hero
-    heroHeadline: `Au service des <span class="red">petites entreprises canadiennes.</span>`,
-    heroSub: "Des solutions de paiement et des outils de commerce qui évoluent avec votre entreprise. La confiance de centaines de milliers de commerces partout au Canada.",
-    trustpilot: "★★★★★ Excellent sur Trustpilot",
-    // stats
-    stat1label: "No 1 au Canada",
-    stat1value: "acquéreur marchand",
-    stat2label: "Points de commerce d'un océan à l'autre",
-    stat3label: "Transactions chaque année",
-    stat3value: "5 milliards+",
-    // quiz shell
-    quizLabel: "Trouvez votre solution",
-    quizTitle: "Trouvons la solution idéale pour votre entreprise.",
-    quizSub: "Répondez à trois questions rapides et nous vous associerons à la meilleure solution Moneris.",
-    questionWord: "Question",
-    backBtn: "← Retour",
-    nextBtn: "Suivant →",
-    seeRec: "Voir ma recommandation",
-    needHelp: "Besoin d'aide?",
-    talkPerson: "Parler à une vraie personne →",
-    notRight: "Pas tout à fait ce qu'il vous faut?",
-    startOver: "Recommencer",
-    orTalk: "ou",
-    // endpoint
-    bestOption: "Meilleur choix",
-    learnMore: "En savoir plus",
-    // footer
-    footerCopy: "© 2026 Corporation Moneris Solutions",
-    footerPrivacy: "Confidentialité",
-    footerTerms: "Conditions",
-    footerHelp: "Centre d'aide",
-    // quiz questions & options
-    steps: [
-      {
-        q: "Où en êtes-vous dans votre parcours d'entreprise?",
-        opts: ["Je lance une nouvelle entreprise", "Je suis une entreprise établie qui cherche à changer de fournisseur"]
-      },
-      {
-        q: "Quelle industrie décrit le mieux votre entreprise?",
-        opts: ["Commerce de détail", "Restaurant", "Services professionnels", "Secteur public", "Santé et beauté", "Métiers spécialisés", "Organisme sans but lucratif"]
-      },
-      {
-        q: "Comment souhaitez-vous accepter les paiements?",
-        opts: ["En magasin (TPV / terminal)", "En ligne / commerce électronique", "Une combinaison des deux"]
-      }
+  "Switching from another provider":{
+    badge:"Switching path",
+    steps:[
+      {q:"What's the main reason you're looking to switch?", opts:["Fees are too high","Unreliable hardware or software","Poor customer support","Missing features I need","My contract is ending"]},
+      {q:"What are you currently using?", opts:["A terminal only","A full POS system","An ecommerce platform","A mix of things"]},
+      {q:"Do you currently sell online?", opts:["Yes and it's important to my business","A little but want to grow it","No, strictly in-person"]},
+      {q:"When are you looking to make the switch?", opts:["As soon as possible","Within 1–3 months","Still evaluating"]}
     ],
-    // endpoints
-    endpoints: {
-      badge: "Recommandé pour vous",
-      title: "Voici ce que nous vous recommandons.",
-      descs: {
-        "retail|inperson":        "D'après vos réponses, voici les meilleures solutions en magasin pour votre commerce de détail.",
-        "retail|online":          "Voici les meilleures solutions de paiement en ligne pour commencer à vendre sur le web.",
-        "retail|both":            "Vous avez besoin d'une couverture en magasin et en ligne — voici une configuration qui gère les deux.",
-        "restaurant|inperson":    "Les bons outils pour encaisser et gérer votre salle — des terminaux aux systèmes de point de vente complets.",
-        "restaurant|online":      "Acceptez les commandes et paiements en ligne pour la livraison, la cueillette ou la restauration.",
-        "restaurant|both":        "Gérez votre salle à manger et vos commandes en ligne depuis une seule plateforme connectée.",
-        "professional|inperson":  "Acceptez les paiements à votre bureau, cabinet ou chantier — rapidement et de façon professionnelle.",
-        "professional|online":    "Envoyez des factures et encaissez à distance — sans visite en personne requise.",
-        "professional|both":      "Que vous facturiez à distance ou sur place, ces solutions vous couvrent.",
-        "public|inperson":        "Modernisez la collecte de paiements en personne aux comptoirs, bornes ou guichets de service.",
-        "public|online":          "Permettez aux citoyens de payer des frais, permis et services en ligne en toute sécurité.",
-        "public|both":            "Soutenez les paiements aux comptoirs et en ligne dans l'ensemble de votre organisation.",
-        "health|inperson":        "Au fauteuil, à la table ou à la caisse — les bons outils de paiement pour votre salon ou clinique.",
-        "health|online":          "Permettez à vos clients de réserver et payer en ligne, ou d'acheter vos produits sur votre site.",
-        "health|both":            "Acceptez les paiements dans votre espace et en ligne — pour les services, produits ou cartes-cadeaux.",
-        "trades|inperson":        "Encaissez sur le chantier, à la porte ou à votre atelier avec des outils adaptés aux mobiles.",
-        "trades|online":          "Facturez vos clients et soyez payé en ligne — sans courir après les chèques.",
-        "trades|both":            "Acceptez les paiements sur le terrain et encaissez les dépôts ou soldes en ligne facilement.",
-        "nonprofit|inperson":     "Acceptez les dons et paiements en personne lors d'événements, à votre local ou en déplacement.",
-        "nonprofit|online":       "Facilitez les dons en ligne pour vos donateurs et partisans — en toute sécurité et simplicité.",
-        "nonprofit|both":         "Que ce soit lors d'un événement ou d'une campagne en ligne, ces outils soutiennent votre mission.",
-      }
-    },
-    // product descriptions
-    products: {
-      goTerminal:     { name: "Terminal Moneris Go",           desc: "Terminal portable nouvelle génération — certifié PCI 7, autonomie tout au long de la journée, écran 7\". Sur comptoir ou en déplacement." },
-      goRetailPOS:    { name: "Moneris Go Retail TPV",         desc: "Système de point de vente complet pour les petits commerces en croissance. Gérez l'inventaire, le personnel et les paiements." },
-      totalCommerce:  { name: "Moneris Total Commerce",        desc: "TPV omnicanal conçu avec Wix — unifiez les ventes en magasin et en ligne sur une seule plateforme." },
-      tapToPay:       { name: "Paiement par contact sur iPhone", desc: "Transformez votre iPhone en terminal de paiement — aucun matériel supplémentaire requis. Acceptez les paiements sans contact partout." },
-      monerisGateway: { name: "Passerelle Moneris",            desc: "Passerelle de paiement sécurisée pour les transactions en ligne. S'intègre à votre site Web ou plateforme existant." },
-      monerisOnline:  { name: "Moneris En ligne",              desc: "Solution de commerce électronique conçue avec Wix. Acceptez des paiements, envoyez des factures et vendez en ligne en toute sécurité." },
-      monerisAPI:     { name: "API Moneris",                   desc: "API conviviale pour les développeurs afin d'intégrer les paiements directement dans votre application Web ou mobile personnalisée." },
-      goRestaurant:   { name: "Moneris Go Restaurant",         desc: "TPV tout-en-un pour les petits restaurants indépendants à service au comptoir, cafés et camions de cuisine." },
-      monerisKiosk:   { name: "Borne Moneris",                 desc: "Solution de borne de commande libre-service pour les restaurants à service rapide — réduisez les temps d'attente et les erreurs." },
-      monerisCheckout:{ name: "Paiement Moneris",              desc: "Page de paiement hébergée acceptant les dons et paiements — simple à intégrer, aucun codage requis." },
-      tipTap:         { name: "Tip-Tap",                       desc: "Dispositif de don par contact pour les organismes sans but lucratif et organismes de bienfaisance. Dons sans contact simplifiés." },
+    endpoints:{
+      "As soon as possible":{type:"contact",badge:"Ready to switch",bc:"ep-a",title:"Let's get you moved over quickly.",desc:"You're ready to switch now. Fill in your details and a Moneris specialist will reach out within one business day.",cta:"Submit"},
+      "Yes and it's important to my business":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You need strong in-store and online coverage — here's what handles both after your switch.",prods:["totalCommerce","goRetail","monerisOnline"],best:0,cta:"Order now",cta2:"Learn more"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on what you told us, here's the best fit for your switch to Moneris.",prods:["goRetail","goTerminal","goPlus"],best:0,cta:"Order now",cta2:"Learn more"}
+    }
+  },
+  "Already with Moneris, looking to expand":{
+    badge:"Expansion path",
+    steps:[
+      {q:"What kind of expansion are you planning?", opts:["Opening a second location","Adding online sales","Upgrading my current hardware","Adding more payment terminals"]},
+      {q:"What Moneris products are you currently using?", opts:["A terminal only","Moneris Go Retail or PAYD","Moneris Total Commerce","Not sure"]},
+      {q:"How many total locations will you have after expanding?", opts:["2 locations","3–5 locations","6 or more locations"]},
+      {q:"When are you planning to expand?", opts:["Within the next month","1–3 months","3+ months away"]}
+    ],
+    endpoints:{
+      "6 or more locations":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our enterprise team.",desc:"At 6+ locations you'll benefit from centralized reporting, dedicated support, and a tailored account structure.",cta:"Submit"},
+      "Adding online sales":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You're ready to add online sales — here's how to connect your in-store setup to a full ecommerce channel.",prods:["totalCommerce","monerisOnline","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your expansion plans, here's what to add to your current Moneris setup.",prods:["goTerminal","goRetail","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"}
     }
   }
 };
 
-// ─── PRODUCT URLS (language-independent) ─────────────────────────────────────
-const URLS = {
-  goTerminal:     "https://www.moneris.com/en/solutions/terminals/moneris-go",
-  goRetailPOS:    "https://www.moneris.com/en/solutions/pos-systems/go-retail",
-  totalCommerce:  "https://www.moneris.com/en/solutions/pos-systems/total-commerce",
-  tapToPay:       "https://www.moneris.com/en/solutions/mobile/tap-to-pay-on-iphone",
-  monerisGateway: "https://www.moneris.com/en/solutions/ecommerce/moneris-gateway",
-  monerisOnline:  "https://www.moneris.com/en/solutions/ecommerce/moneris-online",
-  monerisAPI:     "https://www.moneris.com/en/solutions/ecommerce/moneris-api",
-  goRestaurant:   "https://www.moneris.com/en/solutions/pos-systems/go-restaurant",
-  monerisKiosk:   "https://www.moneris.com/en/restaurants/self-ordering-kiosk",
-  monerisCheckout:"https://www.moneris.com/en/solutions/ecommerce/moneris-gateway",
-  tipTap:         "https://www.tiptappay.com/",
+const quizzes = {
+  homepage:{
+    label:"Homepage", title:"Let's find your fit.", sub:"A few quick questions to point you in the right direction.",
+    earlyExit:{step:0,val:"Just exploring"},
+    steps:[
+      {q:"What brought you here today?", opts:["Just exploring","Looking for a solution"]},
+      {q:"What type of business do you run?", opts:["Retail","Restaurant","Health & beauty","Professional services","Trades","Other"]},
+      {q:"How do you sell?", opts:["In-person only","Online only","Both in-person and online"]},
+      {q:"What's your biggest priority right now?", opts:["Accepting payments","Managing my business","Growing sales","Reducing costs"]},
+      {q:"How soon are you looking to get set up?", opts:["Right away","Within a month","Just researching"]}
+    ],
+    endpoints:{
+      default:{type:"route",badge:"Recommended for you",bc:"ep-g",title:"Based on what you told us, here's where to start.",desc:"We've matched you to the most relevant Moneris solutions page. The quiz there will get even more specific to your business.",cta:"Take me there",cta2:"Talk to a specialist"}
+    }
+  },
+  retail:{
+    label:"Retail", title:"Find your retail solution.", sub:"Tell us where you are in your journey and we'll tailor the questions from there.", isRetail:true,
+    gateStep:{q:"Where are you in your retail journey?", opts:["Just opening a new store","Switching from another provider","Already with Moneris, looking to expand"]}
+  },
+  restaurant:{
+    label:"Restaurants", title:"Find your restaurant solution.", sub:"Tell us about your restaurant and we'll match you to the right fit.",
+    steps:[
+      {q:"What type of restaurant do you run?", opts:["Full-service / fine dining","Quick service or fast casual","Café or bakery","Food truck or market","Bar or nightclub"]},
+      {q:"How do customers order from you?", opts:["Table-side","Counter","Online","All of the above"]},
+      {q:"Do you need online ordering or delivery integration?", opts:["Yes, it's essential","Nice to have","No, strictly in-person"]},
+      {q:"How many locations do you operate?", opts:["Just one","2–5 locations","6 or more","Planning to expand"]},
+      {q:"What's your biggest operational pain point?", opts:["Slow checkout","Order errors","Staff management","Tracking sales","Just getting started"]}
+    ],
+    endpoints:{
+      "6 or more":{type:"contact",badge:"Enterprise fit",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"Multi-location operations need a tailored approach. Fill in your details and a specialist will reach out.",cta:"Submit"},
+      "Planning to expand":{type:"contact",badge:"Growth plan",bc:"ep-b",title:"Let's connect you with our restaurant enterprise team.",desc:"We'll help you build a solution that scales with you.",cta:"Submit"},
+      "Full-service / fine dining":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Built for full-service restaurants with table-side payments and front- and back-of-house management.",prods:["touchBistro","goPlus","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your restaurant.",prods:["goRestaurant","goTerminal","touchBistro"],best:0,cta:"Order now",cta2:"Learn more"}
+    }
+  },
+  health:{
+    label:"Health & beauty", title:"Solutions built for your salon or clinic.", sub:"Tell us about your business and we'll find your best match.",
+    steps:[
+      {q:"What kind of business do you run?", opts:["Hair or nail salon","Spa or wellness centre","Medical or aesthetic clinic","Barbershop","Other"]},
+      {q:"How do clients book with you?", opts:["Appointments only","Walk-ins only","Mix of both"]},
+      {q:"Do you sell retail products alongside your services?", opts:["Yes, it's a big part of our revenue","A little","No, services only"]},
+      {q:"How do you currently take payments?", opts:["Terminal at checkout","Chairside or tableside","Just getting started"]},
+      {q:"What matters most to you in a payment solution?", opts:["Easy tipping","Booking and payment in one place","Gift cards and loyalty","Simple setup"]}
+    ],
+    endpoints:{
+      "Medical or aesthetic clinic":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a healthcare payments specialist.",desc:"Clinics have unique compliance and billing needs. A Moneris specialist will walk you through the right solution.",cta:"Submit"},
+      "Yes, it's a big part of our revenue":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You sell both services and products — here's what handles both in one platform.",prods:["totalCommerce","goPlus","goRetail"],best:0,cta:"Order now",cta2:"Learn more"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","goRetail"],best:0,cta:"Order now",cta2:"Learn more"}
+    }
+  },
+  enterprise:{
+    label:"Enterprise", title:"Enterprise-grade commerce solutions.", sub:"Tell us about your organization and we'll get the right team in touch.",
+    steps:[
+      {q:"What best describes your organization?", opts:["National retail chain","Restaurant group","Healthcare network","Public sector","Other large organization"]},
+      {q:"How many locations need payment solutions?", opts:["10–25 locations","26–100 locations","100+ locations"]},
+      {q:"What's driving this evaluation?", opts:["Replacing an existing provider","Opening new locations","Adding online payments","Consolidating systems"]},
+      {q:"What's most important to your team?", opts:["Reliability and uptime","Reporting and data","Integrations with existing software","Dedicated support"]},
+      {q:"When are you looking to make a decision?", opts:["Within 30 days","This quarter","Just exploring options"]}
+    ],
+    endpoints:{
+      "Within 30 days":{type:"contact",badge:"High priority",bc:"ep-a",title:"Let's book a call.",desc:"You're ready to move. Fill in your details and a senior Moneris enterprise specialist will reach out within one business day.",cta:"Submit"},
+      "Just exploring options":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore our enterprise overview and download our solutions guide. We'll be here when you're ready to talk.",cta:"View enterprise solutions",cta2:"Download guide"},
+      default:{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with an enterprise specialist.",desc:"Based on your organization's needs, our enterprise team is the right next step.",cta:"Submit"}
+    }
+  },
+  professional:{
+    label:"Pro services", title:"Find your professional services solution.", sub:"Tell us about your practice and we'll match you to the right fit.",
+    steps:[
+      {q:"What type of professional services business do you run?", opts:["Legal / law firm","Accounting / bookkeeping","Automotive services","Other professional services"]},
+      {q:"How do your clients typically pay you?", opts:["Invoice or retainer — they pay remotely","In person at time of service","Mix of both","We're still figuring this out"]},
+      {q:"Do you need to accept payments online or over the phone?", opts:["Yes, online payments are essential","Phone payments would be useful","No, always in person","Both online and phone"]},
+      {q:"How many staff or locations are processing payments?", opts:["Just me","Small team, one location","Multiple locations or 10+ staff"]},
+      {q:"What matters most to you in a payment solution?", opts:["Getting paid faster","Accepting cards in person easily","Professional invoicing and records","Simple, low-cost setup","Detailed reporting"]}
+    ],
+    endpoints:{
+      "Multiple locations or 10+ staff":{type:"contact",badge:"Specialist match",bc:"ep-b",title:"Let's connect you with a specialist.",desc:"Your setup needs a tailored multi-user solution. Fill in your details and we'll be in touch.",cta:"Submit"},
+      "Invoice or retainer — they pay remotely":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"You bill remotely — these Moneris tools let clients pay securely without visiting in person.",prods:["paydInvoicing","monerisOnline","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your answers, these solutions are the best fit for your business.",prods:["goPlus","goTerminal","paydInvoicing"],best:0,cta:"Order now",cta2:"Learn more"}
+    }
+  },
+  public:{
+    label:"Public sector", title:"Payment solutions for public sector organizations.", sub:"Tell us about your organization and we'll find the right fit.",
+    steps:[
+      {q:"What type of public sector organization are you?", opts:["Municipal government","University or college","Healthcare authority","Transit or parking","Library or community centre","Other government agency"]},
+      {q:"How do constituents or customers pay you today?", opts:["In person at a counter or kiosk","Online through a portal","Over the phone","Mix of all of the above","We're just getting started"]},
+      {q:"What's your biggest payment challenge right now?", opts:["Modernizing aging payment infrastructure","Accepting more payment types","Improving online payment options","Reducing manual reconciliation","Meeting compliance or accessibility requirements"]},
+      {q:"How many payment points or locations are involved?", opts:["One location","2–10 locations","10+ locations or city-wide"]},
+      {q:"When are you looking to move forward?", opts:["Actively evaluating — decision soon","Planning for next fiscal year","Early-stage research"]}
+    ],
+    endpoints:{
+      "10+ locations or city-wide":{type:"contact",badge:"Enterprise match",bc:"ep-b",title:"Let's connect you with our public sector enterprise team.",desc:"City-wide or multi-site deployments need a dedicated account team and tailored infrastructure.",cta:"Submit"},
+      "Actively evaluating — decision soon":{type:"contact",badge:"Ready to move",bc:"ep-a",title:"Let's get you connected quickly.",desc:"You're actively evaluating — a Moneris public sector specialist will reach out within one business day.",cta:"Submit"},
+      "Early-stage research":{type:"resources",badge:"Exploring",bc:"ep-a",title:"Here's a starting point for your research.",desc:"Explore how Moneris works with public sector organizations across Canada.",cta:"View public sector solutions",cta2:"Download overview"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical starting point for modernizing your payments.",prods:["goTerminal","goPinPad","monerisOnline"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
+    }
+  },
+  nonprofit:{
+    label:"Not-for-profit", title:"Payment solutions built for your mission.", sub:"Tell us about your organization and we'll find the right fit.",
+    steps:[
+      {q:"What best describes your not-for-profit?", opts:["Registered charity or foundation","Community or social services org","Religious organization","Arts, culture, or sports org","Healthcare or hospice","Other not-for-profit"]},
+      {q:"How does your organization primarily collect money?", opts:["Donations — online or by mail","In-person donations or collections","Events and ticket sales","A thrift store or retail operation","Program fees or memberships","Mix of the above"]},
+      {q:"Do you need to accept donations or payments online?", opts:["Yes, online giving is essential for us","We'd like to add it","No, we operate entirely in person"]},
+      {q:"How large is your organization?", opts:["Under 10 staff or volunteers","10–50 staff or volunteers","50+ staff or multiple chapters"]},
+      {q:"What matters most to your organization in a payment solution?", opts:["Low fees — every dollar counts","Automatic donor tax receipting","Easy for volunteers to use","Online giving and donation pages","Reporting for our board or funders"]}
+    ],
+    endpoints:{
+      "50+ staff or multiple chapters":{type:"contact",badge:"Enterprise NFP",bc:"ep-b",title:"Let's connect you with a not-for-profit specialist.",desc:"Large or multi-chapter organizations need a tailored solution. A Moneris specialist will reach out.",cta:"Submit"},
+      "Yes, online giving is essential for us":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Online giving is central to your mission — here's how Moneris helps you accept donations online.",prods:["monerisOnline","paydInvoicing","goTerminal"],best:0,cta:"Learn more",cta2:"Talk to a specialist"},
+      "A thrift store or retail operation":{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Running a charity shop means you need a reliable in-store retail setup at a cost that protects your mission.",prods:["goRetail","goTerminal","totalCommerce"],best:0,cta:"Order now",cta2:"Learn more"},
+      default:{type:"products",badge:"Recommended for you",bc:"ep-g",title:"Here's what we'd recommend.",desc:"Based on your organization's needs, here's a practical and affordable starting point.",prods:["goTerminal","monerisOnline","paydInvoicing"],best:0,cta:"Learn more",cta2:"Talk to a specialist"}
+    }
+  }
 };
 
-const ICONS = {
-  goTerminal:"💳", goRetailPOS:"🛍️", totalCommerce:"🌐", tapToPay:"📱",
-  monerisGateway:"🔗", monerisOnline:"💻", monerisAPI:"⚙️",
-  goRestaurant:"🍽️", monerisKiosk:"🖥️", monerisCheckout:"🛒", tipTap:"💝"
-};
+/* STATE */
+let st = { quiz:null, step:0, ans:{}, exited:false, gateAns:null };
 
-// ─── ENDPOINT PRODUCT LISTS ───────────────────────────────────────────────────
-const EP_PRODS = {
-  "retail|inperson":        { prods:["goTerminal","goRetailPOS","totalCommerce"],      best:0 },
-  "retail|online":          { prods:["monerisGateway","monerisOnline","monerisAPI"],   best:0 },
-  "retail|both":            { prods:["goTerminal","monerisGateway","totalCommerce"],   best:0 },
-  "restaurant|inperson":    { prods:["tapToPay","goTerminal","goRestaurant"],          best:0 },
-  "restaurant|online":      { prods:["monerisGateway","monerisOnline","monerisAPI"],   best:0 },
-  "restaurant|both":        { prods:["goTerminal","goRestaurant","monerisKiosk"],      best:0 },
-  "professional|inperson":  { prods:["tapToPay","goTerminal"],                         best:0 },
-  "professional|online":    { prods:["monerisGateway","monerisOnline"],                best:0 },
-  "professional|both":      { prods:["goTerminal","monerisGateway","monerisOnline"],   best:0 },
-  "public|inperson":        { prods:["tapToPay","goTerminal"],                         best:0 },
-  "public|online":          { prods:["monerisGateway","monerisOnline"],                best:0 },
-  "public|both":            { prods:["goTerminal","monerisGateway","monerisOnline"],   best:0 },
-  "health|inperson":        { prods:["tapToPay","goTerminal"],                         best:0 },
-  "health|online":          { prods:["monerisGateway","monerisOnline"],                best:0 },
-  "health|both":            { prods:["goTerminal","monerisGateway","monerisOnline"],   best:0 },
-  "trades|inperson":        { prods:["tapToPay","goTerminal"],                         best:0 },
-  "trades|online":          { prods:["monerisGateway","monerisOnline"],                best:0 },
-  "trades|both":            { prods:["goTerminal","monerisGateway","monerisOnline"],   best:0 },
-  "nonprofit|inperson":     { prods:["goTerminal","tipTap"],                           best:0 },
-  "nonprofit|online":       { prods:["monerisCheckout","monerisGateway","monerisOnline"], best:0 },
-  "nonprofit|both":         { prods:["goTerminal","monerisCheckout","monerisGateway"], best:0 },
-};
-
-// Industry answer → key (handles both EN and FR options)
-function industryKey(ans) {
-  const map = {
-    // EN
-    "Retail":"retail","Restaurant":"restaurant","Professional services":"professional",
-    "Public sector":"public","Health and beauty":"health","Trades":"trades","Not-for-profit":"nonprofit",
-    // FR
-    "Commerce de détail":"retail","Services professionnels":"professional",
-    "Secteur public":"public","Santé et beauté":"health","Métiers spécialisés":"trades",
-    "Organisme sans but lucratif":"nonprofit"
-  };
-  return map[ans] || "retail";
+/* SCROLL HELPER — smoothly scrolls shell into view */
+function scrollToShell() {
+  setTimeout(() => document.getElementById('shell').scrollIntoView({ behavior:'smooth', block:'start' }), 50);
 }
 
-function paymentKey(ans) {
-  // EN
-  if (ans === "In-store (POS / Terminal)") return "inperson";
-  if (ans === "Online / E-commerce") return "online";
-  // FR
-  if (ans === "En magasin (TPV / terminal)") return "inperson";
-  if (ans === "En ligne / commerce électronique") return "online";
-  return "both";
-}
-
-// ─── STATE ────────────────────────────────────────────────────────────────────
-let lang = "en";
-let st = { step: 0, ans: {} };
-
-// ─── LANGUAGE SWITCH ──────────────────────────────────────────────────────────
-function setLang(l) {
-  lang = l;
-  applyStaticTranslations();
-  // Reset quiz so option keys match current language
-  st = { step: 0, ans: {} };
+/* ENTRY — homepage quiz always renders on load */
+function initHome() {
+  st = { quiz:'homepage', step:0, ans:{}, exited:false, gateAns:null };
   render();
 }
 
-function t(key) { return T[lang][key] || T.en[key] || key; }
-
-function applyStaticTranslations() {
-  // All data-t elements outside the shell
-  document.querySelectorAll('[data-t]').forEach(el => {
-    const key = el.getAttribute('data-t');
-    const val = T[lang][key];
-    if (val !== undefined) el.innerHTML = val;
-  });
+/* INDUSTRY CARD CLICK */
+function startQuiz(qId) {
+  st = { quiz:qId, step:0, ans:{}, exited:false, gateAns:null };
+  render();
+  scrollToShell();
 }
 
-// ─── RENDER ───────────────────────────────────────────────────────────────────
+/* MAIN RENDER */
 function render() {
   const shell = document.getElementById('shell');
+  const q = quizzes[st.quiz];
+  if (!q) { initHome(); return; }
 
-  if (st.step >= 3) {
-    shell.innerHTML = buildEndpoint();
+  /* RETAIL — gate + branching */
+  if (q.isRetail) {
+    renderRetail(shell, q);
     return;
   }
 
+  const total = q.steps.length;
   const cur = st.step;
-  const s = T[lang].steps[cur];
-  const pct = Math.round((cur / 3) * 100);
-  const isLast = cur === 2;
+  const done = cur >= total || st.exited;
+
+  if (done) {
+    shell.innerHTML = st.exited ? buildBlogExit() : buildEndpoint(q.endpoints);
+    return;
+  }
+
+  const pct = Math.round((cur / total) * 100);
+  const s = q.steps[cur];
+  const isHome = st.quiz === 'homepage';
 
   shell.innerHTML = `
     <div class="card">
-      <div class="card-label">${t('quizLabel')}</div>
-      <div class="card-title">${t('quizTitle')}</div>
-      <div class="card-subtitle">${t('quizSub')}</div>
+      <div class="card-label">${q.label}</div>
+      <div class="card-title">${q.title}</div>
+      <div class="card-subtitle">${q.sub}</div>
       <div class="progress-wrap">
-        <div class="progress-meta"><span>${t('questionWord')}</span><span>${cur + 1} / 3</span></div>
+        <div class="progress-meta"><span>Question</span><span>${cur+1} / ${total}</span></div>
         <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
       </div>
       <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;line-height:1.4;">${s.q}</div>
-      <div class="options">
-        ${s.opts.map(o => `<button class="opt${st.ans[cur] === o ? ' sel' : ''}" onclick="pick('${esc(o)}', ${cur})">${o}</button>`).join('')}
-      </div>
+      <div class="options">${s.opts.map(o=>`<button class="opt${st.ans[cur]===o?' sel':''}" onclick="pick('${esc(o)}',${cur})">${o}</button>`).join('')}</div>
       <div class="nav">
-        ${cur > 0
-          ? `<button class="btn-back" onclick="goBack()">${t('backBtn')}</button>`
-          : `<span></span>`
-        }
-        <button class="btn-next${st.ans[cur] ? ' rdy' : ''}" onclick="goNext()">
-          ${isLast ? t('seeRec') : t('nextBtn')}
-        </button>
+        ${cur > 0 ? `<button class="btn-back" onclick="goBack()">← Back</button>` : (isHome ? `<span></span>` : `<button class="btn-back" onclick="initHome()">← Back</button>`)}
+        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?'See my recommendation':'Next →'}</button>
       </div>
     </div>
-    <div class="fallback">${t('needHelp')} <a href="#">${t('talkPerson')}</a></div>`;
+    <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
 }
 
-// ─── ENDPOINT BUILDER ─────────────────────────────────────────────────────────
-function buildEndpoint() {
-  const ind = industryKey(st.ans[1]);
-  const pay = paymentKey(st.ans[2]);
-  const key = `${ind}|${pay}`;
-  const epProds = EP_PRODS[key] || EP_PRODS["retail|both"];
-  const epText = T[lang].endpoints;
-  const desc = epText.descs[key] || epText.descs["retail|both"];
-  const prods = T[lang].products;
+function renderRetail(shell, q) {
+  if (!st.gateAns) {
+    const gs = q.gateStep;
+    shell.innerHTML = `
+      <div class="card">
+        <div class="card-label">Retail</div>
+        <div class="card-title">${q.title}</div>
+        <div class="card-subtitle">${q.sub}</div>
+        <div class="progress-wrap">
+          <div class="progress-meta"><span>Question</span><span>1 / 5</span></div>
+          <div class="pbar"><div class="pfill" style="width:0%"></div></div>
+        </div>
+        <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;">${gs.q}</div>
+        <div class="options">${gs.opts.map(o=>`<button class="opt${st.gateAns===o?' sel':''}" onclick="pickGate('${esc(o)}')">${o}</button>`).join('')}</div>
+        <div class="nav">
+          <button class="btn-back" onclick="initHome()">← Back</button>
+          <button class="btn-next${st.gateAns?' rdy':''}" onclick="confirmGate()">Next →</button>
+        </div>
+      </div>
+      <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
+    return;
+  }
 
-  const cards = epProds.prods.map((k, i) => {
-    const p = prods[k];
-    return `<div class="product-card${i === epProds.best ? ' best' : ''}">
-      ${i === epProds.best
-        ? `<div class="product-badge">${t('bestOption')}</div>`
-        : `<div style="height:28px;"></div>`
-      }
-      <div class="product-icon">${ICONS[k]}</div>
-      <div class="product-name">${p.name}</div>
-      <div class="product-desc">${p.desc}</div>
-      <a class="btn-primary" href="${URLS[k]}" target="_blank" rel="noopener">${t('learnMore')}</a>
-    </div>`;
-  }).join('');
+  const path = retailPaths[st.gateAns];
+  const total = path.steps.length;
+  const cur = st.step;
+  const done = cur >= total;
+  const displayStep = cur + 2;
+  const displayTotal = total + 1;
+  const pct = Math.round(((cur+1) / (total+1)) * 100);
 
+  if (done) {
+    shell.innerHTML = buildEndpoint(path.endpoints);
+    return;
+  }
+
+  const s = path.steps[cur];
+  shell.innerHTML = `
+    <div class="card">
+      <div class="card-label">Retail</div>
+      <div class="card-title">${q.title}</div>
+      <div class="card-subtitle">${q.sub}</div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span>Question</span><span>${displayStep} / ${displayTotal}</span></div>
+        <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="path-badge">${path.badge}</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text-dark);margin-bottom:0.5rem;line-height:1.4;">${s.q}</div>
+      <div class="options">${s.opts.map(o=>`<button class="opt${st.ans[cur]===o?' sel':''}" onclick="pick('${esc(o)}',${cur})">${o}</button>`).join('')}</div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next${st.ans[cur]?' rdy':''}" onclick="goNext()">${cur===total-1?'See my recommendation':'Next →'}</button>
+      </div>
+    </div>
+    <div class="fallback">Need help? <a href="#">Talk to a real person →</a></div>`;
+}
+
+/* BLOG EXIT — shown when "Just exploring" is picked */
+function buildBlogExit() {
   return `<div class="card">
-    <span class="ep-badge ep-g">${epText.badge}</span>
-    <div class="card-title">${epText.title}</div>
-    <div class="card-subtitle">${desc}</div>
-    <div class="product-grid">${cards}</div>
+    <span class="ep-badge ep-a">No pressure</span>
+    <div class="card-title">Here's what other Canadian businesses are reading.</div>
+    <div class="card-subtitle">Take your time — we'll be here when you're ready.</div>
+    <div class="blog-grid">
+      <div class="blog-card"><div class="blog-img">📰</div><div class="blog-cat">Getting started</div><div class="blog-title">How to choose the right POS system for your business</div><div class="blog-desc">Discover what features matter most when selecting a payment terminal that fits your needs and budget.</div><a class="blog-link" href="#">Read article →</a></div>
+      <div class="blog-card"><div class="blog-img">💳</div><div class="blog-cat">Payments</div><div class="blog-title">Tap, chip, or swipe — what Canadian customers actually prefer</div><div class="blog-desc">Learn how payment preferences are shifting and what it means for your business in 2026.</div><a class="blog-link" href="#">Read article →</a></div>
+      <div class="blog-card"><div class="blog-img">📊</div><div class="blog-cat">Growth</div><div class="blog-title">5 ways Canadian small businesses are growing sales in 2026</div><div class="blog-desc">Proven strategies to leverage commerce tools and reach more customers this year.</div><a class="blog-link" href="#">Read article →</a></div>
+    </div>
     <div class="dvd"></div>
-    <div class="fallback">${t('notRight')} <a onclick="restart()">${t('startOver')}</a> ${t('orTalk')} <a href="#">${t('talkPerson')}</a></div>
+    <div class="fallback">Changed your mind? <a onclick="initHome()">Find your solution →</a></div>
   </div>`;
 }
 
-// ─── CONTROLS ─────────────────────────────────────────────────────────────────
-function esc(s) { return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+/* ENDPOINT BUILDER */
+function buildEndpoint(endpoints) {
+  const vals = Object.values(st.ans);
+  let ep = null;
+  for (const v of vals) { if (endpoints[v]) { ep = endpoints[v]; break; } }
+  if (!ep) ep = endpoints.default;
+
+  let body = '';
+  if (ep.type === 'products') {
+    body = `<div class="product-grid">${ep.prods.map((k,i) => {
+      const p = P[k];
+      return `<div class="product-card${i===ep.best?' best':''}">
+        ${i===ep.best?`<div class="product-badge">Best option</div>`:`<div style="height:28px;"></div>`}
+        <div class="product-icon">${p.icon}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <button class="btn-primary">${ep.cta}</button>
+        ${ep.cta2?`<button class="btn-outline">${ep.cta2}</button>`:''}
+      </div>`;
+    }).join('')}</div>`;
+  } else if (ep.type === 'route') {
+    body = `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem;">
+      <button class="btn-primary" style="width:auto;padding:11px 22px;">${ep.cta}</button>
+      <button class="btn-outline" style="width:auto;padding:11px 22px;">${ep.cta2}</button>
+    </div>`;
+  } else if (ep.type === 'resources') {
+    body = `<div class="resource-grid">
+      <div class="resource-card"><div class="resource-icon">📋</div><div class="resource-name">${ep.cta}</div><div class="resource-desc">Learn how Moneris serves organizations like yours.</div></div>
+      <div class="resource-card"><div class="resource-icon">📥</div><div class="resource-name">${ep.cta2}</div><div class="resource-desc">Get our full solutions guide to share with your team.</div></div>
+    </div>`;
+  } else {
+    body = `<div class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">First name</div><input class="form-input" type="text" placeholder="Jane"></div>
+        <div class="form-group"><div class="form-label">Last name</div><input class="form-input" type="text" placeholder="Smith"></div>
+      </div>
+      <div class="form-group"><div class="form-label">Email address</div><input class="form-input" type="email" placeholder="jane@business.com"></div>
+      <div class="form-group"><div class="form-label">Phone number</div><input class="form-input" type="tel" placeholder="416-555-0100"></div>
+      <button class="btn-submit">${ep.cta}</button>
+    </div>`;
+  }
+
+  return `<div class="card">
+    <span class="ep-badge ${ep.bc}">${ep.badge}</span>
+    <div class="card-title">${ep.title}</div>
+    <div class="card-subtitle">${ep.desc}</div>
+    ${body}
+    <div class="dvd"></div>
+    <div class="fallback">Not quite right? <a onclick="initHome()">Start over</a> or <a href="#">talk to a real person →</a></div>
+  </div>`;
+}
+
+/* CONTROLS */
+function esc(s) { return s.replace(/'/g, "\\'"); }
 
 function pick(val, stepIdx) {
   st.ans[stepIdx] = val;
+  const q = quizzes[st.quiz];
+  if (q && q.earlyExit && stepIdx === q.earlyExit.step && val === q.earlyExit.val) {
+    st.exited = true;
+    document.getElementById('shell').innerHTML = buildBlogExit();
+    return;
+  }
   render();
 }
 
@@ -598,18 +646,34 @@ function goNext() {
 }
 
 function goBack() {
+  if (st.quiz === 'retail' && st.step === 0) {
+    st.gateAns = null; st.ans = {};
+    renderRetail(document.getElementById('shell'), quizzes.retail);
+    return;
+  }
   if (st.step > 0) { st.step--; render(); }
+  else { initHome(); }
 }
 
-function restart() {
-  st = { step: 0, ans: {} };
+function pickGate(val) {
+  st.gateAns = val;
+  renderRetail(document.getElementById('shell'), quizzes.retail);
+}
+
+function confirmGate() {
+  if (!st.gateAns) return;
+  st.step = 0; st.ans = {};
+  renderRetail(document.getElementById('shell'), quizzes.retail);
+}
+
+function initHome() {
+  st = { quiz:'homepage', step:0, ans:{}, exited:false, gateAns:null };
   render();
-  document.getElementById('shell').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('shell').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-applyStaticTranslations();
-render();
+/* INIT */
+initHome();
 </script>
 </body>
 </html>
